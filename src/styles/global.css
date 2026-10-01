@@ -233,19 +233,35 @@ svg {
    can go: a cream card directly behind it lifts the ground, and at three
    quarters the lockup falls under 4.5 to one against its own bar. */
 html[data-band='teal'] {
-	--veil: color-mix(in srgb, color-mix(in srgb, var(--teal) 42%, var(--teal-deep)) 82%, transparent);
+	--veil: color-mix(
+		in srgb,
+		color-mix(in srgb, var(--teal) 42%, var(--teal-deep)) 82%,
+		transparent
+	);
 }
 
 html[data-band='ochre'] {
-	--veil: color-mix(in srgb, color-mix(in srgb, var(--ochre) 34%, var(--ink-deep)) 82%, transparent);
+	--veil: color-mix(
+		in srgb,
+		color-mix(in srgb, var(--ochre) 34%, var(--ink-deep)) 82%,
+		transparent
+	);
 }
 
 html[data-band='rose'] {
-	--veil: color-mix(in srgb, color-mix(in srgb, var(--rose) 38%, var(--ink-deep)) 82%, transparent);
+	--veil: color-mix(
+		in srgb,
+		color-mix(in srgb, var(--rose) 38%, var(--ink-deep)) 82%,
+		transparent
+	);
 }
 
 html[data-band='sage'] {
-	--veil: color-mix(in srgb, color-mix(in srgb, var(--sage) 44%, var(--ink-deep)) 82%, transparent);
+	--veil: color-mix(
+		in srgb,
+		color-mix(in srgb, var(--sage) 44%, var(--ink-deep)) 82%,
+		transparent
+	);
 }
 
 /* The registration sheet's own ground. Held at 92% rather than the 82% the
@@ -254,5 +270,9 @@ html[data-band='sage'] {
    both ends and read as one bar in three tones. At 92% what passes underneath
    still shows, and the bar stays one colour. */
 html[data-band='ink'] {
-	--veil: color-mix(in srgb, color-mix(in srgb, var(--teal) 14%, var(--ink-deep)) 92%, transparent);
+	--veil: color-mix(
+		in srgb,
+		color-mix(in srgb, var(--teal) 14%, var(--ink-deep)) 92%,
+		transparent
+	);
 }

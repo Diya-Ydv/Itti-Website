@@ -24,7 +24,11 @@ const SAID: Record<string, string> = {
 };
 
 const esc = (s: string) =>
-	s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+	s
+		.replace(/&/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;');
 
 /** Paise to rupees, grouped the way the page groups them. */
 const rupees = (paise: number) =>
@@ -59,9 +63,10 @@ export const acknowledgement = (p: {
 	const first = (p.name ?? '').trim().split(/\s+/)[0] ?? '';
 	const greeting = first ? `Thank you, ${first}.` : 'Thank you.';
 	const amount = rupees(p.amountPaise);
-	const where = p.pillar && SAID[p.pillar]
-		? `You asked us to direct it to ${SAID[p.pillar]}, and we will.`
-		: 'You left it to us to put where it is needed most, and we will.';
+	const where =
+		p.pillar && SAID[p.pillar]
+			? `You asked us to direct it to ${SAID[p.pillar]}, and we will.`
+			: 'You left it to us to put where it is needed most, and we will.';
 
 	const lines = [
 		greeting,

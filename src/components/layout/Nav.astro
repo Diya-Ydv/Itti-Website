@@ -41,7 +41,11 @@ const MENUS = [
 			{
 				title: 'Our Pillars',
 				links: [
-					{ label: 'Neurodivergence', href: '/commitments/neurodivergence', accent: 'ochre' },
+					{
+						label: 'Neurodivergence',
+						href: '/commitments/neurodivergence',
+						accent: 'ochre',
+					},
 					{ label: 'Cancer Care', href: '/commitments/cancer-care', accent: 'rose' },
 					{ label: 'Conservation', href: '/commitments/conservation', accent: 'sage' },
 				],
@@ -128,55 +132,61 @@ const MENUS = [
 				}
 			</ul>
 
-			{/* One panel for the whole bar, not one per menu.
+			{
+				/* One panel for the whole bar, not one per menu.
 			    Four panels each anchored to their own label meant four different
 			    places for the same object to appear, at four different widths —
 			    the bar behaved differently depending on where you pointed. This
 			    one slides along under the labels and resizes to whatever it is
 			    holding, so the menu is a single thing that moves rather than four
-			    that come and go. */}
+			    that come and go. */
+			}
 			<div class="mega" id="mega-panel" data-mega>
 				<div class="mega__frame" data-mega-frame>
-					{MENUS.map((menu, i) => (
-						<div class="mega__sheet" data-mega-sheet={i} aria-hidden="true">
-							<span class="mega__edge" aria-hidden="true" />
-							<div class="mega__cols">
-								{menu.groups.map((group) => (
-									<section class="mega__group">
-										<h2 class="mega__title">
-											<span class="mega__title-rule" aria-hidden="true" />
-											{group.title}
-										</h2>
-										<ul class="mega__links">
-											{group.links.map((link) => (
-												<li>
-													<a
-														class="mega__link"
-														href={link.href}
-														tabindex="-1"
-														style={
-															'accent' in link
-																? `--accent: var(--${(link as { accent: string }).accent}); --accent-ink: var(--${(link as { accent: string }).accent}-ink)`
-																: undefined
-														}
-													>
-														<span>{link.label}</span>
-														<span class="mega__link-arrow" aria-hidden="true">
-															&rarr;
-														</span>
-													</a>
-												</li>
-											))}
-										</ul>
-									</section>
-								))}
+					{
+						MENUS.map((menu, i) => (
+							<div class="mega__sheet" data-mega-sheet={i} aria-hidden="true">
+								<span class="mega__edge" aria-hidden="true" />
+								<div class="mega__cols">
+									{menu.groups.map((group) => (
+										<section class="mega__group">
+											<h2 class="mega__title">
+												<span class="mega__title-rule" aria-hidden="true" />
+												{group.title}
+											</h2>
+											<ul class="mega__links">
+												{group.links.map((link) => (
+													<li>
+														<a
+															class="mega__link"
+															href={link.href}
+															tabindex="-1"
+															style={
+																'accent' in link
+																	? `--accent: var(--${(link as { accent: string }).accent}); --accent-ink: var(--${(link as { accent: string }).accent}-ink)`
+																	: undefined
+															}
+														>
+															<span>{link.label}</span>
+															<span class="mega__link-arrow" aria-hidden="true">
+																&rarr;
+															</span>
+														</a>
+													</li>
+												))}
+											</ul>
+										</section>
+									))}
+								</div>
+								<a class="mega__all" href={menu.href} tabindex="-1">
+									<span>All of {menu.label}</span>
+									<span class="mega__all-arrow" aria-hidden="true">
+										&rarr;
+									</span>
+								</a>
 							</div>
-							<a class="mega__all" href={menu.href} tabindex="-1">
-								<span>All of {menu.label}</span>
-								<span class="mega__all-arrow" aria-hidden="true">&rarr;</span>
-							</a>
-						</div>
-					))}
+						))
+					}
 				</div>
 			</div>
 		</nav>
@@ -361,11 +371,19 @@ const MENUS = [
 		   nine tenths cream. Where the ground changes in one frame the bar
 		   changes in one frame, and where the ground fades the bar fades with
 		   it, because it is the same number. */
-		color: color-mix(in oklab, var(--teal) calc(var(--turned) * 100%), var(--warm-white));
+		color: color-mix(
+			in oklab,
+			var(--teal) calc(var(--turned) * 100%),
+			var(--warm-white)
+		);
 		/* On the dark arc the whole lockup is one colour; FOUNDATION's teal
 		   would sink into a deep-teal ground. On cream it returns to the
 		   brand's own two. */
-		--wordmark-name: color-mix(in oklab, var(--ink) calc(var(--turned) * 100%), var(--warm-white));
+		--wordmark-name: color-mix(
+			in oklab,
+			var(--ink) calc(var(--turned) * 100%),
+			var(--warm-white)
+		);
 		--wordmark-sub: color-mix(
 			in oklab,
 			var(--teal) calc(var(--turned) * 100%),
@@ -685,7 +703,11 @@ const MENUS = [
 		flex: none;
 		padding: 0.5rem 1.35rem 0.55rem;
 		border-radius: 999px;
-		background: color-mix(in oklab, var(--teal) calc(var(--turned) * 100%), var(--cream));
+		background: color-mix(
+			in oklab,
+			var(--teal) calc(var(--turned) * 100%),
+			var(--cream)
+		);
 		color: color-mix(in oklab, var(--warm-white) var(--pill-ink), var(--teal-deep));
 		font-size: 0.9375rem;
 		letter-spacing: 0.02em;
@@ -717,11 +739,18 @@ const MENUS = [
 	/* Signed in, Join Us is gone and Donate is the only thing being asked. */
 	/* Signed in, Donate is filled too, and inverts on the same terms. */
 	.nav:has([data-signed-in]:not([hidden])) .pill--outline {
-		background: color-mix(in oklab, var(--teal) calc(var(--turned) * 100%), var(--cream));
-		border-color: color-mix(in oklab, var(--teal) calc(var(--turned) * 100%), var(--cream));
+		background: color-mix(
+			in oklab,
+			var(--teal) calc(var(--turned) * 100%),
+			var(--cream)
+		);
+		border-color: color-mix(
+			in oklab,
+			var(--teal) calc(var(--turned) * 100%),
+			var(--cream)
+		);
 		color: color-mix(in oklab, var(--warm-white) var(--pill-ink), var(--teal-deep));
 	}
-
 
 	.pill:hover {
 		transform: translateY(-1px);
@@ -736,7 +765,11 @@ const MENUS = [
 		font-size: 0.9375rem;
 		letter-spacing: 0.02em;
 		white-space: nowrap;
-		color: color-mix(in oklab, var(--teal-deep) calc(var(--turned) * 100%), var(--cream));
+		color: color-mix(
+			in oklab,
+			var(--teal-deep) calc(var(--turned) * 100%),
+			var(--cream)
+		);
 	}
 
 	.signin:hover {
@@ -1039,7 +1072,6 @@ const MENUS = [
 		translate: 0.25rem 0;
 	}
 
-
 	/* ── Mobile ─────────────────────────────────────────────────────────── */
 
 	/* The way into everything else, and on a phone it is the only way.
@@ -1270,7 +1302,9 @@ const MENUS = [
 			openIndex = -1;
 			nav.classList.remove('is-open');
 			for (const item of items) {
-				item.querySelector('[data-menu-trigger]')!.setAttribute('aria-expanded', 'false');
+				item
+					.querySelector('[data-menu-trigger]')!
+					.setAttribute('aria-expanded', 'false');
 			}
 			for (const sheet of sheets) reach(sheet, false);
 		};

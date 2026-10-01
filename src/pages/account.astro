@@ -78,7 +78,13 @@ const LANGUAGES = [
  * order, in the same colours.
  */
 const PILLARS = [
-	['neurodivergence', 'Neurodivergence', 'ochre', 'Pillar I', 'A mind met, not mended.'],
+	[
+		'neurodivergence',
+		'Neurodivergence',
+		'ochre',
+		'Pillar I',
+		'A mind met, not mended.',
+	],
 	['cancer_care', 'Cancer Care', 'rose', 'Pillar II', 'A cancer caught, not carried.'],
 	['claw', 'Conservation', 'sage', 'Pillar III', 'A forest saved, not mourned.'],
 	['not_sure', "I'm not sure yet", 'teal', 'General', 'Point me where I am needed.'],
@@ -277,8 +283,10 @@ const FACTS = {
 					<header class="acct__mast">
 						<p class="acct__eyebrow">Your account</p>
 						<h1 class="acct__title">Check your email.</h1>
-						{/* Conditional on purpose: this page must not confirm whether an
-						    address is registered. */}
+						{
+							/* Conditional on purpose: this page must not confirm whether an
+						    address is registered. */
+						}
 						<p class="acct__lede">
 							If we have a registration for <strong data-sent-address></strong>, a
 							sign-in link is on its way. It works once, for an hour, on any device.
@@ -424,7 +432,9 @@ const FACTS = {
 							<section class="block block--wide">
 								<h3 class="block__title">In your own words</h3>
 								<p class="profile__bio" data-bio hidden></p>
-								<p class="profile__invite" data-bio-empty hidden>Nothing written yet.</p>
+								<p class="profile__invite" data-bio-empty hidden>
+									Nothing written yet.
+								</p>
 							</section>
 
 							<section class="block">
@@ -491,15 +501,18 @@ const FACTS = {
 								<p class="block__prose">
 									It is what signs you in, and where the receipt went, so it is not
 									something this page will change under you. Write to{' '}
-									<a class="acct__link" href="mailto:hello@itti.org.in">hello@itti.org.in</a
+									<a class="acct__link" href="mailto:hello@itti.org.in"
+										>hello@itti.org.in</a
 									> and we will move it.
 								</p>
 							</section>
 							<section class="block">
 								<h3 class="block__title">Erasing your record</h3>
 								<p class="block__prose">
-									Write to the same address and Anuja Bali will do it &mdash; not a button
-									that cannot be undone. What we hold and why is set out in our{' '}
+									Write to the same address and Anuja Bali will do it &mdash; not a
+									button that cannot be undone. What we hold and why is set out in our{
+										' '
+									}
 									<a class="acct__link" href="/policies#privacy">Privacy Policy</a>.
 								</p>
 							</section>
@@ -705,66 +718,66 @@ const FACTS = {
 								</fieldset>
 							</section>
 
-
-						<!-- The full width, and the registration form's own cards rather
+							<!-- The full width, and the registration form's own cards rather
 						     than a column of tick boxes. This is the one question on the
 						     page with any weight to it, and it was the smallest thing on
 						     it. -->
-						<section class="block block--wide">
-							<h2 class="block__title" id="acct-areas">What you are here for</h2>
-							<div class="pillars" role="group" aria-labelledby="acct-areas">
-								{
-									PILLARS.map(([v, l, accent, tag, motto]) => (
-										<label
-											class="pillar"
-											style={`--card-accent: var(--${accent}); --card-accent-ink: var(--${accent}-ink)`}>
-											<input
-												type="checkbox"
-												name="interests"
-												value={v}
-												data-exclusive={v === 'not_sure' ? '' : undefined}
-											/>
-											<span class="pillar__inner">
-												<span class="pillar__tag">{tag}</span>
-												<span class="pillar__title">{l}</span>
-												<span class="pillar__motto">&ldquo;{motto}&rdquo;</span>
-											</span>
-										</label>
-									))
-								}
-							</div>
-						</section>
-
-						<section class="block block--wide">
-							<h2 class="block__title">Where else to find you</h2>
-							<p class="held__note">
-								A handle or a full address. Leave one empty to remove it.
-							</p>
-							<div class="linkfields">
-								{
-									LINKS.map(([id, label, prefix]) => (
-										<div class="field" data-link-field={id}>
-											<label class="field__label" for={`acct-link-${id}`}>
-												{label}
-											</label>
-											<div class="linkfields__row">
-												{prefix && <span class="linkfields__prefix">{prefix}</span>}
+							<section class="block block--wide">
+								<h2 class="block__title" id="acct-areas">What you are here for</h2>
+								<div class="pillars" role="group" aria-labelledby="acct-areas">
+									{
+										PILLARS.map(([v, l, accent, tag, motto]) => (
+											<label
+												class="pillar"
+												style={`--card-accent: var(--${accent}); --card-accent-ink: var(--${accent}-ink)`}
+											>
 												<input
-													class="field__input"
-													id={`acct-link-${id}`}
-													name={`link_${id}`}
-													type="text"
-													maxlength="200"
-													autocomplete="off"
-													spellcheck="false"
+													type="checkbox"
+													name="interests"
+													value={v}
+													data-exclusive={v === 'not_sure' ? '' : undefined}
 												/>
+												<span class="pillar__inner">
+													<span class="pillar__tag">{tag}</span>
+													<span class="pillar__title">{l}</span>
+													<span class="pillar__motto">&ldquo;{motto}&rdquo;</span>
+												</span>
+											</label>
+										))
+									}
+								</div>
+							</section>
+
+							<section class="block block--wide">
+								<h2 class="block__title">Where else to find you</h2>
+								<p class="held__note">
+									A handle or a full address. Leave one empty to remove it.
+								</p>
+								<div class="linkfields">
+									{
+										LINKS.map(([id, label, prefix]) => (
+											<div class="field" data-link-field={id}>
+												<label class="field__label" for={`acct-link-${id}`}>
+													{label}
+												</label>
+												<div class="linkfields__row">
+													{prefix && <span class="linkfields__prefix">{prefix}</span>}
+													<input
+														class="field__input"
+														id={`acct-link-${id}`}
+														name={`link_${id}`}
+														type="text"
+														maxlength="200"
+														autocomplete="off"
+														spellcheck="false"
+													/>
+												</div>
+												<p class="note note--wrong" data-field-error hidden />
 											</div>
-											<p class="note note--wrong" data-field-error hidden />
-										</div>
-									))
-								}
-							</div>
-						</section>
+										))
+									}
+								</div>
+							</section>
 						</div>
 
 						<p class="note note--wrong" data-edit-error role="alert" hidden></p>
@@ -785,7 +798,8 @@ const FACTS = {
 					<div class="acct__prose">
 						<p>
 							Try again in a moment. If it keeps happening, write to{' '}
-							<a class="acct__link" href="mailto:hello@itti.org.in">hello@itti.org.in</a>.
+							<a class="acct__link" href="mailto:hello@itti.org.in">hello@itti.org.in</a
+							>.
 						</p>
 						<p>
 							<button class="linkish" type="button" data-retry>Start again</button>
@@ -1710,7 +1724,7 @@ const FACTS = {
 
 		/* ── While the record is on its way ──────────────────────────────────── */
 
-	/* The page arrives rather than appearing.
+		/* The page arrives rather than appearing.
 
 	   Everything under the navigation is held until the script knows which of
 	   the six states it is in — a record, an outline, a sign-in form — and
@@ -1873,10 +1887,14 @@ const FACTS = {
 
 		@keyframes ghost-sweep {
 			from {
-				background-position: -120% 0, 0 0;
+				background-position:
+					-120% 0,
+					0 0;
 			}
 			to {
-				background-position: 220% 0, 0 0;
+				background-position:
+					220% 0,
+					0 0;
 			}
 		}
 
@@ -3060,11 +3078,9 @@ const FACTS = {
 				if (panel && !panel.dataset.opened) {
 					panel.dataset.opened = 'yes';
 					panel.dataset.first = '';
-					panel.addEventListener(
-						'animationend',
-						() => delete panel.dataset.first,
-						{ once: true },
-					);
+					panel.addEventListener('animationend', () => delete panel.dataset.first, {
+						once: true,
+					});
 				}
 				show('record');
 				// After the panel is shown, so every view can be measured in place.
@@ -3302,19 +3318,19 @@ const FACTS = {
 				reopen();
 				show('loading');
 				// A last resort. If nothing has resolved either way — a request that
-			// neither returns nor fails, which is what a lost connection looks like
-			// to a browser — the page says so rather than waiting for ever.
-			const WAIT = 15000;
-			window.setTimeout(() => {
-				if (root.dataset.stage !== 'loading') return;
-				fail('This is taking longer than it should.');
-				opening = null;
-			}, WAIT);
+				// neither returns nor fails, which is what a lost connection looks like
+				// to a browser — the page says so rather than waiting for ever.
+				const WAIT = 15000;
+				window.setTimeout(() => {
+					if (root.dataset.stage !== 'loading') return;
+					fail('This is taking longer than it should.');
+					opening = null;
+				}, WAIT);
 
-			void start().catch((e) => {
-				console.error('[itti/account]', e);
-				fail('We could not open your account just now.');
-			});
+				void start().catch((e) => {
+					console.error('[itti/account]', e);
+					fail('We could not open your account just now.');
+				});
 			});
 
 			// ── editing ────────────────────────────────────────────────────────────

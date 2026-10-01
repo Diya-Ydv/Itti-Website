@@ -60,7 +60,11 @@ Deno.serve(async (req) => {
 	if (event.event === 'payment.captured') {
 		await supabase
 			.from('donation')
-			.update({ status: 'paid', payment_id: paymentId, paid_at: new Date().toISOString() })
+			.update({
+				status: 'paid',
+				payment_id: paymentId,
+				paid_at: new Date().toISOString(),
+			})
 			.eq('order_id', orderId)
 			// Never walk a refund backwards into a payment.
 			.in('status', ['created', 'paid']);
@@ -73,7 +77,10 @@ Deno.serve(async (req) => {
 			.eq('order_id', orderId)
 			.eq('status', 'created');
 	} else if (event.event === 'refund.processed') {
-		await supabase.from('donation').update({ status: 'refunded' }).eq('order_id', orderId);
+		await supabase
+			.from('donation')
+			.update({ status: 'refunded' })
+			.eq('order_id', orderId);
 	}
 
 	// Anything else is acknowledged and ignored. A webhook that returns an error

@@ -220,7 +220,6 @@ const GRAIN =
 			// changes when the window does.
 			let bar = nav.offsetHeight;
 
-
 			const settle = () => {
 				queued = false;
 				const zoneTop = zone.getBoundingClientRect().top;
@@ -238,7 +237,6 @@ const GRAIN =
 				   the page, and being beaten is what read as the glitch. */
 				const band = bar * 2;
 				const turned = Math.max(0, Math.min(1, 1 - zoneTop / band));
-
 
 				// Only a hero taller than the screen has an inside to be deep in.
 				// Without this the lockup collapsed on the way back up into an arc

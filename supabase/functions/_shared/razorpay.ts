@@ -18,7 +18,10 @@ export const isTestMode = KEY_ID.startsWith('rzp_test_');
 
 const enc = new TextEncoder();
 
-export const hmacHex = async (message: string, secret = KEY_SECRET): Promise<string> => {
+export const hmacHex = async (
+	message: string,
+	secret = KEY_SECRET,
+): Promise<string> => {
 	const key = await crypto.subtle.importKey(
 		'raw',
 		enc.encode(secret),
@@ -27,7 +30,9 @@ export const hmacHex = async (message: string, secret = KEY_SECRET): Promise<str
 		['sign'],
 	);
 	const signed = await crypto.subtle.sign('HMAC', key, enc.encode(message));
-	return [...new Uint8Array(signed)].map((b) => b.toString(16).padStart(2, '0')).join('');
+	return [...new Uint8Array(signed)]
+		.map((b) => b.toString(16).padStart(2, '0'))
+		.join('');
 };
 
 /**

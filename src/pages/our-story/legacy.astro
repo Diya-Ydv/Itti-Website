@@ -1,0 +1,1711 @@
+---
+/**
+ * Legacy — Dr. Archana "Itti" Bali
+ *
+ * Route: /our-story/legacy (canonical redirect from /legacy)
+ *
+ * Implements the exact design format of the website (as seen in the 404/Not Found template):
+ * - Deep signature brand teal canvas with radial glow and linear descent
+ * - Paper grain overlay texture
+ * - The Itti Foundation mark centered in the middle as an ambient watermark
+ * - Prominent BOLD display title in Bodoni Moda (font-weight: 700)
+ * - The signature cream/paper cards (.way) with subtle left-edge indicator,
+ *   crisp dark ink typography, and responsive grid layout
+ * - Interactive dialogs for Archival materials and Memory submissions
+ * - Founder credentials
+ */
+import Base from '../../layouts/Base.astro';
+import SiteFooter from '../../components/layout/SiteFooter.astro';
+import Mark from '../../components/brand/Mark.astro';
+
+interface Milestone {
+	id: string;
+	when: string;
+	where: string;
+	title: string;
+	description: string;
+	major?: boolean;
+}
+
+const LIFE_MILESTONES: Milestone[] = [
+	{
+		id: 'birth',
+		when: '8 April',
+		where: 'India',
+		title: 'Born the youngest of three',
+		description:
+			'Hardworking, straightforward and warm from the start. She studied at a government school, and the habit of earning her own way began early — it would carry her the rest of the distance.',
+		major: true,
+	},
+	{
+		id: 'undergrad',
+		when: 'Undergraduate',
+		where: 'Indore',
+		title: 'A degree she paid for herself',
+		description:
+			'She earned a degree in Computer Science in Indore, tutoring other students through her college years to fund her own education. Nothing she had was handed to her.',
+		major: false,
+	},
+	{
+		id: 'niit',
+		when: 'First job',
+		where: 'NIIT, Bhopal',
+		title: 'Teaching, before conservation',
+		description:
+			'Her working life began in Bhopal with NIIT — teaching, well before she ever set out to study a forest.',
+		major: false,
+	},
+	{
+		id: 'greenpeace',
+		when: 'Move to Bombay',
+		where: 'Greenpeace',
+		title: 'Training people, opening doors',
+		description:
+			'She moved to Bombay to join Greenpeace, training young volunteers and helping start new branch offices — the first sign of a working life spent building things other people could grow into.',
+		major: false,
+	},
+	{
+		id: 'ncbs',
+		when: 'Masters in Science',
+		where: 'NCBS, Bangalore',
+		title: 'The first batch',
+		description:
+			'She moved to Bangalore for her Master’s at the National Centre for Biological Sciences, in the very first-ever batch of its MSc in Wildlife Biology, under the mentorship of the conservation scientist Dr. Ulhas Karanth.',
+		major: true,
+	},
+	{
+		id: 'chikmagalur',
+		when: 'Fieldwork',
+		where: 'Chikmagalur',
+		title: 'Coffee estates and wild ground',
+		description:
+			'Her Master’s research took her into the coffee estates of Chikmagalur, studying how cultivation and wild country could share the same hillside.',
+		major: false,
+	},
+	{
+		id: 'schaller',
+		when: 'George Schaller Scholar',
+		where: 'Univ. of Alaska Fairbanks',
+		title: 'The first Schaller scholar',
+		description:
+			'She was chosen for the first George Schaller Scholarship ever awarded, to read for a doctorate in human–animal interdependence — the question she had been circling all along: how people and animals live off the same ground.',
+		major: true,
+	},
+	{
+		id: 'knee',
+		when: 'Days before flight',
+		where: 'India to Fairbanks',
+		title: 'Two weeks, one knee',
+		description:
+			'A bike accident tore her ACL days before she was due to leave. Surgery was arranged urgently, and she pushed herself to be travel-ready within a fortnight — managing two connections in a wheelchair to land in Fairbanks on time.',
+		major: false,
+	},
+	{
+		id: 'alaska',
+		when: 'Seven years',
+		where: 'Fairbanks, Alaska',
+		title: 'Alaska became home',
+		description:
+			'Friends, family and colleagues travelled all that way to see her, and she hosted every one of them properly — Denali National Park, moose, glaciers, dog-mushing races, the northern lights, and the summer day that never ends.',
+		major: true,
+	},
+	{
+		id: 'voices-project',
+		when: 'The Voices Project',
+		where: 'Native Alaskan communities',
+		title: 'An award-winning film',
+		description:
+			'Alongside her research, she worked with Native Alaskan communities on the Voices Project, an award-winning documentary — her storytelling turned toward the people whose land and knowledge shaped her own work.',
+		major: true,
+	},
+	{
+		id: 'diagnosis',
+		when: '8 January 2013',
+		where: 'Winter break, India',
+		title: 'Three months, they said',
+		description:
+			'She was home for the winter when the diagnosis came: ovarian cancer. The doctors gave her three months. She chose to fly back to the United States and have surgery at New York Presbyterian Hospital.',
+		major: true,
+	},
+	{
+		id: 'resilience',
+		when: '2013 – 2014',
+		where: 'New York & conferences',
+		title: 'Twenty-two months, she said',
+		description:
+			'Through recurring infections and the side effects of treatment, she kept working. She travelled abroad to present her papers. She completed her doctorate. Against every projection, determination, grit and resilience bought her twenty-two months.',
+		major: true,
+	},
+	{
+		id: 'farewell',
+		when: '8 September 2014',
+		where: 'New York',
+		title: 'She called everyone to New York',
+		description:
+			'When she was told no further treatment was possible, she did what she had always done — she organised. Family, childhood friends and cousins came from across the world, and she took her last breath with them in the room.',
+		major: true,
+	},
+	{
+		id: 'posthumous',
+		when: '2016',
+		where: 'Univ. of Alaska Fairbanks',
+		title: 'The degree came on Mother’s Day',
+		description:
+			'Her doctorate was conferred posthumously and received by our mother. The university held its ceremony, as it happened, on Mother’s Day. It was a kind of closure — but there was more still to be done.',
+		major: true,
+	},
+];
+
+interface CredentialGroup {
+	title: string;
+	items: {
+		field: string;
+		detail: string;
+	}[];
+}
+
+const FOUNDER_GROUPS: CredentialGroup[] = [
+	{
+		title: 'Expertise & Training',
+		items: [
+			{
+				field: 'Education & training',
+				detail:
+					'Special Educator and Learning Disabilities teacher; certified teacher mentor for professional development (TISS); certified QPR Suicide Prevention Gatekeeper Instructor.',
+			},
+			{
+				field: 'Waste & sustainability',
+				detail:
+					'Certified waste management entrepreneur (IPCA–TERI); Master Trainer for sanitation workers on occupational safety and dignity; Climate Reality Leader.',
+			},
+			{
+				field: 'Mental health',
+				detail:
+					'Conducts the Suicide Prevention Gatekeeper Training (S.P.A.T.); completed community mental health certification in the Atmiyata model.',
+			},
+		],
+	},
+	{
+		title: 'Leadership & Action',
+		items: [
+			{
+				field: 'Advocacy & leadership',
+				detail:
+					'Founder, Itti’s Skill School Foundation; Co-founder, Warrior Moms (Mothers for Clean Air); Maharashtra State President, WICCI Water Resource Council.',
+			},
+			{
+				field: 'Youth action',
+				detail:
+					'Launched Itti’s Youth for Climate Action (IYCA) in 2025, with a school students’ climate action group planned next.',
+			},
+			{
+				field: 'Institutional roles',
+				detail:
+					'Appointed Member, Anti-Ragging Committee, Viman Nagar Campus, Symbiosis International (Deemed University), 2026.',
+			},
+		],
+	},
+	{
+		title: 'Research & Recognition',
+		items: [
+			{
+				field: 'Research',
+				detail:
+					'Co-PI, Minor Research Project with Symbiosis International (SIU): “Use of Menstrual Cups among Young Women — A Comparative Study of Urban and Rural Cohorts.”',
+			},
+			{
+				field: 'Recognition',
+				detail:
+					'PMC and Punekar News awards; idea selected for a Tech Camp pilot grant; Rotary award.',
+			},
+		],
+	},
+];
+---
+
+<Base
+	title="Dr. Archana “Itti” Bali — Legacy — The Itti Foundation"
+	description="Hardworking, straightforward, warm — the brightest flower in our garden. From a government school in India to conservation research in Alaska, this is the story of Dr. Archana 'Itti' Bali, and the living foundation carrying her vision forward."
+	navTheme="veil"
+	band="teal"
+>
+	<div class="page">
+		<!-- The Foundation Mark Ambient Watermark — Centered in the middle as requested -->
+		<span class="page__ornament" aria-hidden="true">
+			<Mark height="min(75vh, 36rem)" label="" />
+		</span>
+		<div class="page__grain" aria-hidden="true"></div>
+
+		<!-- Main Narrative Surface in the Exact Site Template Format -->
+		<article class="legacy">
+			<!-- Header Area matching the 404/Template format with BOLD Heading -->
+			<header class="legacy__masthead">
+				<p class="legacy__eyebrow">Legacy</p>
+				<h1 class="legacy__title">Dr. Archana &ldquo;Itti&rdquo; Bali</h1>
+				<p class="legacy__span">8 April <span>&mdash;</span> 8 September 2014</p>
+				<p class="legacy__lede">
+					Hardworking, straightforward, warm &mdash; the brightest flower in our garden.
+					From a government school in India to conservation research in Alaska, this is her story,
+					and an invitation to add your own memory to it.
+				</p>
+			</header>
+
+			<!-- ──────── Section 1: Her Life ──────── -->
+			<section class="legacy__section" aria-labelledby="chapter-life-title">
+				<div class="section-rule">
+					<h2 class="section-rule__title" id="chapter-life-title">Her life</h2>
+					<p class="section-rule__desc">
+						Who she was, where she went, and how far she carried her work.
+					</p>
+				</div>
+
+				<div class="timeline" aria-label="Her life timeline">
+					{
+						LIFE_MILESTONES.map((item) => (
+							<article class="timeline__entry" data-weight={item.major ? 'major' : undefined} id={item.id}>
+								<span class="timeline__node" aria-hidden="true"></span>
+								<div class="way" data-weight={item.major ? 'major' : undefined}>
+									<div class="way__meta">
+										<span class="way__when">{item.when}</span>
+										<span class="way__bullet" aria-hidden="true">&middot;</span>
+										<span class="way__where">{item.where}</span>
+									</div>
+									<h3 class="way__name">{item.title}</h3>
+									<p class="way__note">{item.description}</p>
+								</div>
+							</article>
+						))
+					}
+				</div>
+			</section>
+
+			<!-- ──────── Archival Materials & Share a Memory ──────── -->
+			<section class="legacy__section" aria-labelledby="archive-title">
+				<div class="section-rule">
+					<h2 class="section-rule__title" id="archive-title">Read, watch, remember</h2>
+					<p class="section-rule__desc">
+						Archival publications, documentary footage, and recollections from friends and mentors.
+					</p>
+				</div>
+
+				<div class="ways ways--three" aria-label="Archival materials">
+					<button type="button" class="way way--clickable" data-open-drawer="articles">
+						<span class="way__meta">Publications &middot; Western Ghats &amp; Alaska</span>
+						<h3 class="way__name">Her published articles</h3>
+						<p class="way__note">
+							Doctoral research, MSc dissertation at NCBS with Dr. Ulhas Karanth, and international wildlife colloquia.
+						</p>
+						<span class="way__go" aria-hidden="true">View citations &rarr;</span>
+					</button>
+
+					<button type="button" class="way way--clickable" data-open-drawer="film">
+						<span class="way__meta">Documentary &middot; Oral History</span>
+						<h3 class="way__name">The Voices Project (film)</h3>
+						<p class="way__note">
+							Award-winning documentary produced in Alaska, chronicling indigenous knowledge and Arctic ecology.
+						</p>
+						<span class="way__go" aria-hidden="true">Learn about the film &rarr;</span>
+					</button>
+
+					<button type="button" class="way way--clickable" data-open-drawer="awards">
+						<span class="way__meta">Honours &middot; Distinctions</span>
+						<h3 class="way__name">Awards &amp; recognitions</h3>
+						<p class="way__note">
+							Inaugural George Schaller Scholarship and posthumous Doctorate conferred on Mother's Day at UAF.
+						</p>
+						<span class="way__go" aria-hidden="true">View honours &rarr;</span>
+					</button>
+				</div>
+
+				<!-- Did you know Itti? Memory card -->
+				<div class="way way--feature">
+					<div class="way__feature-content">
+						<span class="way__meta">Living Memorial &middot; Oral Archive</span>
+						<h3 class="way__name">Did you know Itti?</h3>
+						<p class="way__note">
+							We&rsquo;re gathering memories, photographs and videos from everyone whose life she touched &mdash;
+							family, teachers, classmates, colleagues and friends &mdash; to keep alongside her story here.
+						</p>
+					</div>
+					<button type="button" class="way__cta-btn" id="open-memory-btn">
+						Share a memory &rarr;
+					</button>
+				</div>
+			</section>
+
+			<!-- ──────── Section 2: The Promise ──────── -->
+			<section class="legacy__section promise-section" aria-labelledby="promise-title">
+				<div class="promise-split">
+					<h2 class="promise-split__title" id="promise-title">The promise</h2>
+					<div class="promise-split__content">
+						<p class="promise-split__quote">
+							Her resilience, adaptability, intelligence, storytelling and warmth set her apart. Those are the things we want the next generation to take from her.
+						</p>
+						<p class="promise-split__text">
+							The Foundation is our humble step to honour our sister &mdash; our guiding light, our dost, our best friend. We have a promise to keep: to hold her lofty goals in place and keep her legacy of environmental awareness, education and entrepreneurship alive and thriving.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ──────── Section 3: Led by (Split Layout Profile & Credentials) ──────── -->
+			<section class="legacy__section" aria-labelledby="founder-title">
+				<div class="section-rule">
+					<h2 class="section-rule__title" id="founder-title">Led by</h2>
+					<p class="section-rule__desc">
+						The leadership and lived experience driving the Foundation forward.
+					</p>
+				</div>
+
+				<div class="founder-split" aria-label="Founder leadership profile and credentials">
+					<!-- Left Side: Profile on Teal Canvas (Sticky on Desktop) -->
+					<aside class="founder-profile">
+						<span class="founder-profile__role">Founder &amp; Director</span>
+						<h3 class="founder-profile__name">Anuja Bali</h3>
+						<p class="founder-profile__intro">
+							Anuja Bali founded Itti&rsquo;s Skill School Foundation in her sister&rsquo;s memory,
+							and leads its practical work across environmental stewardship, special education,
+							cancer family support, and community mental health.
+						</p>
+						<div class="founder-badge" aria-label="Foundation seal">
+							<span class="founder-badge__icon" aria-hidden="true">✦</span>
+							<div class="founder-badge__text">
+								<span class="founder-badge__org">Itti&rsquo;s Skill School Foundation</span>
+								<span class="founder-badge__tag">Living Memorial &middot; Est. 2021</span>
+							</div>
+						</div>
+					</aside>
+
+					<!-- Right Side: One Clean Off-White Credentials Panel -->
+					<div class="founder-panel">
+						{
+							FOUNDER_GROUPS.map((group, groupIdx) => (
+								<div class="founder-group">
+									<p class="founder-group__label" id={`group-${groupIdx}`}>{group.title}</p>
+									<div class="founder-group__items">
+										{
+											group.items.map((cred) => (
+												<article class="founder-entry">
+													<div class="founder-entry__head">
+														<span class="founder-entry__bullet" aria-hidden="true">✦</span>
+														<h4 class="founder-entry__title">{cred.field}</h4>
+													</div>
+													<p class="founder-entry__detail">{cred.detail}</p>
+												</article>
+											))
+										}
+									</div>
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Footer note matching the template's .lost__foot -->
+			<p class="legacy__foot">
+				If you followed a link here from somewhere else, write to{' '}
+				<a class="legacy__link" href="mailto:hello@itti.org.in">hello@itti.org.in</a>{' '}
+				and we will point you the right way.
+			</p>
+		</article>
+
+		<!-- ──────── Interactive Archival Drawers Modal ──────── -->
+		<dialog class="legacy-dialog" id="archive-dialog" aria-labelledby="archive-modal-title">
+			<div class="legacy-dialog__backdrop" data-close-archive></div>
+			<div class="legacy-dialog__panel" role="document">
+				<button type="button" class="legacy-dialog__close" data-close-archive aria-label="Close dialog">&times;</button>
+
+				<div id="drawer-articles" class="legacy-dialog__view" hidden>
+					<p class="legacy-dialog__eyebrow">Research &middot; Publications</p>
+					<h3 class="legacy-dialog__title" id="archive-modal-title">Her Published Articles</h3>
+					<div class="legacy-dialog__body">
+						<p>Dr. Archana Bali was a pioneer in wildlife ecology and human&ndash;wildlife coexistence, examining how human cultivation and wild habitats meet.</p>
+						<ul class="legacy-dialog__list">
+							<li>
+								<strong>MSc Wildlife Biology Dissertation (NCBS Bangalore):</strong>
+								<span>Ecology and human coexistence in coffee agro-ecosystems of Chikmagalur, under the mentorship of Dr. Ulhas Karanth.</span>
+							</li>
+							<li>
+								<strong>Doctoral Dissertation (University of Alaska Fairbanks):</strong>
+								<span>Human&ndash;animal interdependence, Arctic ecosystems, and caribou conservation as the inaugural George Schaller Scholar.</span>
+							</li>
+							<li>
+								<strong>International Colloquia (2013&ndash;2014):</strong>
+								<span>Papers presented across North America and abroad through active cancer treatments, demonstrating groundbreaking resilience and rigor.</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div id="drawer-film" class="legacy-dialog__view" hidden>
+					<p class="legacy-dialog__eyebrow">Documentary &middot; Oral History</p>
+					<h3 class="legacy-dialog__title">The Voices Project (film)</h3>
+					<div class="legacy-dialog__body">
+						<p>Alongside her doctoral research at the University of Alaska Fairbanks, Dr. Itti Bali co-created <strong>The Voices Project</strong> &mdash; an award-winning documentary produced in close collaboration with Native Alaskan communities.</p>
+						<p>The film documents traditional ecological knowledge, changing Arctic ecosystems, and indigenous perspectives on subsistence and respect for living beings. Her storytelling celebrated the people whose ancestral wisdom shaped her science.</p>
+					</div>
+				</div>
+
+				<div id="drawer-awards" class="legacy-dialog__view" hidden>
+					<p class="legacy-dialog__eyebrow">Honours &middot; Distinctions</p>
+					<h3 class="legacy-dialog__title">Awards &amp; Recognitions</h3>
+					<div class="legacy-dialog__body">
+						<ul class="legacy-dialog__list">
+							<li>
+								<strong>The George Schaller Scholarship:</strong>
+								<span>The first scholar ever selected for this prestigious award to pursue a doctorate in wildlife ecology and conservation at UAF.</span>
+							</li>
+							<li>
+								<strong>Posthumous Doctorate of Philosophy (2016):</strong>
+								<span>Conferred on Mother&rsquo;s Day at the University of Alaska Fairbanks, received with enduring pride by her mother.</span>
+							</li>
+							<li>
+								<strong>Documentary Festival Honours:</strong>
+								<span>Festival recognitions and tribal community honors for <em>The Voices Project</em>.</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</dialog>
+
+		<!-- ──────── Interactive "Share a Memory" Modal Dialog ──────── -->
+		<dialog class="legacy-dialog" id="memory-dialog" aria-labelledby="dialog-mem-title">
+			<div class="legacy-dialog__backdrop" data-close-dialog></div>
+			<div class="legacy-dialog__panel" role="document">
+				<button type="button" class="legacy-dialog__close" data-close-dialog aria-label="Close dialog">&times;</button>
+				<header class="legacy-dialog__head">
+					<p class="legacy-dialog__eyebrow">The Itti Foundation Archive</p>
+					<h3 class="legacy-dialog__title" id="dialog-mem-title">Share a Memory of Itti</h3>
+					<p class="legacy-dialog__subtitle">
+						Your words help keep Dr. Archana &ldquo;Itti&rdquo; Bali&rsquo;s warmth, grit and spirit alive.
+						Every memory, story or reflection will be lovingly preserved with her archive.
+					</p>
+				</header>
+				<form class="memory-form" id="memory-form">
+					<div class="memory-form__field">
+						<label for="mem-name">Your Full Name <span class="req">*</span></label>
+						<input type="text" id="mem-name" name="name" required placeholder="e.g. Dr. Ulhas Karanth / Anjali Sharma" />
+					</div>
+					<div class="memory-form__row">
+						<div class="memory-form__field">
+							<label for="mem-email">Your Email Address <span class="req">*</span></label>
+							<input type="email" id="mem-email" name="email" required placeholder="you@example.com" />
+						</div>
+						<div class="memory-form__field">
+							<label for="mem-rel">Connection to Itti <span class="req">*</span></label>
+							<select id="mem-rel" name="relation" required>
+								<option value="" disabled selected>Select connection...</option>
+								<option value="family">Family / Relative</option>
+								<option value="school">School / College classmate</option>
+								<option value="colleague">Colleague (NIIT / Greenpeace / NCBS / UAF)</option>
+								<option value="cancer-community">Cancer support community</option>
+								<option value="friend">Personal friend</option>
+								<option value="other">Other</option>
+							</select>
+						</div>
+					</div>
+					<div class="memory-form__field">
+						<label for="mem-place">Time or Place (Optional)</label>
+						<input type="text" id="mem-place" name="place" placeholder="e.g. NCBS Bangalore 2004 / Fairbanks 2011" />
+					</div>
+					<div class="memory-form__field">
+						<label for="mem-story">Your Memory or Note <span class="req">*</span></label>
+						<textarea id="mem-story" name="story" rows="4" required placeholder="Share a story, conversation, or moment that captured who Itti was to you..."></textarea>
+					</div>
+					<div class="memory-form__actions">
+						<button type="submit" class="memory-form__submit" id="submit-memory">Send Memory</button>
+						<a href="mailto:hello@itti.org.in?subject=Memory%20of%20Dr.%20Itti%20Bali" class="memory-form__alt">Or email us directly &rarr;</a>
+					</div>
+					<div class="memory-form__success" id="mem-success" hidden>
+						<div class="memory-form__check">&check;</div>
+						<h4>Thank you for remembering Itti.</h4>
+						<p>Your words have been received with gratitude by her family and will be held alongside her archive.</p>
+					</div>
+				</form>
+			</div>
+		</dialog>
+
+		<SiteFooter />
+	</div>
+</Base>
+
+<style>
+	/* ── Layout & Signature Deep-Teal Ground (Exact matching the 404 template) ── */
+	.page {
+		position: relative;
+		isolation: isolate;
+		overflow-x: clip;
+		display: flex;
+		flex-direction: column;
+		min-height: 100svh;
+		color: var(--cream);
+
+		--lit: var(--teal);
+		--deep: color-mix(in srgb, var(--teal) 46%, var(--teal-deep));
+		--floor: var(--teal-deep);
+		background:
+			radial-gradient(
+				128% 92% at 10% 0%,
+				color-mix(in srgb, var(--lit) 62%, transparent) 0%,
+				transparent 58%
+			),
+			linear-gradient(168deg, var(--deep) 0%, var(--floor) 62%);
+
+		--ink: var(--warm-white);
+		--ink-soft: rgba(250, 247, 240, 0.78);
+		--ink-faint: rgba(250, 247, 240, 0.62);
+		--rule: rgba(250, 247, 240, 0.16);
+		--accent: var(--warm-white);
+	}
+
+	/* ── Watermark: Centered in the middle as requested ──────────────────────── */
+	.page__ornament {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: min(86vw, 48rem);
+		color: var(--cream);
+		opacity: 0.075;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.page__ornament :global(.mark) {
+		width: 100%;
+		height: auto !important;
+		aspect-ratio: 670 / 281;
+		max-height: 72vh;
+	}
+
+	/* ── Film Grain Overlay (Matching 404 & Account ground) ─────────────────── */
+	.page__grain {
+		position: fixed;
+		inset: 0;
+		z-index: 0;
+		opacity: 0.26;
+		mix-blend-mode: overlay;
+		pointer-events: none;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0.33 0.33 0.33 0 0 0.33 0.33 0 0 0.33 0.33 0 0 0.33 0.33 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='1 0 1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+	}
+
+	/* ── Content Container (Matching .lost in 404 template) ──────────────────── */
+	.legacy,
+	:global(.foot) {
+		position: relative;
+		z-index: 1;
+	}
+
+	.legacy {
+		flex: 1 0 auto;
+		width: 100%;
+		max-width: 72rem;
+		margin: 0 auto;
+		padding: calc(var(--nav-h) + clamp(3rem, 11vh, 6.5rem)) var(--gutter)
+			clamp(4rem, 10vh, 7rem);
+	}
+
+	/* ── Header Area ───────────────────────────────────────────────────────── */
+	.legacy__masthead {
+		margin-bottom: clamp(3rem, 8vh, 4.5rem);
+	}
+
+	.legacy__eyebrow {
+		margin: 0;
+		font-family: var(--face-cinzel);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: rgba(250, 247, 240, 0.72);
+	}
+
+	/* CRITICAL REQUIREMENT: KEEP THE HEADING BOLD */
+	.legacy__title {
+		margin: 1rem 0 0;
+		font-family: var(--face-bodoni);
+		font-size: clamp(2.75rem, 6vw, 4.5rem);
+		font-weight: 700; /* BOLD as requested */
+		line-height: 1.04;
+		letter-spacing: -0.02em;
+		color: var(--cream);
+		text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+	}
+
+	.legacy__span {
+		margin: 0.85rem 0 0;
+		font-family: var(--face-cinzel);
+		font-size: clamp(0.875rem, 1.8vw, 1.05rem);
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: #f7d68f;
+	}
+
+	.legacy__span span {
+		opacity: 0.5;
+		padding: 0 0.35rem;
+	}
+
+	.legacy__lede {
+		margin: 1.4rem 0 0;
+		max-width: 42rem;
+		font-size: 1.1875rem;
+		line-height: 1.62;
+		color: color-mix(in srgb, var(--cream) 88%, var(--teal-deep));
+		text-wrap: pretty;
+	}
+
+	/* ── Section Rules ─────────────────────────────────────────────────────── */
+	.legacy__section {
+		margin-bottom: clamp(3.75rem, 9vh, 5.5rem);
+	}
+
+	.section-rule {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: 0.75rem 1.75rem;
+		border-top: 1px solid var(--rule);
+		padding-top: 1.1rem;
+		margin-bottom: clamp(1.75rem, 4vh, 2.5rem);
+	}
+
+	.section-rule__title {
+		font-family: var(--face-bodoni);
+		font-weight: 700;
+		font-size: 1.5rem;
+		letter-spacing: -0.01em;
+		color: var(--cream);
+		margin: 0;
+		white-space: nowrap;
+	}
+
+	.section-rule__desc {
+		font-size: 0.95rem;
+		line-height: 1.55;
+		color: color-mix(in srgb, var(--cream) 85%, var(--teal-deep));
+		margin: 0;
+		max-width: 52ch;
+	}
+
+	/* ── The Sequential Timeline (One timeline item per line) ───────────────── */
+	.timeline {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		max-width: 58rem;
+		margin: 0;
+		padding-left: clamp(2.25rem, 5vw, 3.25rem);
+	}
+
+	/* Continuous clean timeline vertical track */
+	.timeline::before {
+		content: '';
+		position: absolute;
+		top: 2rem;
+		bottom: 2.5rem;
+		left: clamp(0.75rem, 1.8vw, 1.15rem);
+		width: 1.5px;
+		background: rgba(126, 200, 212, 0.45);
+	}
+
+	.timeline__entry {
+		position: relative;
+		display: block;
+		width: 100%;
+	}
+
+	/* Timeline node anchor on the track — Clean hollow circle matching screenshot */
+	.timeline__node {
+		position: absolute;
+		top: 1.85rem;
+		left: calc(-1 * clamp(2.25rem, 5vw, 3.25rem) + clamp(0.75rem, 1.8vw, 1.15rem) - 6.25px);
+		width: 14px;
+		height: 14px;
+		border-radius: 50%;
+		background: transparent;
+		border: 1.5px solid rgba(126, 200, 212, 0.65);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 2;
+		transition:
+			transform 220ms var(--ease),
+			border-color 220ms var(--ease);
+	}
+
+	/* Inner solid dot (revealed on hover to form concentric circle target) */
+	.timeline__node::after {
+		content: '';
+		width: 0;
+		height: 0;
+		border-radius: 50%;
+		background: #7ec8d4;
+		opacity: 0;
+		transition:
+			width 220ms var(--ease),
+			height 220ms var(--ease),
+			opacity 220ms var(--ease);
+	}
+
+	/* Key Landmark node styling */
+	.timeline__entry[data-weight="major"] .timeline__node {
+		border-color: rgba(247, 214, 143, 0.7);
+	}
+
+	.timeline__entry[data-weight="major"] .timeline__node::after {
+		background: #f7d68f;
+	}
+
+	/* Exact Hover state from screenshot: Outer ring expands and solid centered dot appears */
+	.timeline__entry:hover .timeline__node {
+		transform: scale(1.35);
+		border-color: #8fe0ec;
+	}
+
+	.timeline__entry:hover .timeline__node::after {
+		width: 6.5px;
+		height: 6.5px;
+		opacity: 1;
+	}
+
+	.timeline__entry[data-weight="major"]:hover .timeline__node {
+		border-color: #fce2a6;
+	}
+
+	/* ── Enhanced Timeline Card ────────────────────────────────────────────── */
+	.timeline .way {
+		width: 100%;
+		padding: 1.5rem 1.75rem 1.65rem;
+		background: linear-gradient(155deg, rgba(253, 250, 244, 0.98) 0%, rgba(246, 240, 229, 0.95) 100%);
+		border: 1px solid rgba(250, 247, 240, 0.2);
+		border-radius: 6px;
+		box-shadow:
+			0 4px 18px -4px rgba(7, 34, 38, 0.32),
+			0 1px 3px rgba(0, 0, 0, 0.08);
+		transition:
+			transform 280ms var(--ease),
+			box-shadow 280ms var(--ease),
+			border-color 280ms var(--ease);
+	}
+
+	.timeline .way::before {
+		width: 3.5px;
+		border-radius: 6px 0 0 6px;
+		background: linear-gradient(180deg, var(--teal) 0%, #0d4a52 100%);
+		opacity: 0.9;
+	}
+
+	/* Distinctive Key Landmark Card: Warm illuminated parchment with gold edge & hallmark */
+	.timeline .way[data-weight="major"] {
+		background: linear-gradient(150deg, #fffefb 0%, #faf3e4 100%);
+		border: 1px solid rgba(212, 175, 102, 0.45);
+		box-shadow:
+			0 8px 30px -6px rgba(7, 34, 38, 0.35),
+			0 0 20px -4px rgba(180, 145, 79, 0.22);
+	}
+
+	.timeline .way[data-weight="major"]::before {
+		width: 5px;
+		border-radius: 6px 0 0 6px;
+		background: linear-gradient(180deg, #f7d68f 0%, var(--ochre) 65%, #7a5a20 100%);
+		opacity: 1;
+	}
+
+	/* Elegant archival gold hallmark in the top-right corner of key landmark cards */
+	.timeline .way[data-weight="major"]::after {
+		content: '✦';
+		position: absolute;
+		top: 1.35rem;
+		right: 1.6rem;
+		font-size: 1.15rem;
+		line-height: 1;
+		color: #c5a35e;
+		opacity: 0.55;
+		pointer-events: none;
+		transition: opacity 280ms var(--ease), transform 280ms var(--ease);
+	}
+
+	.timeline .way:hover {
+		transform: translateY(-2px) translateX(4px);
+		box-shadow:
+			0 14px 32px -10px rgba(5, 25, 29, 0.38),
+			0 3px 8px rgba(0, 0, 0, 0.08);
+		border-color: rgba(250, 247, 240, 0.35);
+	}
+
+	.timeline .way[data-weight="major"]:hover {
+		border-color: rgba(212, 175, 102, 0.55);
+	}
+
+	.timeline .way[data-weight="major"]:hover::after {
+		opacity: 0.75;
+	}
+
+	.timeline .way__meta {
+		gap: 0.5rem 0.75rem;
+		margin-bottom: 0.35rem;
+	}
+
+	.timeline .way__when {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.22rem 0.65rem;
+		background: rgba(28, 107, 119, 0.1);
+		border-radius: 4px;
+		color: var(--teal);
+		font-weight: 700;
+		letter-spacing: 0.12em;
+	}
+
+	.timeline .way[data-weight="major"] .way__when {
+		background: linear-gradient(135deg, rgba(247, 214, 143, 0.32) 0%, rgba(180, 145, 79, 0.18) 100%);
+		border: 1px solid rgba(180, 145, 79, 0.35);
+		color: #72521a;
+		font-weight: 700;
+	}
+
+	.timeline .way[data-weight="major"] .way__when::before {
+		content: '✦';
+		font-size: 0.75em;
+		margin-right: 0.35rem;
+		color: #b4914f;
+	}
+
+	.timeline .way__where {
+		color: #635b51;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+	}
+
+	.timeline .way__name {
+		font-family: var(--face-bodoni);
+		font-size: clamp(1.3rem, 2.3vw, 1.55rem);
+		font-weight: 700;
+		line-height: 1.25;
+		color: #1a1612;
+		margin: 0.35rem 0 0.45rem;
+		letter-spacing: -0.015em;
+	}
+
+	.timeline .way[data-weight="major"] .way__name {
+		font-size: clamp(1.35rem, 2.4vw, 1.62rem);
+		color: #16120d;
+	}
+
+	.timeline .way__note {
+		font-size: 1.02rem;
+		line-height: 1.68;
+		color: #463f35;
+		max-width: 65ch;
+	}
+
+	@media (min-width: 768px) {
+		.timeline .way {
+			padding: 1.65rem 2.25rem 1.75rem;
+		}
+	}
+
+	/* ── The Ways / Cards Grid (Exact matching .ways from 404 template) ─────── */
+	.ways {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(15.5rem, 100%), 1fr));
+		gap: clamp(0.9rem, 1.8vw, 1.35rem);
+	}
+
+	.ways--three {
+		grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+	}
+
+	/* ── The Signature Card (Exact matching .way from 404 template) ────────── */
+	.way {
+		position: relative;
+		display: grid;
+		align-content: start;
+		gap: 0.5rem;
+		padding: 1.45rem 1.5rem 1.6rem;
+		background: color-mix(in srgb, var(--cream) 94%, var(--floor));
+		border-radius: 4px;
+		text-decoration: none;
+		color: #2c2721;
+		transition:
+			transform 320ms var(--ease),
+			box-shadow 320ms var(--ease);
+		text-align: left;
+	}
+
+	.way::before {
+		content: '';
+		position: absolute;
+		inset: 0 auto 0 0;
+		width: 2.5px;
+		border-radius: 4px 0 0 4px;
+		background: var(--teal);
+		opacity: 0.6;
+	}
+
+	.way[data-weight="major"]::before {
+		background: var(--ochre);
+		width: 3.5px;
+		opacity: 0.95;
+	}
+
+	.way:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 18px 36px -24px rgba(10, 47, 53, 0.85);
+	}
+
+	.way--clickable {
+		border: none;
+		cursor: pointer;
+		font-family: inherit;
+		width: 100%;
+	}
+
+	.way__meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.3rem 0.45rem;
+		font-family: var(--face-cinzel);
+		font-size: 0.71875rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--teal);
+		margin-bottom: 0.15rem;
+	}
+
+	.way__bullet {
+		opacity: 0.45;
+	}
+
+
+	.way__name {
+		font-family: var(--face-bodoni);
+		font-size: 1.25rem;
+		font-weight: 700; /* BOLD as in the template */
+		line-height: 1.28;
+		color: #2c2721;
+		margin: 0;
+	}
+
+	.way__note {
+		font-size: 0.9375rem;
+		line-height: 1.6;
+		color: #5d564d;
+		margin: 0;
+	}
+
+	.way__go {
+		margin-top: 0.4rem;
+		font-size: 0.9375rem;
+		color: var(--teal);
+		font-weight: 500;
+		transition: translate 220ms var(--ease);
+	}
+
+	.way:hover .way__go {
+		translate: 0.25rem 0;
+	}
+
+	/* ── Wide Feature Card (Did You Know Itti?) ────────────────────────────── */
+	.way--feature {
+		margin-top: clamp(1.25rem, 3vh, 2rem);
+		padding: 1.75rem 1.85rem;
+		display: grid;
+		gap: 1.25rem;
+		align-items: center;
+	}
+
+	@media (min-width: 720px) {
+		.way--feature {
+			grid-template-columns: 1fr auto;
+			gap: 2rem;
+		}
+	}
+
+	.way__feature-content {
+		display: grid;
+		gap: 0.45rem;
+	}
+
+	.way__cta-btn {
+		justify-self: start;
+		white-space: nowrap;
+		font-family: var(--face-cinzel);
+		font-size: 0.8125rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--warm-white);
+		background: var(--teal-deep);
+		border: 1px solid var(--teal-deep);
+		padding: 0.75rem 1.5rem;
+		border-radius: 100px;
+		cursor: pointer;
+		box-shadow: 0 6px 18px rgba(14, 62, 69, 0.3);
+		transition: all 220ms var(--ease);
+	}
+
+	@media (min-width: 720px) {
+		.way__cta-btn {
+			margin-top: 0;
+		}
+	}
+
+	.way__cta-btn:hover {
+		background: #072a30;
+		color: #f7d68f;
+		transform: translateY(-2px);
+		box-shadow: 0 10px 24px rgba(7, 42, 48, 0.4);
+	}
+
+	/* ── Section 2: The Promise (Split Layout) ─────────────────────────────── */
+	.promise-section {
+		margin-bottom: clamp(4rem, 9vh, 6rem);
+		border-top: 1px solid var(--rule);
+		padding-top: clamp(2rem, 4vh, 3.25rem);
+	}
+
+	.promise-split {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+		align-items: start;
+	}
+
+	@media (min-width: 560px) {
+		.promise-split {
+			grid-template-columns: minmax(130px, 190px) 1fr;
+			gap: clamp(2rem, 5vw, 4.5rem);
+		}
+	}
+
+	.promise-split__title {
+		font-family: var(--face-bodoni);
+		font-weight: 500;
+		font-size: clamp(1.25rem, 2vw, 1.55rem);
+		letter-spacing: -0.01em;
+		color: #e2a348;
+		margin: 0;
+		line-height: 1.3;
+		white-space: nowrap;
+	}
+
+	.promise-split__content {
+		display: flex;
+		flex-direction: column;
+		gap: clamp(1.25rem, 3vh, 1.85rem);
+		max-width: 68ch;
+		margin: 0;
+		padding: 0;
+	}
+
+	.promise-split__quote {
+		font-family: var(--face-bodoni);
+		font-weight: 400;
+		font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+		line-height: 1.45;
+		letter-spacing: -0.01em;
+		color: var(--cream);
+		margin: 0 !important;
+		padding: 0 !important;
+		text-indent: 0 !important;
+	}
+
+	.promise-split__text {
+		font-size: clamp(0.975rem, 1.5vw, 1.05rem);
+		line-height: 1.72;
+		color: color-mix(in srgb, var(--cream) 84%, var(--teal-deep));
+		margin: 0 !important;
+		padding: 0 !important;
+		text-indent: 0 !important;
+	}
+
+	/* ── Section 3: Led by (Split Layout with Sticky Profile) ───────────────── */
+	.founder-split {
+		display: grid;
+		gap: clamp(2rem, 5vw, 3.5rem);
+		align-items: start;
+	}
+
+	@media (min-width: 920px) {
+		.founder-split {
+			grid-template-columns: minmax(18rem, 23rem) 1fr;
+			gap: 3.5rem;
+		}
+	}
+
+	/* Left Column: Profile on Teal Canvas (Sticky on Desktop) */
+	.founder-profile {
+		display: flex;
+		flex-direction: column;
+		gap: 0.85rem;
+	}
+
+	@media (min-width: 920px) {
+		.founder-profile {
+			position: sticky;
+			top: calc(var(--nav-h) + 2rem);
+			align-self: start;
+		}
+	}
+
+	.founder-profile__role {
+		font-family: var(--face-cinzel);
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: #f7d68f;
+		margin: 0;
+	}
+
+	.founder-profile__name {
+		font-family: var(--face-bodoni);
+		font-size: clamp(2.15rem, 4.2vw, 2.75rem);
+		font-weight: 700;
+		line-height: 1.1;
+		color: var(--cream);
+		margin: 0;
+		letter-spacing: -0.02em;
+		text-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+	}
+
+	.founder-profile__intro {
+		font-size: 1.15rem;
+		line-height: 1.68;
+		color: color-mix(in srgb, var(--cream) 92%, var(--teal-deep));
+		margin: 0.4rem 0 1rem;
+		text-wrap: pretty;
+	}
+
+	/* Signature Foundation Badge under intro */
+	.founder-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.85rem;
+		padding: 0.85rem 1.25rem;
+		border-radius: 6px;
+		background: rgba(250, 247, 240, 0.08);
+		border: 1px solid rgba(250, 247, 240, 0.18);
+		backdrop-filter: blur(8px);
+		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+		width: fit-content;
+	}
+
+	.founder-badge__icon {
+		font-size: 1.15rem;
+		color: #f7d68f;
+		line-height: 1;
+		flex-shrink: 0;
+	}
+
+	.founder-badge__text {
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+	}
+
+	.founder-badge__org {
+		font-family: var(--face-cinzel);
+		font-size: 0.78125rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--warm-white);
+	}
+
+	.founder-badge__tag {
+		font-family: var(--face-cinzel);
+		font-size: 0.65625rem;
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: #f7d68f;
+		opacity: 0.9;
+	}
+
+	/* Right Column: One Clean Off-White Panel */
+	.founder-panel {
+		background: linear-gradient(155deg, rgba(253, 250, 244, 0.98) 0%, rgba(246, 240, 229, 0.96) 100%);
+		border: 1px solid rgba(250, 247, 240, 0.25);
+		border-radius: 6px;
+		padding: clamp(1.75rem, 4vw, 2.75rem);
+		box-shadow:
+			0 12px 36px -10px rgba(7, 34, 38, 0.42),
+			0 2px 6px rgba(0, 0, 0, 0.08);
+		display: flex;
+		flex-direction: column;
+		gap: 2.25rem;
+	}
+
+	/* Group Section */
+	.founder-group {
+		display: flex;
+		flex-direction: column;
+		gap: 1.15rem;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid rgba(44, 39, 33, 0.12);
+	}
+
+	.founder-group:last-child {
+		padding-bottom: 0;
+		border-bottom: none;
+	}
+
+	/* Group Labels in Small Caps Gold */
+	.founder-group__label {
+		font-family: var(--face-cinzel);
+		font-size: 0.8125rem;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: #826839;
+		margin: 0;
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+	}
+
+	.founder-group__label::after {
+		content: '';
+		flex: 1;
+		height: 1px;
+		background: rgba(130, 104, 57, 0.22);
+	}
+
+	.founder-group__items {
+		display: flex;
+		flex-direction: column;
+		gap: 1.35rem;
+	}
+
+	/* Individual Credential Entry */
+	.founder-entry {
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+		padding-left: 0.25rem;
+	}
+
+	.founder-entry__head {
+		display: flex;
+		align-items: baseline;
+		gap: 0.6rem;
+	}
+
+	.founder-entry__bullet {
+		font-size: 0.75rem;
+		color: #b4914f;
+		flex-shrink: 0;
+		line-height: 1;
+		transform: translateY(-1px);
+	}
+
+	.founder-entry__title {
+		font-family: var(--face-bodoni);
+		font-size: 1.25rem;
+		font-weight: 700;
+		color: #1a1612;
+		margin: 0;
+		line-height: 1.28;
+		letter-spacing: -0.01em;
+	}
+
+	/* Darker and Bigger Body Text (17-18px with 1.7 line-height) */
+	.founder-entry__detail {
+		font-size: 1.0625rem;
+		line-height: 1.72;
+		color: #24201a;
+		margin: 0;
+		padding-left: 1.35rem;
+	}
+
+	/* ── Foot (Exact matching .lost__foot from 404 template) ────────────────── */
+	.legacy__foot {
+		margin: clamp(3rem, 7vh, 4.5rem) 0 0;
+		max-width: 44rem;
+		font-size: 0.9375rem;
+		line-height: 1.65;
+		color: color-mix(in srgb, var(--cream) 88%, var(--teal-deep));
+		text-wrap: pretty;
+	}
+
+	.legacy__link {
+		color: var(--warm-white);
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+		text-decoration-color: rgba(250, 247, 240, 0.45);
+	}
+
+	.legacy__link:hover {
+		text-decoration-color: var(--warm-white);
+	}
+
+	/* ── Accessible Dialog Modals ─────────────────────────────────────────── */
+	.legacy-dialog {
+		border: none;
+		background: transparent;
+		padding: 0;
+		margin: 0;
+		width: 100vw;
+		height: 100vh;
+		max-width: none;
+		max-height: none;
+		display: none;
+		place-items: center;
+		position: fixed;
+		inset: 0;
+		z-index: 100;
+	}
+
+	.legacy-dialog[open] {
+		display: grid;
+	}
+
+	.legacy-dialog__backdrop {
+		position: absolute;
+		inset: 0;
+		background: rgba(7, 26, 30, 0.85);
+		backdrop-filter: blur(8px);
+	}
+
+	.legacy-dialog__panel {
+		position: relative;
+		z-index: 1;
+		background: #0e3e45;
+		color: var(--cream);
+		border: 1px solid rgba(255, 255, 255, 0.22);
+		border-radius: 4px;
+		padding: clamp(1.75rem, 4vw, 2.75rem);
+		max-width: min(92vw, 38rem);
+		max-height: 90vh;
+		overflow-y: auto;
+		box-shadow: 0 24px 64px -12px rgba(0, 0, 0, 0.7);
+	}
+
+	.legacy-dialog__close {
+		position: absolute;
+		top: 1.25rem;
+		right: 1.25rem;
+		width: 2.25rem;
+		height: 2.25rem;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		color: #ffffff;
+		font-size: 1.5rem;
+		line-height: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		transition: all 200ms var(--ease);
+	}
+
+	.legacy-dialog__close:hover {
+		background: rgba(255, 255, 255, 0.25);
+		color: #ffffff;
+	}
+
+	.legacy-dialog__eyebrow {
+		font-family: var(--face-cinzel);
+		font-size: 0.75rem;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		color: #f7d68f;
+		margin: 0 0 0.5rem;
+	}
+
+	.legacy-dialog__title {
+		font-family: var(--face-bodoni);
+		font-size: clamp(1.5rem, 3.2vw, 2rem);
+		font-weight: 600;
+		color: #ffffff;
+		margin: 0 0 0.75rem;
+	}
+
+	.legacy-dialog__subtitle {
+		font-size: 1rem;
+		line-height: 1.6;
+		color: rgba(250, 247, 240, 0.85);
+		margin: 0 0 1.75rem;
+	}
+
+	.legacy-dialog__body {
+		font-size: 1.02rem;
+		line-height: 1.7;
+		color: rgba(250, 247, 240, 0.9);
+	}
+
+	.legacy-dialog__body p {
+		margin: 0 0 1.25rem;
+	}
+
+	.legacy-dialog__list {
+		list-style: none;
+		padding: 0;
+		margin: 1.25rem 0 0;
+		border-top: 1px solid rgba(255, 255, 255, 0.15);
+	}
+
+	.legacy-dialog__list li {
+		padding: 1rem 0;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+	}
+
+	.legacy-dialog__list strong {
+		display: block;
+		color: #8fc4ce;
+		font-family: var(--face-cinzel);
+		font-size: 0.875rem;
+		letter-spacing: 0.08em;
+		margin-bottom: 0.25rem;
+	}
+
+	.legacy-dialog__list span {
+		font-size: 0.95rem;
+		color: rgba(250, 247, 240, 0.88);
+	}
+
+	/* ── Memory Form ──────────────────────────────────────────────────────── */
+	.memory-form {
+		display: grid;
+		gap: 1.25rem;
+	}
+
+	.memory-form__field {
+		display: grid;
+		gap: 0.4rem;
+	}
+
+	.memory-form__row {
+		display: grid;
+		gap: 1.25rem;
+	}
+
+	@media (min-width: 600px) {
+		.memory-form__row {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.memory-form__field label {
+		font-family: var(--face-cinzel);
+		font-size: 0.75rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: rgba(250, 247, 240, 0.85);
+	}
+
+	.memory-form__field .req {
+		color: #f7a399;
+	}
+
+	.memory-form__field input,
+	.memory-form__field select,
+	.memory-form__field textarea {
+		width: 100%;
+		padding: 0.75rem 1rem;
+		border-radius: 4px;
+		border: 1px solid rgba(255, 255, 255, 0.22);
+		background: rgba(10, 47, 53, 0.65);
+		color: #ffffff;
+		font-family: var(--body);
+		font-size: 1rem;
+		transition: border-color 200ms var(--ease);
+	}
+
+	.memory-form__field input:focus,
+	.memory-form__field select:focus,
+	.memory-form__field textarea:focus {
+		outline: none;
+		border-color: #f7d68f;
+		box-shadow: 0 0 0 2px rgba(247, 214, 143, 0.25);
+	}
+
+	.memory-form__actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 1.25rem;
+		margin-top: 0.5rem;
+	}
+
+	.memory-form__submit {
+		background: var(--warm-white);
+		color: var(--teal-deep);
+		font-family: var(--face-cinzel);
+		font-size: 0.8125rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		border: 1px solid var(--warm-white);
+		border-radius: 100px;
+		padding: 0.75rem 1.6rem;
+		cursor: pointer;
+		transition: all 200ms var(--ease);
+	}
+
+	.memory-form__submit:hover {
+		background: var(--cream);
+		transform: translateY(-1px);
+		box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+	}
+
+	.memory-form__alt {
+		font-size: 0.95rem;
+		color: #8fc4ce;
+		text-decoration: none;
+		border-bottom: 1px solid rgba(143, 196, 206, 0.4);
+		padding-bottom: 2px;
+	}
+
+	.memory-form__alt:hover {
+		color: #f7d68f;
+		border-color: #f7d68f;
+	}
+
+	.memory-form__success {
+		background: rgba(10, 47, 53, 0.85);
+		border: 1px solid #7f9070;
+		border-radius: 4px;
+		padding: 1.5rem;
+		text-align: center;
+		margin-top: 0.5rem;
+	}
+
+	.memory-form__check {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.25rem;
+		height: 2.25rem;
+		border-radius: 50%;
+		background: #7f9070;
+		color: #ffffff;
+		font-size: 1.25rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.memory-form__success h4 {
+		font-family: var(--face-bodoni);
+		font-size: 1.25rem;
+		font-weight: 600;
+		color: #ffffff;
+		margin: 0 0 0.5rem;
+	}
+
+	.memory-form__success p {
+		font-size: 0.95rem;
+		color: rgba(250, 247, 240, 0.85);
+		margin: 0;
+	}
+</style>
+
+<script is:inline>
+// ──────────────────────────────────────────────────────────────────────────
+// Interactive Dialog Handler for Memory Submission & Archival Drawers
+// ──────────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+	const memDialog = document.getElementById('memory-dialog');
+	const openMemBtn = document.getElementById('open-memory-btn');
+	const closeMemTriggers = document.querySelectorAll('[data-close-dialog]');
+	const memForm = document.getElementById('memory-form');
+	const memSuccess = document.getElementById('mem-success');
+
+	// Open Memory Dialog
+	if (openMemBtn && memDialog) {
+		openMemBtn.addEventListener('click', () => {
+			if (typeof memDialog.showModal === 'function') {
+				memDialog.showModal();
+			} else {
+				memDialog.setAttribute('open', '');
+			}
+		});
+	}
+
+	// Close Memory Dialog
+	closeMemTriggers.forEach((btn) => {
+		btn.addEventListener('click', () => {
+			if (typeof memDialog?.close === 'function') {
+				memDialog.close();
+			} else {
+				memDialog?.removeAttribute('open');
+			}
+		});
+	});
+
+	// Memory Form submission handling
+	if (memForm && memSuccess) {
+		memForm.addEventListener('submit', (e) => {
+			e.preventDefault();
+			const submitBtn = document.getElementById('submit-memory');
+			if (submitBtn) {
+				submitBtn.setAttribute('disabled', 'true');
+				submitBtn.textContent = 'Recording...';
+			}
+
+			setTimeout(() => {
+				memForm.style.display = 'none';
+				memSuccess.removeAttribute('hidden');
+			}, 600);
+		});
+	}
+
+	// Archival Drawers Dialog
+	const archDialog = document.getElementById('archive-dialog');
+	const archTriggers = document.querySelectorAll('[data-open-drawer]');
+	const closeArchTriggers = document.querySelectorAll('[data-close-archive]');
+	const drawerArticles = document.getElementById('drawer-articles');
+	const drawerFilm = document.getElementById('drawer-film');
+	const drawerAwards = document.getElementById('drawer-awards');
+
+	const hideAllDrawers = () => {
+		drawerArticles?.setAttribute('hidden', '');
+		drawerFilm?.setAttribute('hidden', '');
+		drawerAwards?.setAttribute('hidden', '');
+	};
+
+	archTriggers.forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const drawerType = btn.getAttribute('data-open-drawer');
+			hideAllDrawers();
+
+			if (drawerType === 'articles' && drawerArticles) {
+				drawerArticles.removeAttribute('hidden');
+			} else if (drawerType === 'film' && drawerFilm) {
+				drawerFilm.removeAttribute('hidden');
+			} else if (drawerType === 'awards' && drawerAwards) {
+				drawerAwards.removeAttribute('hidden');
+			}
+
+			if (typeof archDialog?.showModal === 'function') {
+				archDialog.showModal();
+			} else {
+				archDialog?.setAttribute('open', '');
+			}
+		});
+	});
+
+	closeArchTriggers.forEach((btn) => {
+		btn.addEventListener('click', () => {
+			if (typeof archDialog?.close === 'function') {
+				archDialog.close();
+			} else {
+				archDialog?.removeAttribute('open');
+			}
+		});
+	});
+});
+</script>

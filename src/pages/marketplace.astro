@@ -176,10 +176,12 @@ const enquiry = (name: string) =>
 					<p class="band__count">{ITEMS.length} things</p>
 				</header>
 
-				{/* A mosaic rather than a uniform grid: every third panel runs tall,
+				{
+					/* A mosaic rather than a uniform grid: every third panel runs tall,
 				    so the eye moves down the page instead of reading it as rows. No
 				    borders — the panel is the object, and a bordered card inside a
-				    ruled section is what makes a shop look like a form. */}
+				    ruled section is what makes a shop look like a form. */
+				}
 				<ul class="goods">
 					{
 						rest.map((item, i) => (
@@ -228,7 +230,12 @@ const enquiry = (name: string) =>
 			</section>
 
 			<!-- ── Collections ──────────────────────────────────────────────────── -->
-			<section class="band" id="collections" aria-labelledby="mkt-collections" data-reveal>
+			<section
+				class="band"
+				id="collections"
+				aria-labelledby="mkt-collections"
+				data-reveal
+			>
 				<header class="band__head">
 					<h2 class="band__h" id="mkt-collections">Collections</h2>
 					<span class="band__rule" aria-hidden="true"></span>
@@ -264,7 +271,12 @@ const enquiry = (name: string) =>
 			</section>
 
 			<!-- ── Makers ───────────────────────────────────────────────────────── -->
-			<section class="band band--spread" id="makers" aria-labelledby="mkt-makers" data-reveal>
+			<section
+				class="band band--spread"
+				id="makers"
+				aria-labelledby="mkt-makers"
+				data-reveal
+			>
 				<header class="band__head band__head--side">
 					<h2 class="band__h" id="mkt-makers">Who makes it</h2>
 					<p class="band__aside">Livelihood is the point, not a by-product.</p>
@@ -288,7 +300,12 @@ const enquiry = (name: string) =>
 			</section>
 
 			<!-- ── How it works ─────────────────────────────────────────────────── -->
-			<section class="band band--spread band--last" id="how-it-works" aria-labelledby="mkt-how" data-reveal>
+			<section
+				class="band band--spread band--last"
+				id="how-it-works"
+				aria-labelledby="mkt-how"
+				data-reveal
+			>
 				<header class="band__head band__head--side">
 					<h2 class="band__h" id="mkt-how">How it works</h2>
 					<p class="band__aside">No cart, no account, no warehouse.</p>

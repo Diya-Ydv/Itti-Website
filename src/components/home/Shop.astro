@@ -41,10 +41,12 @@ const rupees = (n: number) => `₹${n.toLocaleString('en-IN')}`;
 
 			<h2 class="shop__title" id="shop-heading">Wear the cause.</h2>
 
-			{/* Name on the left, price on the right, a rule between them: a price
+			{
+				/* Name on the left, price on the right, a rule between them: a price
 			    list, which is the plainest way to say a thing is for sale. The
 			    commitment is not named here because the garment is named after
-			    it. */}
+			    it. */
+			}
 			<dl class="shop__entry">
 				<dt class="shop__name">{tee.name}</dt>
 				<dd class="shop__price">{rupees(tee.price)}</dd>

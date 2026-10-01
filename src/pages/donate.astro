@@ -169,7 +169,9 @@ const WAYS = [
 			<div class="hero__inner">
 				<div class="hero__lead">
 					<p class="hero__eyebrow">Donate</p>
-					<h1 class="hero__title">Spare a thought for those who cannot afford to dream.</h1>
+					<h1 class="hero__title">
+						Spare a thought for those who cannot afford to dream.
+					</h1>
 					<p class="hero__lede">
 						Neurodivergence, cancer care and conservation &mdash; and the long
 						continuation of that work, which no grant covers.
@@ -183,10 +185,12 @@ const WAYS = [
 					<div class="card__inner">
 						<h2 class="card__heading" id="give-card-heading">Make a gift</h2>
 
-						{/* The figure is the card. It is set once, large, and it is the
+						{
+							/* The figure is the card. It is set once, large, and it is the
 						    field as well as the readout — pressing an amount writes into
 						    it and typing into it is choosing your own, so there is no
-						    second control to reveal and nothing to keep in step. */}
+						    second control to reveal and nothing to keep in step. */
+						}
 						<div class="figure">
 							<span class="figure__rupee" aria-hidden="true">&#8377;</span>
 							<label class="u-visually-hidden" for="give-own">Amount in rupees</label>
@@ -214,7 +218,8 @@ const WAYS = [
 											class="amount"
 											type="button"
 											data-amount={amount}
-											aria-pressed={i === 1 ? 'true' : 'false'}>
+											aria-pressed={i === 1 ? 'true' : 'false'}
+										>
 											{rupees(amount)}
 										</button>
 									))
@@ -223,20 +228,23 @@ const WAYS = [
 									class="amount amount--own"
 									type="button"
 									data-amount-other
-									aria-pressed="false">
+									aria-pressed="false"
+								>
 									Other
 								</button>
 							</div>
 						</fieldset>
 
-						{/* The same interactive choice the registration form offers, rather
-						    than a dropdown. Radios, so it answers before any script runs. */}
+						{
+							/* The same interactive choice the registration form offers, rather
+						    than a dropdown. Radios, so it answers before any script runs. */
+						}
 						<fieldset class="card__group">
 							<legend class="card__legend">Direct it to</legend>
 							<div class="picks">
 								<label class="pick">
 									<input type="radio" name="area" value="" checked />
-									<span class="pick__rule" aria-hidden="true" />
+									<span class="pick__rule" aria-hidden="true"></span>
 									<span class="pick__text">Wherever needed</span>
 								</label>
 								{
@@ -266,10 +274,16 @@ const WAYS = [
 						</p>
 
 						<p class="card__fine">
-							{ACCEPTS_FOREIGN ? 'Indian and foreign gifts accepted.' : 'Indian donors only.'}{
-								' '
-							}
-							{HAS_80G ? 'Eligible for 80G relief.' : 'Not yet eligible for 80G relief.'}{' '}
+							{
+								ACCEPTS_FOREIGN
+									? 'Indian and foreign gifts accepted.'
+									: 'Indian donors only.'
+							}{' '}
+							{
+								HAS_80G
+									? 'Eligible for 80G relief.'
+									: 'Not yet eligible for 80G relief.'
+							}{' '}
 							<a class="card__fine-link" href="#accounting">Why</a>
 						</p>
 
@@ -279,20 +293,19 @@ const WAYS = [
 								<a class="card__fine-link" href="mailto:hello@itti.org.in">
 									hello@itti.org.in
 								</a>{' '}
-								with the amount and we will arrange a transfer. A person answers, within
-								five working days.
+								with the amount and we will arrange a transfer. A person answers, within five
+								working days.
 							</p>
 						</div>
 					</div>
 				</aside>
 			</div>
-
 		</section>
 
-			<!-- Where the content begins. The bar is glass above this line and takes
+		<!-- Where the content begins. The bar is glass above this line and takes
 			     its own ground below it, because a card passing behind the lockup
 			     is a lockup nobody can read. -->
-			<span class="zone" data-light-zone aria-hidden="true"></span>
+		<span class="zone" data-light-zone aria-hidden="true"></span>
 
 		<article class="give">
 			<!-- ── Where it goes ────────────────────────────────────────────────── -->
@@ -302,11 +315,13 @@ const WAYS = [
 					<span class="give__band-rule" aria-hidden="true"></span>
 				</header>
 
-				{/* The same three plates the opening moves through, hung again here —
+				{
+					/* The same three plates the opening moves through, hung again here —
 				    one to a body of work, so the money has a picture attached to it.
 				    Side by side and upright, the way a triptych hangs: three tall
 				    frames read as one work in three parts, where three wide ones
-				    stacked read as a list. */}
+				    stacked read as a list. */
+				}
 				<ol class="plates">
 					{
 						AREAS.map((area) => (
@@ -314,8 +329,16 @@ const WAYS = [
 								<figure class="plate__frame">
 									<span class="plate__stage">
 										<picture>
-											<source type="image/avif" srcset={plateSet(area.plate, 'avif')} sizes={PLATE_SIZES} />
-											<source type="image/webp" srcset={plateSet(area.plate, 'webp')} sizes={PLATE_SIZES} />
+											<source
+												type="image/avif"
+												srcset={plateSet(area.plate, 'avif')}
+												sizes={PLATE_SIZES}
+											/>
+											<source
+												type="image/webp"
+												srcset={plateSet(area.plate, 'webp')}
+												sizes={PLATE_SIZES}
+											/>
 											<img
 												class="plate__img"
 												src={plateFallback(area.plate)}
@@ -342,7 +365,6 @@ const WAYS = [
 						))
 					}
 				</ol>
-
 			</section>
 		</article>
 
@@ -352,12 +374,17 @@ const WAYS = [
 				class="give__band give__band--spread"
 				id="accounting"
 				aria-labelledby="give-account-heading"
-				data-reveal>
+				data-reveal
+			>
 				<header class="give__band-head">
-					<h2 class="give__band-title" id="give-account-heading">How we account for it</h2>
+					<h2 class="give__band-title" id="give-account-heading">
+						How we account for it
+					</h2>
 					<p class="give__band-foot">
 						Read the{' '}
-						<a class="give__link" href="/policies#terms-5">donations and refunds terms</a>{' '}
+						<a class="give__link" href="/policies#terms-5"
+							>donations and refunds terms</a
+						>{' '}
 						and our <a class="give__link" href="/policies#privacy">Privacy Policy</a>.
 					</p>
 				</header>
@@ -378,7 +405,8 @@ const WAYS = [
 			<section
 				class="give__band give__band--spread"
 				aria-labelledby="give-other-heading"
-				data-reveal>
+				data-reveal
+			>
 				<header class="give__band-head">
 					<h2 class="give__band-title" id="give-other-heading">Other ways to help</h2>
 				</header>
@@ -412,7 +440,6 @@ const WAYS = [
 		<SiteFooter />
 	</div>
 </Base>
-
 
 <style>
 	/* The whole page stands on the band rather than opening on it. Depth rather
@@ -517,9 +544,6 @@ const WAYS = [
 		);
 		pointer-events: none;
 	}
-
-
-
 
 	.hero__inner {
 		position: relative;
@@ -1616,10 +1640,14 @@ const WAYS = [
 
 				await gateway();
 
-				const rzp = new (window as unknown as { Razorpay: new (o: unknown) => {
-					open: () => void;
-					on: (e: string, h: (r: unknown) => void) => void;
-				} }).Razorpay({
+				const rzp = new (
+					window as unknown as {
+						Razorpay: new (o: unknown) => {
+							open: () => void;
+							on: (e: string, h: (r: unknown) => void) => void;
+						};
+					}
+				).Razorpay({
 					key: order.data.keyId,
 					order_id: order.data.orderId,
 					amount: order.data.amountPaise,
@@ -1701,11 +1729,12 @@ const WAYS = [
 					const el = entry.target as HTMLElement;
 					// Siblings in the same row follow each other rather than landing
 					// together, which reads as one movement instead of three.
-					const peers = [...(el.parentElement?.children ?? [])].filter((n) =>
-						(n as HTMLElement).dataset?.reveal !== undefined,
+					const peers = [...(el.parentElement?.children ?? [])].filter(
+						(n) => (n as HTMLElement).dataset?.reveal !== undefined,
 					);
 					const place = peers.indexOf(el);
-					if (peers.length > 1 && place > 0) el.style.setProperty('--delay', `${place * 90}ms`);
+					if (peers.length > 1 && place > 0)
+						el.style.setProperty('--delay', `${place * 90}ms`);
 					el.classList.add('is-in');
 					watcher.unobserve(el);
 				}

@@ -57,7 +57,10 @@ const email = async (to: string, subject: string, text: string, html: string) =>
 	if (!RESEND_KEY) return;
 	const res = await fetch('https://api.resend.com/emails', {
 		method: 'POST',
-		headers: { Authorization: `Bearer ${RESEND_KEY}`, 'Content-Type': 'application/json' },
+		headers: {
+			Authorization: `Bearer ${RESEND_KEY}`,
+			'Content-Type': 'application/json',
+		},
 		body: JSON.stringify({ from: FROM, to: [to], subject, text, html }),
 	});
 	// A receipt that fails to send must not fail the donation. The money has
@@ -118,7 +121,11 @@ Deno.serve(async (req) => {
 			return json({ error: 'store' }, 500, headers);
 		}
 
-		return json({ orderId: order.id, keyId, amountPaise: paise, test: isTestMode }, 200, headers);
+		return json(
+			{ orderId: order.id, keyId, amountPaise: paise, test: isTestMode },
+			200,
+			headers,
+		);
 	}
 
 	// ── Step two: believe the browser only after the signature agrees ───────
@@ -126,7 +133,8 @@ Deno.serve(async (req) => {
 		const orderId = String(body.orderId ?? '');
 		const paymentId = String(body.paymentId ?? '');
 		const signature = String(body.signature ?? '');
-		if (!orderId || !paymentId || !signature) return json({ error: 'bad_request' }, 400, headers);
+		if (!orderId || !paymentId || !signature)
+			return json({ error: 'bad_request' }, 400, headers);
 
 		const expected = await hmacHex(`${orderId}|${paymentId}`);
 		if (!sameSignature(expected, signature)) {

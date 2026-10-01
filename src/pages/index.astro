@@ -239,10 +239,12 @@ Small actions today can keep our planet alive for tomorrow.`,
 	description="The difference is when. The Itti Foundation works on neurodivergence, cancer care, and climate."
 	opensAtTop
 >
-	{/* `data-opening` is in the markup rather than added by script, so the first
+	{
+		/* `data-opening` is in the markup rather than added by script, so the first
 	    picture is transparent from the very first paint and can arrive rather
 	    than appear. It is taken off once that picture has decoded — see the
-	    stylesheet, and the script at the foot of the page. */}
+	    stylesheet, and the script at the foot of the page. */
+	}
 	<div class="arc" data-opening>
 		{
 			/* One frame, for all three pictures.
@@ -276,12 +278,13 @@ Small actions today can keep our planet alive for tomorrow.`,
 									srcset={plateSet(mv.plate, 'jpg')}
 									sizes="100vw"
 									alt=""
-									{/* All three are fetched, not just the first. Lazy-loading the
+									{
+									/* All three are fetched, not just the first. Lazy-loading the
 									    second and third meant the browser went looking for a
 									    1440×1992 picture at the moment the dissolve wanted it, and
 									    a fetch plus a decode in the middle of a hand-over is the
 									    stutter. They queue behind the first rather than competing
-									    with it. */}
+									    with it. */ }
 									loading="eager"
 									fetchpriority={i === 0 ? 'high' : 'low'}
 									decoding="async"
@@ -297,10 +300,12 @@ Small actions today can keep our planet alive for tomorrow.`,
 				))
 			}
 
-			{/* The scrim, the grade and the grain are the same for every picture,
+			{
+				/* The scrim, the grade and the grain are the same for every picture,
 			    so they are painted once over the frame rather than once inside
 			    each layer. Nine full-screen boxes become three, and none of them
-			    is repainted when the pictures cross. */}
+			    is repainted when the pictures cross. */
+			}
 			<div class="mv__scrim" aria-hidden="true"></div>
 			<div class="mv__grade" aria-hidden="true"></div>
 			<div class="mv__grain" aria-hidden="true"></div>
@@ -313,35 +318,39 @@ Small actions today can keep our planet alive for tomorrow.`,
 			    against the screen and pinned with the picture. */
 			}
 			{
-			SLIDES.map((slide, i) => (
-				<section
-					class="slide"
-					id={slide.id}
-					data-arc-slide
-					data-plate={slide.plate}
-					data-cam={slide.cam}
-					data-first={i === 0 ? '' : undefined}
-					data-last={i === SLIDES.length - 1 ? '' : undefined}
-					aria-hidden={i === 0 ? undefined : 'true'}
-				>
-					<div class="slide__beat" data-side={slide.side} style={`--text-y:${slide.y}`}>
-						{(() => {
-							const Tag = slide.hero ? 'h1' : 'p';
-							return (
-								<Tag class:list={['line', slide.hero && 'line--hero']}>
-									{slide.line.split(' ').map((word, w) => (
-										<span class="word" style={`--w:${w}`}>
-											<span set:html={word} />
-										</span>
-									))}
-								</Tag>
-							);
-						})()}
-					</div>
+				SLIDES.map((slide, i) => (
+					<section
+						class="slide"
+						id={slide.id}
+						data-arc-slide
+						data-plate={slide.plate}
+						data-cam={slide.cam}
+						data-first={i === 0 ? '' : undefined}
+						data-last={i === SLIDES.length - 1 ? '' : undefined}
+						aria-hidden={i === 0 ? undefined : 'true'}
+					>
+						<div
+							class="slide__beat"
+							data-side={slide.side}
+							style={`--text-y:${slide.y}`}
+						>
+							{(() => {
+								const Tag = slide.hero ? 'h1' : 'p';
+								return (
+									<Tag class:list={['line', slide.hero && 'line--hero']}>
+										{slide.line.split(' ').map((word, w) => (
+											<span class="word" style={`--w:${w}`}>
+												<span set:html={word} />
+											</span>
+										))}
+									</Tag>
+								);
+							})()}
+						</div>
 
-					{i === 0 && <span class="cue" aria-hidden="true" />}
-				</section>
-			))
+						{i === 0 && <span class="cue" aria-hidden="true" />}
+					</section>
+				))
 			}
 		</div>
 	</div>
@@ -376,7 +385,8 @@ Small actions today can keep our planet alive for tomorrow.`,
 		<SiteFooter />
 	</div>
 
-	{/* Where the reader was.
+	{
+		/* Where the reader was.
 
 	    Blocking, and last in the document, so it runs after the page has a
 	    height and before the first paint — a restore done any later is a jump
@@ -387,7 +397,8 @@ Small actions today can keep our planet alive for tomorrow.`,
 	    And never into the opening — the deck does not come back on the line it
 	    was left on, so a remembered place above the arc's last pixel means
 	    nothing and the page starts at the top. Below it, which is the whole of
-	    the rest of the site, the place is kept. */}
+	    the rest of the site, the place is kept. */
+	}
 	<script is:inline>
 		(function () {
 			var key = 'itti:where';
@@ -665,9 +676,7 @@ Small actions today can keep our planet alive for tomorrow.`,
 	.mv__plate {
 		transform: translate3d(
 				0,
-				calc(
-					var(--cam, 0) * -9% + var(--leave, 0) * -6.5% + var(--exit, 0) * -7%
-				),
+				calc(var(--cam, 0) * -9% + var(--leave, 0) * -6.5% + var(--exit, 0) * -7%),
 				0
 			)
 			scale(
@@ -950,7 +959,6 @@ Small actions today can keep our planet alive for tomorrow.`,
 		opacity: 1;
 	}
 
-
 	.word:last-child {
 		margin-right: 0;
 	}
@@ -997,8 +1005,6 @@ Small actions today can keep our planet alive for tomorrow.`,
 	.turn {
 		padding: clamp(5rem, 14vh, 9.5rem) var(--gutter) clamp(4.5rem, 10vh, 7.5rem);
 	}
-
-
 
 	/* The section's own name, hung from the hairline the rest of the site hangs
 	   its labels from. */
@@ -1314,7 +1320,8 @@ Small actions today can keep our planet alive for tomorrow.`,
 					   who gestures again before the idle frame arrives does not have
 					   the layers pulled out from under the move they just started. */
 					const later =
-						window.requestIdleCallback ?? ((fn: () => void) => window.setTimeout(fn, 240));
+						window.requestIdleCallback ??
+						((fn: () => void) => window.setTimeout(fn, 240));
 					later(() => {
 						if (move !== moves) return;
 						arc.removeAttribute('data-moving');
@@ -1458,7 +1465,8 @@ Small actions today can keep our planet alive for tomorrow.`,
 		// And the keyboard, which is the only way through for anyone not using a
 		// wheel or a finger.
 		window.addEventListener('keydown', (event) => {
-			const down = event.key === 'ArrowDown' || event.key === 'PageDown' || event.key === ' ';
+			const down =
+				event.key === 'ArrowDown' || event.key === 'PageDown' || event.key === ' ';
 			const up = event.key === 'ArrowUp' || event.key === 'PageUp';
 			if (!down && !up) return;
 			if (leaving) {
@@ -1532,7 +1540,8 @@ Small actions today can keep our planet alive for tomorrow.`,
 			   a Mac told always to show them — hiding it would reflow the whole
 			   page by fifteen pixels, which is a far worse jump than the one being
 			   fixed. */
-			if (window.innerWidth - root.clientWidth === 0) root.setAttribute('data-no-bar', '');
+			if (window.innerWidth - root.clientWidth === 0)
+				root.setAttribute('data-no-bar', '');
 
 			// The arc leaves the flow, so the section below takes over its height —
 			// otherwise the document shortens by a screen and the scroll position
@@ -1649,7 +1658,6 @@ Small actions today can keep our planet alive for tomorrow.`,
 			void arc.offsetHeight;
 			arc.style.transform = 'translate3d(0, -100%, 0)';
 		};
-
 
 		// Coming back up to the deck from the page below should land on its last
 		// line, not on whatever was showing when it was left.
