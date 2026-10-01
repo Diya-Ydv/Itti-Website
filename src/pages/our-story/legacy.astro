@@ -245,8 +245,8 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 				<p class="legacy__span">8 April <span>&mdash;</span> 8 September 2014</p>
 				<p class="legacy__lede">
 					Hardworking, straightforward, warm &mdash; the brightest flower in our garden.
-					From a government school in India to conservation research in Alaska, this is her story,
-					and an invitation to add your own memory to it.
+					From a government school in India to conservation research in Alaska, this is
+					her story, and an invitation to add your own memory to it.
 				</p>
 			</header>
 
@@ -262,12 +262,18 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 				<div class="timeline" aria-label="Her life timeline">
 					{
 						LIFE_MILESTONES.map((item) => (
-							<article class="timeline__entry" data-weight={item.major ? 'major' : undefined} id={item.id}>
-								<span class="timeline__node" aria-hidden="true"></span>
+							<article
+								class="timeline__entry"
+								data-weight={item.major ? 'major' : undefined}
+								id={item.id}
+							>
+								<span class="timeline__node" aria-hidden="true" />
 								<div class="way" data-weight={item.major ? 'major' : undefined}>
 									<div class="way__meta">
 										<span class="way__when">{item.when}</span>
-										<span class="way__bullet" aria-hidden="true">&middot;</span>
+										<span class="way__bullet" aria-hidden="true">
+											&middot;
+										</span>
 										<span class="way__where">{item.where}</span>
 									</div>
 									<h3 class="way__name">{item.title}</h3>
@@ -284,16 +290,20 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 				<div class="section-rule">
 					<h2 class="section-rule__title" id="archive-title">Read, watch, remember</h2>
 					<p class="section-rule__desc">
-						Archival publications, documentary footage, and recollections from friends and mentors.
+						Archival publications, documentary footage, and recollections from friends
+						and mentors.
 					</p>
 				</div>
 
 				<div class="ways ways--three" aria-label="Archival materials">
 					<button type="button" class="way way--clickable" data-open-drawer="articles">
-						<span class="way__meta">Publications &middot; Western Ghats &amp; Alaska</span>
+						<span class="way__meta"
+							>Publications &middot; Western Ghats &amp; Alaska</span
+						>
 						<h3 class="way__name">Her published articles</h3>
 						<p class="way__note">
-							Doctoral research, MSc dissertation at NCBS with Dr. Ulhas Karanth, and international wildlife colloquia.
+							Doctoral research, MSc dissertation at NCBS with Dr. Ulhas Karanth, and
+							international wildlife colloquia.
 						</p>
 						<span class="way__go" aria-hidden="true">View citations &rarr;</span>
 					</button>
@@ -302,7 +312,8 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 						<span class="way__meta">Documentary &middot; Oral History</span>
 						<h3 class="way__name">The Voices Project (film)</h3>
 						<p class="way__note">
-							Award-winning documentary produced in Alaska, chronicling indigenous knowledge and Arctic ecology.
+							Award-winning documentary produced in Alaska, chronicling indigenous
+							knowledge and Arctic ecology.
 						</p>
 						<span class="way__go" aria-hidden="true">Learn about the film &rarr;</span>
 					</button>
@@ -311,7 +322,8 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 						<span class="way__meta">Honours &middot; Distinctions</span>
 						<h3 class="way__name">Awards &amp; recognitions</h3>
 						<p class="way__note">
-							Inaugural George Schaller Scholarship and posthumous Doctorate conferred on Mother's Day at UAF.
+							Inaugural George Schaller Scholarship and posthumous Doctorate conferred
+							on Mother's Day at UAF.
 						</p>
 						<span class="way__go" aria-hidden="true">View honours &rarr;</span>
 					</button>
@@ -323,8 +335,9 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 						<span class="way__meta">Living Memorial &middot; Oral Archive</span>
 						<h3 class="way__name">Did you know Itti?</h3>
 						<p class="way__note">
-							We&rsquo;re gathering memories, photographs and videos from everyone whose life she touched &mdash;
-							family, teachers, classmates, colleagues and friends &mdash; to keep alongside her story here.
+							We&rsquo;re gathering memories, photographs and videos from everyone whose
+							life she touched &mdash; family, teachers, classmates, colleagues and
+							friends &mdash; to keep alongside her story here.
 						</p>
 					</div>
 					<button type="button" class="way__cta-btn" id="open-memory-btn">
@@ -339,10 +352,15 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 					<h2 class="promise-split__title" id="promise-title">The promise</h2>
 					<div class="promise-split__content">
 						<p class="promise-split__quote">
-							Her resilience, adaptability, intelligence, storytelling and warmth set her apart. Those are the things we want the next generation to take from her.
+							Her resilience, adaptability, intelligence, storytelling and warmth set
+							her apart. Those are the things we want the next generation to take from
+							her.
 						</p>
 						<p class="promise-split__text">
-							The Foundation is our humble step to honour our sister &mdash; our guiding light, our dost, our best friend. We have a promise to keep: to hold her lofty goals in place and keep her legacy of environmental awareness, education and entrepreneurship alive and thriving.
+							The Foundation is our humble step to honour our sister &mdash; our guiding
+							light, our dost, our best friend. We have a promise to keep: to hold her
+							lofty goals in place and keep her legacy of environmental awareness,
+							education and entrepreneurship alive and thriving.
 						</p>
 					</div>
 				</div>
@@ -357,21 +375,29 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 					</p>
 				</div>
 
-				<div class="founder-split" aria-label="Founder leadership profile and credentials">
+				<div
+					class="founder-split"
+					aria-label="Founder leadership profile and credentials"
+				>
 					<!-- Left Side: Profile on Teal Canvas (Sticky on Desktop) -->
 					<aside class="founder-profile">
 						<span class="founder-profile__role">Founder &amp; Director</span>
 						<h3 class="founder-profile__name">Anuja Bali</h3>
 						<p class="founder-profile__intro">
-							Anuja Bali founded Itti&rsquo;s Skill School Foundation in her sister&rsquo;s memory,
-							and leads its practical work across environmental stewardship, special education,
-							cancer family support, and community mental health.
+							Anuja Bali founded Itti&rsquo;s Skill School Foundation in her
+							sister&rsquo;s memory, and leads its practical work across environmental
+							stewardship, special education, cancer family support, and community
+							mental health.
 						</p>
 						<div class="founder-badge" aria-label="Foundation seal">
 							<span class="founder-badge__icon" aria-hidden="true">✦</span>
 							<div class="founder-badge__text">
-								<span class="founder-badge__org">Itti&rsquo;s Skill School Foundation</span>
-								<span class="founder-badge__tag">Living Memorial &middot; Est. 2021</span>
+								<span class="founder-badge__org"
+									>Itti&rsquo;s Skill School Foundation</span
+								>
+								<span class="founder-badge__tag"
+									>Living Memorial &middot; Est. 2021</span
+								>
 							</div>
 						</div>
 					</aside>
@@ -381,19 +407,21 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 						{
 							FOUNDER_GROUPS.map((group, groupIdx) => (
 								<div class="founder-group">
-									<p class="founder-group__label" id={`group-${groupIdx}`}>{group.title}</p>
+									<p class="founder-group__label" id={`group-${groupIdx}`}>
+										{group.title}
+									</p>
 									<div class="founder-group__items">
-										{
-											group.items.map((cred) => (
-												<article class="founder-entry">
-													<div class="founder-entry__head">
-														<span class="founder-entry__bullet" aria-hidden="true">✦</span>
-														<h4 class="founder-entry__title">{cred.field}</h4>
-													</div>
-													<p class="founder-entry__detail">{cred.detail}</p>
-												</article>
-											))
-										}
+										{group.items.map((cred) => (
+											<article class="founder-entry">
+												<div class="founder-entry__head">
+													<span class="founder-entry__bullet" aria-hidden="true">
+														✦
+													</span>
+													<h4 class="founder-entry__title">{cred.field}</h4>
+												</div>
+												<p class="founder-entry__detail">{cred.detail}</p>
+											</article>
+										))}
 									</div>
 								</div>
 							))
@@ -405,34 +433,60 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 			<!-- Footer note matching the template's .lost__foot -->
 			<p class="legacy__foot">
 				If you followed a link here from somewhere else, write to{' '}
-				<a class="legacy__link" href="mailto:hello@itti.org.in">hello@itti.org.in</a>{' '}
+				<a class="legacy__link" href="mailto:hello@itti.org.in">hello@itti.org.in</a>{
+					' '
+				}
 				and we will point you the right way.
 			</p>
 		</article>
 
 		<!-- ──────── Interactive Archival Drawers Modal ──────── -->
-		<dialog class="legacy-dialog" id="archive-dialog" aria-labelledby="archive-modal-title">
+		<dialog
+			class="legacy-dialog"
+			id="archive-dialog"
+			aria-labelledby="archive-modal-title"
+		>
 			<div class="legacy-dialog__backdrop" data-close-archive></div>
 			<div class="legacy-dialog__panel" role="document">
-				<button type="button" class="legacy-dialog__close" data-close-archive aria-label="Close dialog">&times;</button>
+				<button
+					type="button"
+					class="legacy-dialog__close"
+					data-close-archive
+					aria-label="Close dialog">&times;</button
+				>
 
 				<div id="drawer-articles" class="legacy-dialog__view" hidden>
 					<p class="legacy-dialog__eyebrow">Research &middot; Publications</p>
-					<h3 class="legacy-dialog__title" id="archive-modal-title">Her Published Articles</h3>
+					<h3 class="legacy-dialog__title" id="archive-modal-title">
+						Her Published Articles
+					</h3>
 					<div class="legacy-dialog__body">
-						<p>Dr. Archana Bali was a pioneer in wildlife ecology and human&ndash;wildlife coexistence, examining how human cultivation and wild habitats meet.</p>
+						<p>
+							Dr. Archana Bali was a pioneer in wildlife ecology and
+							human&ndash;wildlife coexistence, examining how human cultivation and wild
+							habitats meet.
+						</p>
 						<ul class="legacy-dialog__list">
 							<li>
 								<strong>MSc Wildlife Biology Dissertation (NCBS Bangalore):</strong>
-								<span>Ecology and human coexistence in coffee agro-ecosystems of Chikmagalur, under the mentorship of Dr. Ulhas Karanth.</span>
+								<span
+									>Ecology and human coexistence in coffee agro-ecosystems of
+									Chikmagalur, under the mentorship of Dr. Ulhas Karanth.</span
+								>
 							</li>
 							<li>
 								<strong>Doctoral Dissertation (University of Alaska Fairbanks):</strong>
-								<span>Human&ndash;animal interdependence, Arctic ecosystems, and caribou conservation as the inaugural George Schaller Scholar.</span>
+								<span
+									>Human&ndash;animal interdependence, Arctic ecosystems, and caribou
+									conservation as the inaugural George Schaller Scholar.</span
+								>
 							</li>
 							<li>
 								<strong>International Colloquia (2013&ndash;2014):</strong>
-								<span>Papers presented across North America and abroad through active cancer treatments, demonstrating groundbreaking resilience and rigor.</span>
+								<span
+									>Papers presented across North America and abroad through active
+									cancer treatments, demonstrating groundbreaking resilience and rigor.</span
+								>
 							</li>
 						</ul>
 					</div>
@@ -442,8 +496,17 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 					<p class="legacy-dialog__eyebrow">Documentary &middot; Oral History</p>
 					<h3 class="legacy-dialog__title">The Voices Project (film)</h3>
 					<div class="legacy-dialog__body">
-						<p>Alongside her doctoral research at the University of Alaska Fairbanks, Dr. Itti Bali co-created <strong>The Voices Project</strong> &mdash; an award-winning documentary produced in close collaboration with Native Alaskan communities.</p>
-						<p>The film documents traditional ecological knowledge, changing Arctic ecosystems, and indigenous perspectives on subsistence and respect for living beings. Her storytelling celebrated the people whose ancestral wisdom shaped her science.</p>
+						<p>
+							Alongside her doctoral research at the University of Alaska Fairbanks, Dr.
+							Itti Bali co-created <strong>The Voices Project</strong> &mdash; an award-winning
+							documentary produced in close collaboration with Native Alaskan communities.
+						</p>
+						<p>
+							The film documents traditional ecological knowledge, changing Arctic
+							ecosystems, and indigenous perspectives on subsistence and respect for
+							living beings. Her storytelling celebrated the people whose ancestral
+							wisdom shaped her science.
+						</p>
 					</div>
 				</div>
 
@@ -454,15 +517,25 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 						<ul class="legacy-dialog__list">
 							<li>
 								<strong>The George Schaller Scholarship:</strong>
-								<span>The first scholar ever selected for this prestigious award to pursue a doctorate in wildlife ecology and conservation at UAF.</span>
+								<span
+									>The first scholar ever selected for this prestigious award to pursue
+									a doctorate in wildlife ecology and conservation at UAF.</span
+								>
 							</li>
 							<li>
 								<strong>Posthumous Doctorate of Philosophy (2016):</strong>
-								<span>Conferred on Mother&rsquo;s Day at the University of Alaska Fairbanks, received with enduring pride by her mother.</span>
+								<span
+									>Conferred on Mother&rsquo;s Day at the University of Alaska
+									Fairbanks, received with enduring pride by her mother.</span
+								>
 							</li>
 							<li>
 								<strong>Documentary Festival Honours:</strong>
-								<span>Festival recognitions and tribal community honors for <em>The Voices Project</em>.</span>
+								<span
+									>Festival recognitions and tribal community honors for <em
+										>The Voices Project</em
+									>.</span
+								>
 							</li>
 						</ul>
 					</div>
@@ -474,24 +547,46 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 		<dialog class="legacy-dialog" id="memory-dialog" aria-labelledby="dialog-mem-title">
 			<div class="legacy-dialog__backdrop" data-close-dialog></div>
 			<div class="legacy-dialog__panel" role="document">
-				<button type="button" class="legacy-dialog__close" data-close-dialog aria-label="Close dialog">&times;</button>
+				<button
+					type="button"
+					class="legacy-dialog__close"
+					data-close-dialog
+					aria-label="Close dialog">&times;</button
+				>
 				<header class="legacy-dialog__head">
 					<p class="legacy-dialog__eyebrow">The Itti Foundation Archive</p>
-					<h3 class="legacy-dialog__title" id="dialog-mem-title">Share a Memory of Itti</h3>
+					<h3 class="legacy-dialog__title" id="dialog-mem-title">
+						Share a Memory of Itti
+					</h3>
 					<p class="legacy-dialog__subtitle">
-						Your words help keep Dr. Archana &ldquo;Itti&rdquo; Bali&rsquo;s warmth, grit and spirit alive.
-						Every memory, story or reflection will be lovingly preserved with her archive.
+						Your words help keep Dr. Archana &ldquo;Itti&rdquo; Bali&rsquo;s warmth,
+						grit and spirit alive. Every memory, story or reflection will be lovingly
+						preserved with her archive.
 					</p>
 				</header>
 				<form class="memory-form" id="memory-form">
 					<div class="memory-form__field">
 						<label for="mem-name">Your Full Name <span class="req">*</span></label>
-						<input type="text" id="mem-name" name="name" required placeholder="e.g. Dr. Ulhas Karanth / Anjali Sharma" />
+						<input
+							type="text"
+							id="mem-name"
+							name="name"
+							required
+							placeholder="e.g. Dr. Ulhas Karanth / Anjali Sharma"
+						/>
 					</div>
 					<div class="memory-form__row">
 						<div class="memory-form__field">
-							<label for="mem-email">Your Email Address <span class="req">*</span></label>
-							<input type="email" id="mem-email" name="email" required placeholder="you@example.com" />
+							<label for="mem-email"
+								>Your Email Address <span class="req">*</span></label
+							>
+							<input
+								type="email"
+								id="mem-email"
+								name="email"
+								required
+								placeholder="you@example.com"
+							/>
 						</div>
 						<div class="memory-form__field">
 							<label for="mem-rel">Connection to Itti <span class="req">*</span></label>
@@ -499,7 +594,9 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 								<option value="" disabled selected>Select connection...</option>
 								<option value="family">Family / Relative</option>
 								<option value="school">School / College classmate</option>
-								<option value="colleague">Colleague (NIIT / Greenpeace / NCBS / UAF)</option>
+								<option value="colleague"
+									>Colleague (NIIT / Greenpeace / NCBS / UAF)</option
+								>
 								<option value="cancer-community">Cancer support community</option>
 								<option value="friend">Personal friend</option>
 								<option value="other">Other</option>
@@ -508,20 +605,40 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 					</div>
 					<div class="memory-form__field">
 						<label for="mem-place">Time or Place (Optional)</label>
-						<input type="text" id="mem-place" name="place" placeholder="e.g. NCBS Bangalore 2004 / Fairbanks 2011" />
+						<input
+							type="text"
+							id="mem-place"
+							name="place"
+							placeholder="e.g. NCBS Bangalore 2004 / Fairbanks 2011"
+						/>
 					</div>
 					<div class="memory-form__field">
-						<label for="mem-story">Your Memory or Note <span class="req">*</span></label>
-						<textarea id="mem-story" name="story" rows="4" required placeholder="Share a story, conversation, or moment that captured who Itti was to you..."></textarea>
+						<label for="mem-story">Your Memory or Note <span class="req">*</span></label
+						>
+						<textarea
+							id="mem-story"
+							name="story"
+							rows="4"
+							required
+							placeholder="Share a story, conversation, or moment that captured who Itti was to you..."
+						></textarea>
 					</div>
 					<div class="memory-form__actions">
-						<button type="submit" class="memory-form__submit" id="submit-memory">Send Memory</button>
-						<a href="mailto:hello@itti.org.in?subject=Memory%20of%20Dr.%20Itti%20Bali" class="memory-form__alt">Or email us directly &rarr;</a>
+						<button type="submit" class="memory-form__submit" id="submit-memory"
+							>Send Memory</button
+						>
+						<a
+							href="mailto:hello@itti.org.in?subject=Memory%20of%20Dr.%20Itti%20Bali"
+							class="memory-form__alt">Or email us directly &rarr;</a
+						>
 					</div>
 					<div class="memory-form__success" id="mem-success" hidden>
 						<div class="memory-form__check">&check;</div>
 						<h4>Thank you for remembering Itti.</h4>
-						<p>Your words have been received with gratitude by her family and will be held alongside her archive.</p>
+						<p>
+							Your words have been received with gratitude by her family and will be
+							held alongside her archive.
+						</p>
 					</div>
 				</form>
 			</div>
@@ -727,7 +844,9 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 	.timeline__node {
 		position: absolute;
 		top: 1.85rem;
-		left: calc(-1 * clamp(2.25rem, 5vw, 3.25rem) + clamp(0.75rem, 1.8vw, 1.15rem) - 6.25px);
+		left: calc(
+			-1 * clamp(2.25rem, 5vw, 3.25rem) + clamp(0.75rem, 1.8vw, 1.15rem) - 6.25px
+		);
 		width: 14px;
 		height: 14px;
 		border-radius: 50%;
@@ -757,11 +876,11 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 	}
 
 	/* Key Landmark node styling */
-	.timeline__entry[data-weight="major"] .timeline__node {
+	.timeline__entry[data-weight='major'] .timeline__node {
 		border-color: rgba(247, 214, 143, 0.7);
 	}
 
-	.timeline__entry[data-weight="major"] .timeline__node::after {
+	.timeline__entry[data-weight='major'] .timeline__node::after {
 		background: #f7d68f;
 	}
 
@@ -777,7 +896,7 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 		opacity: 1;
 	}
 
-	.timeline__entry[data-weight="major"]:hover .timeline__node {
+	.timeline__entry[data-weight='major']:hover .timeline__node {
 		border-color: #fce2a6;
 	}
 
@@ -785,7 +904,11 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 	.timeline .way {
 		width: 100%;
 		padding: 1.5rem 1.75rem 1.65rem;
-		background: linear-gradient(155deg, rgba(253, 250, 244, 0.98) 0%, rgba(246, 240, 229, 0.95) 100%);
+		background: linear-gradient(
+			155deg,
+			rgba(253, 250, 244, 0.98) 0%,
+			rgba(246, 240, 229, 0.95) 100%
+		);
 		border: 1px solid rgba(250, 247, 240, 0.2);
 		border-radius: 6px;
 		box-shadow:
@@ -805,7 +928,7 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 	}
 
 	/* Distinctive Key Landmark Card: Warm illuminated parchment with gold edge & hallmark */
-	.timeline .way[data-weight="major"] {
+	.timeline .way[data-weight='major'] {
 		background: linear-gradient(150deg, #fffefb 0%, #faf3e4 100%);
 		border: 1px solid rgba(212, 175, 102, 0.45);
 		box-shadow:
@@ -813,7 +936,7 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 			0 0 20px -4px rgba(180, 145, 79, 0.22);
 	}
 
-	.timeline .way[data-weight="major"]::before {
+	.timeline .way[data-weight='major']::before {
 		width: 5px;
 		border-radius: 6px 0 0 6px;
 		background: linear-gradient(180deg, #f7d68f 0%, var(--ochre) 65%, #7a5a20 100%);
@@ -821,7 +944,7 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 	}
 
 	/* Elegant archival gold hallmark in the top-right corner of key landmark cards */
-	.timeline .way[data-weight="major"]::after {
+	.timeline .way[data-weight='major']::after {
 		content: '✦';
 		position: absolute;
 		top: 1.35rem;
@@ -831,7 +954,9 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 		color: #c5a35e;
 		opacity: 0.55;
 		pointer-events: none;
-		transition: opacity 280ms var(--ease), transform 280ms var(--ease);
+		transition:
+			opacity 280ms var(--ease),
+			transform 280ms var(--ease);
 	}
 
 	.timeline .way:hover {
@@ -842,11 +967,11 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 		border-color: rgba(250, 247, 240, 0.35);
 	}
 
-	.timeline .way[data-weight="major"]:hover {
+	.timeline .way[data-weight='major']:hover {
 		border-color: rgba(212, 175, 102, 0.55);
 	}
 
-	.timeline .way[data-weight="major"]:hover::after {
+	.timeline .way[data-weight='major']:hover::after {
 		opacity: 0.75;
 	}
 
@@ -866,14 +991,18 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 		letter-spacing: 0.12em;
 	}
 
-	.timeline .way[data-weight="major"] .way__when {
-		background: linear-gradient(135deg, rgba(247, 214, 143, 0.32) 0%, rgba(180, 145, 79, 0.18) 100%);
+	.timeline .way[data-weight='major'] .way__when {
+		background: linear-gradient(
+			135deg,
+			rgba(247, 214, 143, 0.32) 0%,
+			rgba(180, 145, 79, 0.18) 100%
+		);
 		border: 1px solid rgba(180, 145, 79, 0.35);
 		color: #72521a;
 		font-weight: 700;
 	}
 
-	.timeline .way[data-weight="major"] .way__when::before {
+	.timeline .way[data-weight='major'] .way__when::before {
 		content: '✦';
 		font-size: 0.75em;
 		margin-right: 0.35rem;
@@ -896,7 +1025,7 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 		letter-spacing: -0.015em;
 	}
 
-	.timeline .way[data-weight="major"] .way__name {
+	.timeline .way[data-weight='major'] .way__name {
 		font-size: clamp(1.35rem, 2.4vw, 1.62rem);
 		color: #16120d;
 	}
@@ -952,7 +1081,7 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 		opacity: 0.6;
 	}
 
-	.way[data-weight="major"]::before {
+	.way[data-weight='major']::before {
 		background: var(--ochre);
 		width: 3.5px;
 		opacity: 0.95;
@@ -987,7 +1116,6 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 	.way__bullet {
 		opacity: 0.45;
 	}
-
 
 	.way__name {
 		font-family: var(--face-bodoni);
@@ -1237,7 +1365,11 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 
 	/* Right Column: One Clean Off-White Panel */
 	.founder-panel {
-		background: linear-gradient(155deg, rgba(253, 250, 244, 0.98) 0%, rgba(246, 240, 229, 0.96) 100%);
+		background: linear-gradient(
+			155deg,
+			rgba(253, 250, 244, 0.98) 0%,
+			rgba(246, 240, 229, 0.96) 100%
+		);
 		border: 1px solid rgba(250, 247, 240, 0.25);
 		border-radius: 6px;
 		padding: clamp(1.75rem, 4vw, 2.75rem);
@@ -1614,98 +1746,98 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 </style>
 
 <script is:inline>
-// ──────────────────────────────────────────────────────────────────────────
-// Interactive Dialog Handler for Memory Submission & Archival Drawers
-// ──────────────────────────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-	const memDialog = document.getElementById('memory-dialog');
-	const openMemBtn = document.getElementById('open-memory-btn');
-	const closeMemTriggers = document.querySelectorAll('[data-close-dialog]');
-	const memForm = document.getElementById('memory-form');
-	const memSuccess = document.getElementById('mem-success');
+	// ──────────────────────────────────────────────────────────────────────────
+	// Interactive Dialog Handler for Memory Submission & Archival Drawers
+	// ──────────────────────────────────────────────────────────────────────────
+	document.addEventListener('DOMContentLoaded', () => {
+		const memDialog = document.getElementById('memory-dialog');
+		const openMemBtn = document.getElementById('open-memory-btn');
+		const closeMemTriggers = document.querySelectorAll('[data-close-dialog]');
+		const memForm = document.getElementById('memory-form');
+		const memSuccess = document.getElementById('mem-success');
 
-	// Open Memory Dialog
-	if (openMemBtn && memDialog) {
-		openMemBtn.addEventListener('click', () => {
-			if (typeof memDialog.showModal === 'function') {
-				memDialog.showModal();
-			} else {
-				memDialog.setAttribute('open', '');
-			}
+		// Open Memory Dialog
+		if (openMemBtn && memDialog) {
+			openMemBtn.addEventListener('click', () => {
+				if (typeof memDialog.showModal === 'function') {
+					memDialog.showModal();
+				} else {
+					memDialog.setAttribute('open', '');
+				}
+			});
+		}
+
+		// Close Memory Dialog
+		closeMemTriggers.forEach((btn) => {
+			btn.addEventListener('click', () => {
+				if (typeof memDialog?.close === 'function') {
+					memDialog.close();
+				} else {
+					memDialog?.removeAttribute('open');
+				}
+			});
 		});
-	}
 
-	// Close Memory Dialog
-	closeMemTriggers.forEach((btn) => {
-		btn.addEventListener('click', () => {
-			if (typeof memDialog?.close === 'function') {
-				memDialog.close();
-			} else {
-				memDialog?.removeAttribute('open');
-			}
+		// Memory Form submission handling
+		if (memForm && memSuccess) {
+			memForm.addEventListener('submit', (e) => {
+				e.preventDefault();
+				const submitBtn = document.getElementById('submit-memory');
+				if (submitBtn) {
+					submitBtn.setAttribute('disabled', 'true');
+					submitBtn.textContent = 'Recording...';
+				}
+
+				setTimeout(() => {
+					memForm.style.display = 'none';
+					memSuccess.removeAttribute('hidden');
+				}, 600);
+			});
+		}
+
+		// Archival Drawers Dialog
+		const archDialog = document.getElementById('archive-dialog');
+		const archTriggers = document.querySelectorAll('[data-open-drawer]');
+		const closeArchTriggers = document.querySelectorAll('[data-close-archive]');
+		const drawerArticles = document.getElementById('drawer-articles');
+		const drawerFilm = document.getElementById('drawer-film');
+		const drawerAwards = document.getElementById('drawer-awards');
+
+		const hideAllDrawers = () => {
+			drawerArticles?.setAttribute('hidden', '');
+			drawerFilm?.setAttribute('hidden', '');
+			drawerAwards?.setAttribute('hidden', '');
+		};
+
+		archTriggers.forEach((btn) => {
+			btn.addEventListener('click', () => {
+				const drawerType = btn.getAttribute('data-open-drawer');
+				hideAllDrawers();
+
+				if (drawerType === 'articles' && drawerArticles) {
+					drawerArticles.removeAttribute('hidden');
+				} else if (drawerType === 'film' && drawerFilm) {
+					drawerFilm.removeAttribute('hidden');
+				} else if (drawerType === 'awards' && drawerAwards) {
+					drawerAwards.removeAttribute('hidden');
+				}
+
+				if (typeof archDialog?.showModal === 'function') {
+					archDialog.showModal();
+				} else {
+					archDialog?.setAttribute('open', '');
+				}
+			});
+		});
+
+		closeArchTriggers.forEach((btn) => {
+			btn.addEventListener('click', () => {
+				if (typeof archDialog?.close === 'function') {
+					archDialog.close();
+				} else {
+					archDialog?.removeAttribute('open');
+				}
+			});
 		});
 	});
-
-	// Memory Form submission handling
-	if (memForm && memSuccess) {
-		memForm.addEventListener('submit', (e) => {
-			e.preventDefault();
-			const submitBtn = document.getElementById('submit-memory');
-			if (submitBtn) {
-				submitBtn.setAttribute('disabled', 'true');
-				submitBtn.textContent = 'Recording...';
-			}
-
-			setTimeout(() => {
-				memForm.style.display = 'none';
-				memSuccess.removeAttribute('hidden');
-			}, 600);
-		});
-	}
-
-	// Archival Drawers Dialog
-	const archDialog = document.getElementById('archive-dialog');
-	const archTriggers = document.querySelectorAll('[data-open-drawer]');
-	const closeArchTriggers = document.querySelectorAll('[data-close-archive]');
-	const drawerArticles = document.getElementById('drawer-articles');
-	const drawerFilm = document.getElementById('drawer-film');
-	const drawerAwards = document.getElementById('drawer-awards');
-
-	const hideAllDrawers = () => {
-		drawerArticles?.setAttribute('hidden', '');
-		drawerFilm?.setAttribute('hidden', '');
-		drawerAwards?.setAttribute('hidden', '');
-	};
-
-	archTriggers.forEach((btn) => {
-		btn.addEventListener('click', () => {
-			const drawerType = btn.getAttribute('data-open-drawer');
-			hideAllDrawers();
-
-			if (drawerType === 'articles' && drawerArticles) {
-				drawerArticles.removeAttribute('hidden');
-			} else if (drawerType === 'film' && drawerFilm) {
-				drawerFilm.removeAttribute('hidden');
-			} else if (drawerType === 'awards' && drawerAwards) {
-				drawerAwards.removeAttribute('hidden');
-			}
-
-			if (typeof archDialog?.showModal === 'function') {
-				archDialog.showModal();
-			} else {
-				archDialog?.setAttribute('open', '');
-			}
-		});
-	});
-
-	closeArchTriggers.forEach((btn) => {
-		btn.addEventListener('click', () => {
-			if (typeof archDialog?.close === 'function') {
-				archDialog.close();
-			} else {
-				archDialog?.removeAttribute('open');
-			}
-		});
-	});
-});
 </script>
