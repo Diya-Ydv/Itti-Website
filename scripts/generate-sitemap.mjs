@@ -133,6 +133,16 @@ ${entries
 </urlset>
 `;
 
+/**
+ * The same addresses as plain text, which the sitemaps protocol allows: one URL
+ * per line, UTF-8, nothing else. It carries no dates, so the XML stays the one
+ * that is submitted; this is here because a text file has no parser to fail,
+ * and when a search engine says it cannot read a sitemap, the quickest way to
+ * learn whether it means the file or the fetch is to hand it one that cannot be
+ * misread.
+ */
+const plain = `${entries.map(({ path }) => `${SITE}${path === '/' ? '/' : `${path}/`}`).join('\n')}\n`;
+
 const robots = `# The Itti Foundation
 #
 # Everything here is public and may be crawled. To keep the site out of search
@@ -143,9 +153,11 @@ User-agent: *
 Allow: /
 
 Sitemap: ${SITE}/sitemap.xml
+Sitemap: ${SITE}/sitemap.txt
 `;
 
 writeFileSync(join(DIST, 'sitemap.xml'), sitemap);
+writeFileSync(join(DIST, 'sitemap.txt'), plain);
 writeFileSync(join(DIST, 'robots.txt'), robots);
 console.log(
 	`sitemap.xml written — ${entries.length} pages: ${entries
