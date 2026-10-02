@@ -10,10 +10,19 @@
  * late; it needed a button, a state and a script to manage; and a reader on a
  * phone had to tap once to read and again to leave.
  *
- * So: no flip, no faces, no script. The whole card is one link. The mark stands
- * in its own colour, and the longer passage rises over it from the foot of the
- * panel on hover or on focus — a move in two dimensions, which the compositor
- * can do on its own and which cannot show a back face because there is not one.
+ * So: no flip, no faces, no script. The mark stands in its own colour, and the
+ * longer passage rises over it from the foot of the panel on hover or on focus
+ * — a move in two dimensions, which the compositor can do on its own and which
+ * cannot show a back face because there is not one.
+ *
+ * There are two destinations on the card and only one of them is the card: the
+ * commitment itself, and the group where that commitment is actually carried on.
+ * So the card is not wrapped in a link — a link cannot be put inside a link, and
+ * the group would have had to be something that only works with a mouse and a
+ * script. Instead `Learn more` draws an invisible sheet over the whole card, and
+ * the group's badge sits above that sheet. Both are ordinary anchors: they open
+ * in a new tab or a background one, they can be copied, and they need no
+ * JavaScript at all.
  */
 import ClawMark from '../brand/ClawMark.astro';
 
@@ -25,18 +34,11 @@ interface Props {
 	accent: 'ochre' | 'rose' | 'sage' | 'teal';
 	/** The project's own mark. A raster path, or 'claw' for the derived SVG. */
 	mark?: string;
+	/** The commitment's WhatsApp group, where the work is actually carried on. */
 	whatsappUrl?: string;
 }
 
-const {
-	name,
-	line,
-	back,
-	href,
-	accent,
-	mark,
-	whatsappUrl = 'https://chat.whatsapp.com',
-} = Astro.props;
+const { name, line, back, href, accent, mark, whatsappUrl } = Astro.props;
 ---
 
 <article
@@ -44,76 +46,74 @@ const {
 	data-accent={accent}
 	style={`--accent: var(--${accent}); --accent-ink: var(--${accent}-ink)`}
 >
-	<a class="pillar__link" href={href}>
-		<span class="pillar__plate">
-			<span class="pillar__mark" aria-hidden="true">
-				{
-					mark === 'claw' ? (
-						<ClawMark mono />
-					) : mark ? (
-						<span class="pillar__raster" style={`--mark:url('${mark}')`} />
-					) : null
-				}
-			</span>
+	<div class="pillar__plate">
+		<span class="pillar__mark" aria-hidden="true">
+			{
+				mark === 'claw' ? (
+					<ClawMark mono />
+				) : mark ? (
+					<span class="pillar__raster" style={`--mark:url('${mark}')`} />
+				) : null
+			}
+		</span>
+
+		{
+			/* The passage rides up over the mark. It is in the document either way,
+		    so it is read out and found by search whether or not anybody hovers. */
+		}
+		<span class="pillar__veil">
+			<span class="pillar__back">{back}</span>
+		</span>
+	</div>
+
+	<div class="pillar__body">
+		<h3 class="pillar__name">{name}</h3>
+		<p class="pillar__line">{line}</p>
+
+		<p class="pillar__foot">
+			<a class="pillar__link" href={href}>
+				Learn more<span class="u-visually-hidden"> about {name}</span>
+				<span class="pillar__arrow" aria-hidden="true">&rarr;</span>
+			</a>
 
 			{
-				/* The passage rides up over the mark. It is in the document either
-			    way, so it is read out and found by search whether or not anybody
-			    hovers. */
-			}
-			<span class="pillar__veil">
-				<span class="pillar__back">{back}</span>
-			</span>
-		</span>
-
-		<span class="pillar__body">
-			<span class="pillar__name">{name}</span>
-			<span class="pillar__line">{line}</span>
-			<div
-				class="pillar__more-wrapper"
-				style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(44, 39, 33, 0.1); margin-top: 0.55rem; padding-top: 0.75rem; width: 100%;"
-			>
-				<span class="pillar__more" style="border:none; margin:0; padding:0;">
-					Learn more
-					<span class="pillar__arrow" aria-hidden="true">&rarr;</span>
-				</span>
-				<span
-					onclick={`window.open('${whatsappUrl}', '_blank'); event.preventDefault(); event.stopPropagation();`}
-					title="Join our WhatsApp group"
-					style="display: flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; border-radius: 50%; background-color: #25D366; color: white; flex-shrink: 0; z-index: 10; cursor: pointer;"
-				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="20"
-						height="20"
-						viewBox="0 0 24 24"
-						fill="currentColor"
+				whatsappUrl && (
+					<a
+						class="pillar__chat"
+						href={whatsappUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label={`Join the ${name} WhatsApp group`}
+						title={`Join the ${name} WhatsApp group`}
 					>
-						<path
-							d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"
-						></path>
-					</svg>
-				</span>
-			</div>
-		</span>
-	</a>
+						<svg
+							viewBox="0 0 24 24"
+							fill="currentColor"
+							aria-hidden="true"
+							focusable="false"
+						>
+							<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+						</svg>
+					</a>
+				)
+			}
+		</p>
+	</div>
 </article>
 
 <style>
 	.pillar {
 		--accent: var(--teal);
 		--accent-ink: var(--teal);
-	}
-
-	.pillar__link {
+		/* The sheet the card's link draws is measured from here. */
+		position: relative;
 		display: grid;
-		grid-template-rows: auto auto;
+		grid-template-rows: auto 1fr;
 		height: 100%;
 		border-radius: 10px;
 		overflow: hidden;
 		background: color-mix(in srgb, var(--cream) 34%, #fff);
 		border: 1px solid rgba(44, 39, 33, 0.09);
-		color: inherit;
 		box-shadow:
 			0 1px 0 rgba(255, 255, 255, 0.7) inset,
 			0 2px 5px rgba(44, 39, 33, 0.06),
@@ -124,8 +124,8 @@ const {
 			border-color 460ms var(--ease);
 	}
 
-	.pillar__link:hover,
-	.pillar__link:focus-visible {
+	.pillar:hover,
+	.pillar:focus-within {
 		transform: translateY(-6px);
 		border-color: color-mix(in srgb, var(--accent) 45%, transparent);
 		box-shadow:
@@ -182,8 +182,8 @@ const {
 		mask: var(--mark) center / contain no-repeat;
 	}
 
-	.pillar__link:hover .pillar__mark,
-	.pillar__link:focus-visible .pillar__mark {
+	.pillar:hover .pillar__mark,
+	.pillar:focus-within .pillar__mark {
 		opacity: 0.34;
 		scale: 1.06;
 	}
@@ -209,8 +209,8 @@ const {
 			translate 560ms var(--ease);
 	}
 
-	.pillar__link:hover .pillar__veil,
-	.pillar__link:focus-visible .pillar__veil {
+	.pillar:hover .pillar__veil,
+	.pillar:focus-within .pillar__veil {
 		opacity: 1;
 		translate: none;
 	}
@@ -224,14 +224,17 @@ const {
 		white-space: pre-line;
 	}
 
+	/* A column, so the rule above the foot lands on the same line on all three
+	   cards however many lines the name and the promise take. */
 	.pillar__body {
-		display: grid;
-		align-content: start;
+		display: flex;
+		flex-direction: column;
 		gap: 0.4rem;
 		padding: clamp(1.15rem, 2.2vw, 1.5rem);
 	}
 
 	.pillar__name {
+		margin: 0;
 		font-family: var(--face-bodoni);
 		font-size: clamp(1.375rem, 2.2vw, 1.6rem);
 		font-weight: var(--display-weight);
@@ -241,18 +244,26 @@ const {
 	}
 
 	.pillar__line {
+		margin: 0;
 		font-size: 0.9375rem;
 		line-height: 1.55;
 		color: var(--ink-soft);
 	}
 
-	.pillar__more {
+	.pillar__foot {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		margin: auto 0 0;
+		padding-top: 0.75rem;
+		border-top: 1px solid rgba(44, 39, 33, 0.1);
+	}
+
+	.pillar__link {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.4rem;
-		margin-top: 0.55rem;
-		padding-top: 0.75rem;
-		border-top: 1px solid rgba(44, 39, 33, 0.1);
 		font-size: 0.8125rem;
 		font-weight: 600;
 		letter-spacing: 0.1em;
@@ -260,22 +271,68 @@ const {
 		color: var(--accent-ink);
 	}
 
+	/* The whole card, claimed by this one link. Under the badge, so the badge
+	   keeps its own click. */
+	.pillar__link::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+	}
+
 	.pillar__arrow {
 		transition: translate 300ms var(--ease);
 	}
 
-	.pillar__link:hover .pillar__arrow,
-	.pillar__link:focus-visible .pillar__arrow {
+	.pillar:hover .pillar__arrow,
+	.pillar:focus-within .pillar__arrow {
 		translate: 0.3rem 0;
 	}
 
+	/* WhatsApp's own dark green rather than the bright one. The bright green
+	   holds under two to one against a white glyph, which is below what a mark
+	   this small needs to be read at all, and it is a shout on a cream page
+	   ruled in ochre, rose and sage. The dark green is the same brand and it
+	   carries the glyph at better than four to one. */
+	.pillar__chat {
+		position: relative;
+		z-index: 2;
+		flex: none;
+		display: grid;
+		place-items: center;
+		width: 2.25rem;
+		height: 2.25rem;
+		border-radius: 50%;
+		background: #128c7e;
+		color: #fff;
+		transition:
+			scale 260ms var(--ease),
+			box-shadow 260ms var(--ease);
+	}
+
+	.pillar__chat svg {
+		display: block;
+		width: 1.1875rem;
+		height: 1.1875rem;
+	}
+
+	.pillar__chat:hover,
+	.pillar__chat:focus-visible {
+		scale: 1.08;
+		box-shadow: 0 0 0 4px color-mix(in srgb, #128c7e 22%, transparent);
+	}
+
 	@media (prefers-reduced-motion: reduce) {
-		.pillar__link,
-		.pillar__link:hover,
+		.pillar,
+		.pillar:hover,
+		.pillar:focus-within,
 		.pillar__mark,
-		.pillar__veil {
+		.pillar__veil,
+		.pillar__arrow,
+		.pillar__chat {
 			transition: none;
 			transform: none;
+			scale: none;
 		}
 	}
 </style>
