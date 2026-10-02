@@ -636,8 +636,10 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 						<div class="memory-form__check">&check;</div>
 						<h4>Thank you for remembering Itti.</h4>
 						<p>
-							Your words have been received with gratitude by her family and will be
-							held alongside her archive.
+							Your memory is now in an email addressed to her family &mdash; send it and
+							it reaches us. If nothing opened, your words are still above: copy them to
+							<a href="mailto:hello@itti.org.in">hello@itti.org.in</a> and they will be held
+							alongside her archive.
 						</p>
 					</div>
 				</form>
@@ -1778,20 +1780,38 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 			});
 		});
 
-		// Memory Form submission handling
+		// The memory goes out as a letter the visitor sends themselves. There is no
+		// archive table behind this form yet, and a form that thanks somebody for a
+		// memory it then throws away is worse than no form at all.
+		//
+		// The form is deliberately left on the page afterwards: a mailto depends on
+		// the visitor having a mail client, and if nothing opens, what they wrote is
+		// still in front of them to copy.
 		if (memForm && memSuccess) {
-			memForm.addEventListener('submit', (e) => {
-				e.preventDefault();
-				const submitBtn = document.getElementById('submit-memory');
-				if (submitBtn) {
-					submitBtn.setAttribute('disabled', 'true');
-					submitBtn.textContent = 'Recording...';
-				}
+			memForm.addEventListener('submit', (event) => {
+				event.preventDefault();
 
-				setTimeout(() => {
-					memForm.style.display = 'none';
-					memSuccess.removeAttribute('hidden');
-				}, 600);
+				const said = new FormData(memForm);
+				const field = (name) => String(said.get(name) || '').trim();
+				const place = field('place');
+				const letter = [
+					`Name: ${field('name')}`,
+					`Email: ${field('email')}`,
+					`Connection: ${field('relation')}`,
+					place ? `Time or place: ${place}` : '',
+					'',
+					field('story'),
+				]
+					.filter((line, index) => line !== '' || index === 4)
+					.join('\n');
+
+				window.location.href =
+					'mailto:hello@itti.org.in?subject=' +
+					encodeURIComponent('Memory of Dr. Itti Bali') +
+					'&body=' +
+					encodeURIComponent(letter);
+
+				memSuccess.removeAttribute('hidden');
 			});
 		}
 
@@ -1809,17 +1829,27 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 			drawerAwards?.setAttribute('hidden', '');
 		};
 
+		const drawers = {
+			articles: drawerArticles,
+			film: drawerFilm,
+			awards: drawerAwards,
+		};
+
 		archTriggers.forEach((btn) => {
 			btn.addEventListener('click', () => {
-				const drawerType = btn.getAttribute('data-open-drawer');
-				hideAllDrawers();
+				const drawer = drawers[btn.getAttribute('data-open-drawer')];
+				if (!drawer) return;
 
-				if (drawerType === 'articles' && drawerArticles) {
-					drawerArticles.removeAttribute('hidden');
-				} else if (drawerType === 'film' && drawerFilm) {
-					drawerFilm.removeAttribute('hidden');
-				} else if (drawerType === 'awards' && drawerAwards) {
-					drawerAwards.removeAttribute('hidden');
+				hideAllDrawers();
+				drawer.removeAttribute('hidden');
+
+				// One dialog holds three drawers, so its name has to be whichever one
+				// is open. Pointed at a single heading, the film and the honours were
+				// both announced as the published articles.
+				const title = drawer.querySelector('.legacy-dialog__title');
+				if (title && archDialog) {
+					if (!title.id) title.id = `${drawer.id}-title`;
+					archDialog.setAttribute('aria-labelledby', title.id);
 				}
 
 				if (typeof archDialog?.showModal === 'function') {
