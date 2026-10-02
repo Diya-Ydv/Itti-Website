@@ -1,0 +1,302 @@
+---
+/**
+ * Mission — The Itti Foundation
+ *
+ * Route: /our-story/mission
+ *
+ * Implements the official Mission page:
+ * - Signature deep teal canvas with radial glow and linear descent
+ * - Paper grain overlay texture
+ * - The Itti Foundation mark (mountain & tree illustration) centered in the middle of the page
+ * - Eyebrow label: "OUR PURPOSE"
+ * - Display heading: "What Guides Us"
+ * - Three vertically stacked warm ivory/cream cards:
+ *   1. Vision
+ *   2. Mission
+ *   3. Statement of Purpose
+ */
+import Base from '../../layouts/Base.astro';
+import SiteFooter from '../../components/layout/SiteFooter.astro';
+import Mark from '../../components/brand/Mark.astro';
+
+const PURPOSE_CARDS = [
+	{
+		id: 'vision',
+		heading: 'Vision',
+		statement:
+			'A future where everyone belongs, lives with dignity and shares in caring for the planet.',
+	},
+	{
+		id: 'mission',
+		heading: 'Mission',
+		statement:
+			'To break barriers to learning, stand beside those affected by cancer, champion neurodiversity and turn environmental concern into action.',
+	},
+	{
+		id: 'statement-of-purpose',
+		heading: 'Statement of Purpose',
+		statement:
+			'To carry Itti Bali’s legacy into lives changed through learning, care and the confidence to make a difference.',
+	},
+];
+---
+
+<Base
+	title="Mission — The Itti Foundation"
+	description="A future where everyone belongs, lives with dignity and shares in caring for the planet. The vision, mission and statement of purpose of The Itti Foundation."
+	navTheme="veil"
+	band="teal"
+>
+	<div class="page">
+		<!-- The Foundation Mark Ambient Watermark — Centered in the middle of the page -->
+		<span class="page__ornament" aria-hidden="true">
+			<Mark height="min(72vh, 36rem)" label="" />
+		</span>
+		<div class="page__grain" aria-hidden="true"></div>
+
+		<!-- Main Content Container: Centered, width adjusted to 850–950px on desktop -->
+		<main class="mission" id="main-content">
+			<header class="mission__header">
+				<p class="mission__eyebrow">Our Purpose</p>
+				<h1 class="mission__title">What Guides Us</h1>
+			</header>
+
+			<section class="purpose-cards" aria-label="Core Purpose Statements">
+				{
+					PURPOSE_CARDS.map((card) => (
+						<article class="purpose-card" id={card.id}>
+							<h2 class="purpose-card__heading">{card.heading}</h2>
+							<p class="purpose-card__statement">{card.statement}</p>
+						</article>
+					))
+				}
+			</section>
+		</main>
+
+		<!-- Below everything, so the bar keeps its veiled teal tone over this page -->
+		<span class="zone" data-light-zone aria-hidden="true"></span>
+
+		<SiteFooter />
+	</div>
+</Base>
+
+<style>
+	/* ── Layout & Signature Deep-Teal Canvas ────────────────────────────────── */
+	.page {
+		position: relative;
+		isolation: isolate;
+		overflow-x: clip;
+		display: flex;
+		flex-direction: column;
+		min-height: 100svh;
+		color: var(--cream);
+
+		--lit: var(--teal);
+		--deep: color-mix(in srgb, var(--teal) 46%, var(--teal-deep));
+		--floor: var(--teal-deep);
+		background:
+			radial-gradient(
+				128% 92% at 10% 0%,
+				color-mix(in srgb, var(--lit) 62%, transparent) 0%,
+				transparent 58%
+			),
+			linear-gradient(168deg, var(--deep) 0%, var(--floor) 62%);
+
+		--ink: var(--warm-white);
+		--ink-soft: rgba(250, 247, 240, 0.78);
+		--ink-faint: rgba(250, 247, 240, 0.62);
+		--rule: rgba(250, 247, 240, 0.16);
+		--accent: var(--warm-white);
+	}
+
+	/* ── Centered Foundation Watermark / Logo ───────────────────────────────── */
+	.page__ornament {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: min(86vw, 46rem);
+		color: var(--cream);
+		opacity: 0.07;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.page__ornament :global(.mark) {
+		width: 100%;
+		height: auto !important;
+		aspect-ratio: 670 / 281;
+		max-height: 70vh;
+	}
+
+	/* ── Subtle Paper / Film Grain Overlay ─────────────────────────────────── */
+	.page__grain {
+		position: fixed;
+		inset: 0;
+		z-index: 0;
+		opacity: 0.26;
+		mix-blend-mode: overlay;
+		pointer-events: none;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0.33 0.33 0.33 0 0 0.33 0.33 0.33 0 0 0.33 0.33 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='1 0 1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+	}
+
+	.zone {
+		display: block;
+		height: 0;
+	}
+
+	.mission,
+	:global(.foot) {
+		position: relative;
+		z-index: 1;
+	}
+
+	/* ── Main Content Container ────────────────────────────────────────────── */
+	.mission {
+		flex: 1 0 auto;
+		width: 100%;
+		/* Max card & content container width between 850px and 950px on desktop (56rem = 896px) */
+		max-width: 56rem;
+		margin: 0 auto;
+		padding: calc(var(--nav-h) + clamp(2.75rem, 8vh, 5rem)) var(--gutter)
+			clamp(3.5rem, 8vh, 5.5rem);
+		display: flex;
+		flex-direction: column;
+	}
+
+	/* ── Header Area ───────────────────────────────────────────────────────── */
+	.mission__header {
+		margin-bottom: clamp(2.25rem, 5vh, 3.5rem);
+	}
+
+	.mission__eyebrow {
+		margin: 0;
+		font-family: var(--face-cinzel);
+		font-size: 0.6875rem;
+		font-weight: 500;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: rgba(250, 247, 240, 0.72);
+	}
+
+	.mission__title {
+		margin: 1.1rem 0 0;
+		font-family: var(--face-bodoni);
+		font-size: clamp(2.75rem, 6vw, 4.5rem);
+		font-weight: var(--display-weight);
+		line-height: 1.02;
+		letter-spacing: -0.02em;
+		color: var(--cream);
+		text-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
+	}
+
+	/* ── Vertical Column of Cards ──────────────────────────────────────────── */
+	.purpose-cards {
+		display: flex;
+		flex-direction: column;
+		/* 24px - 32px vertical spacing between cards */
+		gap: clamp(1.5rem, 2.5vw, 2rem);
+		width: 100%;
+	}
+
+	/* ── Warm Ivory / Cream Cards ──────────────────────────────────────────── */
+	.purpose-card {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		width: 100%;
+		/* Generous internal padding and balanced whitespace */
+		padding: clamp(1.75rem, 3.2vw, 2.35rem) clamp(1.75rem, 3.8vw, 2.75rem);
+		background: color-mix(in srgb, var(--cream) 93%, var(--floor));
+		border-radius: 4px;
+		border: 1px solid rgba(250, 247, 240, 0.18);
+		color: #2c2721;
+		box-shadow:
+			0 4px 20px -4px rgba(7, 34, 38, 0.32),
+			0 1px 3px rgba(0, 0, 0, 0.05);
+		transition:
+			transform 320ms var(--ease),
+			box-shadow 320ms var(--ease);
+	}
+
+	/* Subtle left teal accent line matching the existing website cards */
+	.purpose-card::before {
+		content: '';
+		position: absolute;
+		inset: 0 auto 0 0;
+		width: 2.5px;
+		border-radius: 4px 0 0 4px;
+		background: var(--teal);
+		opacity: 0.65;
+		transition:
+			opacity 240ms var(--ease),
+			width 240ms var(--ease);
+	}
+
+	.purpose-card:hover {
+		transform: translateY(-2px);
+		box-shadow:
+			0 12px 30px -10px rgba(10, 47, 53, 0.5),
+			0 2px 4px rgba(0, 0, 0, 0.06);
+	}
+
+	.purpose-card:hover::before {
+		opacity: 0.95;
+		width: 3.5px;
+	}
+
+	/* ── Card Typography: Website Design System ────────────────────────────── */
+	/* Card Heading: Bodoni Moda, matching .way__name from 404 template */
+	.purpose-card__heading {
+		margin: 0;
+		font-family: var(--face-bodoni);
+		font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+		font-weight: var(--display-weight);
+		line-height: 1.22;
+		letter-spacing: -0.015em;
+		color: #2c2721;
+	}
+
+	/* Card Statement: EB Garamond, matching website readable prose */
+	.purpose-card__statement {
+		margin: 0.65rem 0 0;
+		font-family: var(--body);
+		font-size: clamp(1.125rem, 1.6vw, 1.28rem);
+		line-height: 1.62;
+		color: #463f35;
+		text-wrap: pretty;
+		max-width: 62ch;
+	}
+
+	/* ── Responsive Refinements ────────────────────────────────────────────── */
+	@media (max-width: 640px) {
+		.mission {
+			padding-top: calc(var(--nav-h) + 2rem);
+			padding-bottom: 3.5rem;
+		}
+
+		.purpose-card {
+			padding: 1.5rem 1.4rem;
+		}
+
+		.purpose-card__statement {
+			font-size: 1.1875rem;
+			line-height: 1.48;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.purpose-card {
+			transition: none;
+		}
+
+		.purpose-card::before {
+			transition: none;
+		}
+	}
+</style>
