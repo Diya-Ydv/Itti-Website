@@ -19,5 +19,6 @@
 /marketplace/new             /marketplace#new             301
 /marketplace/collections     /marketplace#collections     301
 
-# Legacy shortcut
+# Dr. Itti's story sits under our-story with the rest of it. /legacy is the
+# short address people say out loud, so it keeps resolving there.
 /legacy                      /our-story/legacy            301
