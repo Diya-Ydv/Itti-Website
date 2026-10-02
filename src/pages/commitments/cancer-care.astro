@@ -1,0 +1,153 @@
+---
+import Base from '../../layouts/Base.astro';
+import SiteFooter from '../../components/layout/SiteFooter.astro';
+---
+
+<Base
+	title="Cancer Care — The Itti Foundation"
+	description="Care, courage and hope. Support centred on comfort, dignity and quality of life, for people living with cancer and the families beside them."
+	navTheme="light"
+	band="cream"
+>
+	<div class="cancer-page">
+		<header class="hero">
+			<span class="hero__label">Our Pillar</span>
+			<h1 class="hero__title">Cancer Care</h1>
+			<p class="hero__lede">Care, courage and hope.</p>
+
+			<div class="hero__passage">
+				<p>
+					Our approach to cancer care is centred on comfort, dignity and quality of
+					life. People and their families need support that extends beyond the clinical
+					setting &mdash; support that considers wellbeing, nutrition, rest, emotional
+					needs and the everyday realities of living with cancer.
+				</p>
+			</div>
+		</header>
+
+		<section class="approach">
+			<h2 class="approach__title">How we support</h2>
+			<div class="approach__body">
+				<p>
+					Through complementary support, caregiver support and lived-experience
+					knowledge, we hope to make the journey a little more supported and informed.
+				</p>
+				<p>
+					These resources are meant to sit alongside medical treatment, helping
+					individuals and families move through their days with greater comfort and
+					confidence.
+				</p>
+			</div>
+		</section>
+	</div>
+
+	<div class="footer-wrap">
+		<SiteFooter />
+	</div>
+</Base>
+
+<style>
+	.cancer-page {
+		background: color-mix(in srgb, var(--cream) 80%, #fff);
+		min-height: 100vh;
+		padding-bottom: 8rem;
+		color: var(--ink);
+	}
+
+	.hero {
+		padding: 10rem 2rem 5rem;
+		max-width: 50rem;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	.hero__label {
+		display: inline-block;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--rose-ink);
+		margin-bottom: 1rem;
+	}
+
+	.hero__title {
+		font-family: var(--face-bodoni);
+		font-size: clamp(3rem, 7vw, 4.5rem);
+		font-weight: var(--display-weight);
+		line-height: 1.1;
+		color: var(--ink);
+		margin-bottom: 0.5em;
+	}
+
+	.hero__lede {
+		font-size: clamp(1.25rem, 3vw, 1.6rem);
+		color: var(--ink-soft);
+		margin-bottom: 2.5rem;
+	}
+
+	.hero__passage {
+		font-size: 1.125rem;
+		line-height: 1.6;
+		color: var(--ink);
+		max-width: 40rem;
+		margin: 0 auto;
+	}
+
+	.hero__passage p {
+		margin-bottom: 1em;
+	}
+
+	/* A heading and a passage, set apart by one rule. No panels. */
+	.approach {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+		gap: 2rem clamp(2rem, 6vw, 5rem);
+		max-width: 60rem;
+		margin: 0 auto;
+		padding: 3.5rem 2rem 0;
+		border-top: 1px solid rgba(44, 39, 33, 0.1);
+		box-sizing: content-box;
+	}
+
+	.approach__title {
+		font-family: var(--face-bodoni);
+		font-size: clamp(2rem, 4vw, 2.75rem);
+		font-weight: var(--display-weight);
+		line-height: 1.15;
+		color: var(--ink);
+		margin: 0;
+	}
+
+	.approach__body {
+		font-size: 1.125rem;
+		line-height: 1.6;
+		color: var(--ink);
+	}
+
+	.approach__body p {
+		margin: 0 0 1em;
+	}
+
+	@media (max-width: 760px) {
+		.hero {
+			padding: 8rem 1.5rem 3.5rem;
+		}
+
+		.approach {
+			grid-template-columns: 1fr;
+			padding: 2.5rem 1.5rem 0;
+		}
+	}
+
+	.footer-wrap {
+		position: relative;
+		background: var(--ink-deep);
+
+		--ink: var(--warm-white);
+		--ink-soft: rgba(250, 247, 240, 0.72);
+		--ink-faint: rgba(250, 247, 240, 0.55);
+		--accent: var(--warm-white);
+		--rule: rgba(250, 247, 240, 0.14);
+	}
+</style>
