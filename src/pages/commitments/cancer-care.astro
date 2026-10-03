@@ -1,42 +1,304 @@
 ---
 import Base from '../../layouts/Base.astro';
 import SiteFooter from '../../components/layout/SiteFooter.astro';
+
+/** The Cancer Care community's WhatsApp group — the same link the homepage card uses. */
+const whatsappUrl = 'https://chat.whatsapp.com/FQk8F1NL5QXGXOKTX3XAEI?mode=gi_t';
+
+const offers = [
+	{
+		name: 'Patient & Caregiver Circles',
+		body: "Connect with people who understand because they have lived it. This is a safe space to ask the hard questions, share what you can't say elsewhere, and find support among those walking the same path.",
+	},
+	{
+		name: 'Caregiver Networks',
+		body: "Caregiving is demanding. This is your space to set the weight down. Receive honest advice, prioritise your own wellbeing, and remember that you aren't failing — you are carrying a heavy load, and you don't have to do it alone.",
+	},
+	{
+		name: 'Mind & Spirit Circles',
+		body: "Peer-led mindfulness, stress relief, and creative groups. Find the space to breathe and process your emotions in ways clinical care isn't designed to provide.",
+	},
+];
+
+const gaps = [
+	{
+		name: 'The weight patients carry',
+		body: 'Cancer takes a heavy psychological toll. Around 40% or more of people with advanced cancer live with clinically significant distress, anxiety, or depression, and among those with breast cancer, close to four in ten experience depression. This is not weakness — it is the normal human response to an abnormal amount of fear, and it deserves support.',
+		source:
+			'Study of anxiety and depression after cancer diagnosis, British Journal of Cancer',
+	},
+	{
+		name: 'The caregivers no one sees',
+		body: 'Caregivers suffer quietly. Studies find that as many as 95% of cancer caregivers show clinically significant distress, with pooled rates of roughly 42% depression and 47% anxiety — far above the general population. They hold everyone else together while slowly coming apart. They need a safety net too.',
+		source: 'Systematic review and meta-analysis, Psycho-Oncology',
+	},
+	{
+		name: 'Our young warriors',
+		body: 'Each year, an estimated 400,000 children and adolescents are diagnosed with cancer worldwide. Survival is rising in wealthier countries, but nearly 9 in 10 of these children live in low- and middle-income countries, where fewer than a third survive. Those who do carry physical and emotional challenges long after their medical care ends.',
+		source: 'World Health Organization',
+	},
+	{
+		name: "Women's cancers, rising",
+		body: 'Breast cancer is now the most commonly diagnosed cancer among women, with about 2.3 million new cases every year. And ovarian cancer remains dangerously hard to catch early — its symptoms are vague, and there is no recommended routine screening test for women at average risk. Only about 1 in 4 cases are found at the earliest stage, when five-year survival can exceed 90% — compared with roughly 30% once it has spread. Awareness, listening to your body, and sharing experience within a community can genuinely make a difference.',
+		source:
+			'GLOBOCAN 2022, International Agency for Research on Cancer; USPSTF; American Cancer Society',
+	},
+];
+
+const sources = [
+	{
+		label: 'Childhood cancer incidence and survival — World Health Organization',
+		href: 'https://www.who.int/activities/improving-childhood-cancer-cure-rate',
+	},
+	{
+		label: 'Breast cancer incidence (2.3M/year, 2022) — GLOBOCAN 2022 / CA: A Cancer Journal for Clinicians',
+		href: 'https://acsjournals.onlinelibrary.wiley.com/doi/full/10.3322/caac.21834',
+	},
+	{
+		label: 'Ovarian cancer screening and survival by stage — American Cancer Society',
+		href: 'https://www.cancer.org/cancer/types/ovarian-cancer/detection-diagnosis-staging.html',
+	},
+	{
+		label: 'Ovarian cancer screening — USPSTF (United States task force on screening)',
+		href: 'https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/ovarian-cancer-screening',
+	},
+	{
+		label: 'Patient distress, anxiety and depression prevalence — Anxiety and depression after cancer diagnosis (PubMed 22727334)',
+		href: 'https://pubmed.ncbi.nlm.nih.gov/22727334/',
+	},
+	{
+		label: 'Caregiver distress, depression and anxiety — Depression among caregivers of cancer patients, systematic review and meta-analysis (PMC9828427)',
+		href: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC9828427/',
+	},
+];
+
+const whatsappPath =
+	'M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z';
 ---
 
 <Base
 	title="Cancer Care — The Itti Foundation"
-	description="Care, courage and hope. Support centred on comfort, dignity and quality of life, for people living with cancer and the families beside them."
+	description="A Canopy of Hope. A community for people living with cancer and the families beside them: patient and caregiver circles, caregiver networks, and peer support alongside medical treatment."
 	navTheme="light"
 	band="cream"
 >
 	<div class="cancer-page">
 		<header class="hero">
-			<span class="hero__label">Our Pillar</span>
-			<h1 class="hero__title">Cancer Care</h1>
-			<p class="hero__lede">Care, courage and hope.</p>
-
-			<div class="hero__passage">
-				<p>
-					Our approach to cancer care is centred on comfort, dignity and quality of
-					life. People and their families need support that extends beyond the clinical
-					setting &mdash; support that considers wellbeing, nutrition, rest, emotional
-					needs and the everyday realities of living with cancer.
+			<div class="hero__text">
+				<span class="hero__label">Our Pillar</span>
+				<h1 class="hero__title">Cancer Care</h1>
+				<p class="hero__lede">A Canopy of Hope</p>
+				<p class="hero__passage">
+					A space for connection, comfort, and hope &mdash; where patients, caregivers, and
+					families can find understanding and support alongside medical treatment.
 				</p>
+			</div>
+
+			<div class="hero__mark">
+				<img
+					src="/brand/pillar-cancer.png"
+					alt="A teal dragonfly, the symbol of the Itti Foundation's Cancer Care community"
+					width="984"
+					height="646"
+					decoding="async"
+					fetchpriority="high"
+				/>
 			</div>
 		</header>
 
-		<section class="approach">
-			<h2 class="approach__title">How we support</h2>
-			<div class="approach__body">
+		<section class="block" aria-labelledby="why-dragonfly">
+			<div class="block__head">
+				<h2 class="block__title" id="why-dragonfly">Why Dragonfly</h2>
+				<p class="block__kicker">The dragonfly knows about transformation</p>
+			</div>
+			<div class="block__body">
 				<p>
-					Through complementary support, caregiver support and lived-experience
-					knowledge, we hope to make the journey a little more supported and informed.
+					A dragonfly spends most of its life hidden underwater. Then, in its own time, it
+					rises, breaks the surface, and finds the light.
 				</p>
 				<p>
-					These resources are meant to sit alongside medical treatment, helping
-					individuals and families move through their days with greater comfort and
-					confidence.
+					This is the cancer journey. There is a season spent in the deep &mdash; the weight
+					of diagnosis, long days of medical care, and fear. And then, there is the rising: not
+					a return to who you once were, but the quiet unfolding of who you are becoming. The
+					new you.
 				</p>
+				<p>
+					Across cultures, the dragonfly has been a symbol of resilience and hope. It reminds
+					us to live in the present and honours the love that outlasts loss.
+				</p>
+				<p>
+					Whatever stage you are in, you don&rsquo;t have to do it alone. Our community is
+					here to meet and support, wherever you are.
+				</p>
+			</div>
+		</section>
+
+		<section class="block" aria-labelledby="our-colours">
+			<div class="block__head">
+				<h2 class="block__title" id="our-colours">Our colours: teal and gold</h2>
+				<p class="swatches" aria-hidden="true">
+					<span class="swatch swatch--teal"></span>
+					<span class="swatch swatch--gold"></span>
+				</p>
+			</div>
+			<div class="block__body">
+				<p>
+					Our dragonfly has teal wings, standing with those facing ovarian cancer. Above it,
+					our name arches in gold &mdash; honouring the extraordinary courage of our young
+					warriors with childhood cancer, and serving as a beacon of resilience for everyone
+					walking this road.
+				</p>
+				<p>
+					Together, these colours form a canopy of hope and a simple promise: no one walks
+					alone.
+				</p>
+			</div>
+		</section>
+
+		<section class="block" aria-labelledby="welcome">
+			<div class="block__head">
+				<h2 class="block__title" id="welcome">You are welcome here</h2>
+			</div>
+			<div class="block__body">
+				<p>
+					Whether you&rsquo;re navigating a diagnosis, recovery, loss, or caregiving, you
+					belong here. Doctors care for the body; we nurture the spirit. We are a community
+					&mdash; not a clinic &mdash; standing beside what medicine alone cannot reach. Our
+					circles sit alongside medical treatment and never replace your medical team.
+				</p>
+
+				<aside class="note" aria-label="A note on what we do">
+					<p class="note__label">A note on what we do</p>
+					<p>
+						The Itti Foundation&rsquo;s Cancer Care community offers emotional support and
+						peer connection. Everything shared by our members and facilitators is
+						lived-experience knowledge, along with information on wellbeing, diet and
+						nutrition, and on supplements based on Ayurveda and naturopathy. We offer no
+						diagnosis, prescription or medical claims. Please consult your doctor or
+						oncologist for any medical question.
+					</p>
+				</aside>
+			</div>
+		</section>
+
+		<section class="wide" aria-labelledby="offer">
+			<h2 class="wide__title" id="offer">What we offer</h2>
+
+			<div class="cards cards--three">
+				{
+					offers.map((o) => (
+						<article class="card">
+							<h3 class="card__name">{o.name}</h3>
+							<p class="card__body">{o.body}</p>
+						</article>
+					))
+				}
+			</div>
+
+			<article class="feature">
+				<div class="feature__text">
+					<h3 class="card__name">Our WhatsApp Community &mdash; 450+ and growing</h3>
+					<p class="card__body">
+						Join 450+ patients, survivors, and caregivers in our active, daily group.
+						Exchange practical tips on daily comfort and on living alongside medical treatment,
+						ask questions, and find reassurance among those who truly understand.
+					</p>
+					<p class="feature__note">
+						Note: This group provides peer support and does not replace your medical team.
+					</p>
+				</div>
+				<a class="cta" href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+					<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+						<path d={whatsappPath}></path>
+					</svg>
+					Join on WhatsApp
+					<span class="u-visually-hidden"> (opens in a new tab)</span>
+				</a>
+			</article>
+		</section>
+
+		<section class="wide" aria-labelledby="community">
+			<h2 class="wide__title" id="community">Why community, not just medicine</h2>
+			<p class="wide__intro">
+				Behind every number is a person and a family living through overwhelming uncertainty.
+				The medical gaps are real &mdash; and the emotional ones are just as urgent, and far
+				less served.
+			</p>
+
+			<div class="cards cards--two">
+				{
+					gaps.map((g) => (
+						<article class="card card--gap">
+							<h3 class="card__name">{g.name}</h3>
+							<p class="card__body">{g.body}</p>
+							<p class="card__source">Source: {g.source}</p>
+						</article>
+					))
+				}
+			</div>
+
+			<p class="closing">
+				Clinical care attends to the disease. Community sustains the person facing it. Our work
+				reflects the spirit of the United Nations&rsquo; Sustainable Development Goal 3
+				&mdash; Good Health and Well-Being, which names mental health as essential to health
+				itself.
+			</p>
+		</section>
+
+		<section class="block" aria-labelledby="first-step">
+			<div class="block__head">
+				<h2 class="block__title" id="first-step">Take the first step</h2>
+			</div>
+			<div class="block__body">
+				<ul class="steps">
+					<li>
+						<strong>Join our WhatsApp community</strong> &mdash; be among those who
+						understand and care.
+						<a class="steps__link" href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+							Open the group<span class="u-visually-hidden"> (opens in a new tab)</span>
+							<span aria-hidden="true">&rarr;</span>
+						</a>
+					</li>
+					<li><strong>Join a circle</strong> &mdash; weekly online sessions.</li>
+					<li>
+						<strong>Talk to us first</strong> &mdash; for a conversation about where you
+						are. An hourly listening circle can be booked.
+						<a class="steps__link" href="mailto:hello@itti.org.in">
+							hello@itti.org.in <span aria-hidden="true">&rarr;</span>
+						</a>
+					</li>
+					<li>
+						<strong>Bring someone</strong> &mdash; caregivers, partners, and family are always
+						welcome.
+					</li>
+				</ul>
+
+				<p class="closing closing--tight">
+					Don&rsquo;t carry this weight alone &mdash; reach out, and connect. Our dragonfly
+					community is here to welcome you. Here hope becomes something people can actually do.
+				</p>
+			</div>
+		</section>
+
+		<section class="block block--sources" aria-labelledby="sources">
+			<div class="block__head">
+				<h2 class="block__title block__title--small" id="sources">
+					Sources for the figures above
+				</h2>
+			</div>
+			<div class="block__body">
+				<ul class="sources">
+					{
+						sources.map((s) => (
+							<li>
+								<a href={s.href} target="_blank" rel="noopener noreferrer">
+									{s.label}
+									<span class="u-visually-hidden"> (opens in a new tab)</span>
+								</a>
+							</li>
+						))
+					}
+				</ul>
 			</div>
 		</section>
 	</div>
@@ -54,11 +316,16 @@ import SiteFooter from '../../components/layout/SiteFooter.astro';
 		color: var(--ink);
 	}
 
+	/* ── Hero: words on the left, the dragonfly rising at the top right ──── */
 	.hero {
-		padding: 10rem 2rem 5rem;
-		max-width: 50rem;
+		display: grid;
+		grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+		align-items: center;
+		gap: 2rem clamp(2rem, 6vw, 5rem);
+		max-width: 72rem;
 		margin: 0 auto;
-		text-align: center;
+		padding: 10rem 2rem 5rem;
+		box-sizing: content-box;
 	}
 
 	.hero__label {
@@ -77,40 +344,47 @@ import SiteFooter from '../../components/layout/SiteFooter.astro';
 		font-weight: var(--display-weight);
 		line-height: 1.1;
 		color: var(--ink);
-		margin-bottom: 0.5em;
+		margin-bottom: 0.4em;
 	}
 
 	.hero__lede {
 		font-size: clamp(1.25rem, 3vw, 1.6rem);
 		color: var(--ink-soft);
-		margin-bottom: 2.5rem;
+		margin-bottom: 2rem;
 	}
 
 	.hero__passage {
 		font-size: 1.125rem;
 		line-height: 1.6;
 		color: var(--ink);
-		max-width: 40rem;
-		margin: 0 auto;
+		max-width: 30rem;
 	}
 
-	.hero__passage p {
-		margin-bottom: 1em;
+	.hero__mark {
+		display: flex;
+		justify-content: flex-end;
+		align-self: start;
 	}
 
-	/* A heading and a passage, set apart by one rule. No panels. */
-	.approach {
+	.hero__mark img {
+		width: min(100%, 24rem);
+		height: auto;
+		opacity: 0.94;
+	}
+
+	/* ── A heading and a passage, set apart by one rule. No panels. ──────── */
+	.block {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
 		gap: 2rem clamp(2rem, 6vw, 5rem);
-		max-width: 60rem;
+		max-width: 72rem;
 		margin: 0 auto;
-		padding: 3.5rem 2rem 0;
+		padding: 3.5rem 2rem;
 		border-top: 1px solid rgba(44, 39, 33, 0.1);
 		box-sizing: content-box;
 	}
 
-	.approach__title {
+	.block__title {
 		font-family: var(--face-bodoni);
 		font-size: clamp(2rem, 4vw, 2.75rem);
 		font-weight: var(--display-weight);
@@ -119,24 +393,332 @@ import SiteFooter from '../../components/layout/SiteFooter.astro';
 		margin: 0;
 	}
 
-	.approach__body {
+	.block__title--small {
+		font-size: clamp(1.5rem, 3vw, 1.9rem);
+	}
+
+	.block__kicker {
+		margin-top: 0.75rem;
+		font-size: 1.0625rem;
+		font-style: italic;
+		color: var(--ink-soft);
+	}
+
+	.block__body {
 		font-size: 1.125rem;
 		line-height: 1.6;
 		color: var(--ink);
 	}
 
-	.approach__body p {
+	.block__body p {
 		margin: 0 0 1em;
 	}
 
+	.swatches {
+		display: flex;
+		gap: 0.6rem;
+		margin-top: 1.1rem;
+	}
+
+	.swatch {
+		width: 2.25rem;
+		height: 0.5rem;
+		border-radius: 2px;
+	}
+
+	.swatch--teal {
+		background: var(--teal);
+	}
+
+	.swatch--gold {
+		background: var(--ochre);
+	}
+
+	.note {
+		margin-top: 1.75rem;
+		padding: 1.4rem 1.6rem;
+		border-radius: 10px;
+		background: color-mix(in srgb, var(--cream) 34%, #fff);
+		border: 1px solid rgba(44, 39, 33, 0.09);
+		border-left: 3px solid var(--ochre);
+		font-size: 1rem;
+		line-height: 1.6;
+		color: var(--ink-soft);
+	}
+
+	.note p {
+		margin: 0;
+	}
+
+	.note .note__label {
+		margin-bottom: 0.5rem;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--ochre-ink);
+	}
+
+	/* ── Wider sections that hold cards ──────────────────────────────────── */
+	.wide {
+		max-width: 72rem;
+		margin: 0 auto;
+		padding: 3.5rem 2rem;
+		border-top: 1px solid rgba(44, 39, 33, 0.1);
+		box-sizing: content-box;
+	}
+
+	.wide__title {
+		font-family: var(--face-bodoni);
+		font-size: clamp(2rem, 4vw, 2.75rem);
+		font-weight: var(--display-weight);
+		line-height: 1.15;
+		color: var(--ink);
+		text-align: center;
+		margin-bottom: 1.25rem;
+	}
+
+	.wide__intro {
+		max-width: 40rem;
+		margin: 0 auto 3rem;
+		text-align: center;
+		font-size: 1.1rem;
+		color: var(--ink-soft);
+	}
+
+	.wide__title:not(:has(+ .wide__intro)) {
+		margin-bottom: 3rem;
+	}
+
+	.cards {
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.cards--three {
+		grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+	}
+
+	.cards--two {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.card {
+		display: flex;
+		flex-direction: column;
+		padding: 2.25rem 2rem;
+		border-radius: 12px;
+		background: #fff;
+		border: 1px solid rgba(44, 39, 33, 0.08);
+		box-shadow:
+			0 1px 0 rgba(255, 255, 255, 0.7) inset,
+			0 2px 8px rgba(44, 39, 33, 0.04);
+	}
+
+	.card__name {
+		font-family: var(--face-bodoni);
+		font-size: clamp(1.375rem, 2.2vw, 1.6rem);
+		font-weight: var(--display-weight);
+		line-height: 1.2;
+		color: var(--ink);
+		margin-bottom: 0.75rem;
+	}
+
+	.card__body {
+		font-size: 1rem;
+		line-height: 1.65;
+		color: var(--ink-soft);
+	}
+
+	.card--gap {
+		border-top: 3px solid var(--teal);
+	}
+
+	.card__source {
+		margin-top: auto;
+		padding-top: 1.25rem;
+		font-size: 0.875rem;
+		line-height: 1.5;
+		font-style: italic;
+		color: var(--ink-faint);
+	}
+
+	.card--gap .card__body {
+		margin-bottom: 0.5rem;
+	}
+
+	/* The community group, set as a wider band under the three circles. */
+	.feature {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 2rem;
+		margin-top: 1.5rem;
+		padding: 2.25rem 2rem;
+		border-radius: 12px;
+		background: color-mix(in srgb, var(--teal) 7%, #fff);
+		border: 1px solid color-mix(in srgb, var(--teal) 22%, transparent);
+	}
+
+	.feature__text {
+		max-width: 40rem;
+	}
+
+	.feature__note {
+		margin-top: 0.9rem;
+		font-size: 0.9375rem;
+		font-style: italic;
+		color: var(--ink-soft);
+	}
+
+	.cta {
+		flex: none;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.65rem;
+		padding: 0.9rem 1.35rem;
+		border-radius: 4px;
+		background: var(--teal-deep);
+		color: var(--warm-white);
+		font-size: 1rem;
+		box-shadow: 0 14px 30px -18px rgba(4, 26, 30, 0.9);
+		transition:
+			transform 180ms var(--ease),
+			box-shadow 180ms var(--ease);
+	}
+
+	.cta svg {
+		width: 1.25rem;
+		height: 1.25rem;
+	}
+
+	.cta:hover,
+	.cta:focus-visible {
+		transform: translateY(-2px);
+		box-shadow: 0 22px 42px -18px rgba(4, 26, 30, 0.95);
+	}
+
+	.closing {
+		max-width: 44rem;
+		margin: 3rem auto 0;
+		text-align: center;
+		font-family: var(--face-bodoni);
+		font-size: clamp(1.25rem, 2.4vw, 1.5rem);
+		line-height: 1.45;
+		color: var(--ink);
+		text-wrap: pretty;
+	}
+
+	.closing--tight {
+		margin: 2rem 0 0;
+		text-align: left;
+	}
+
+	/* ── First step ──────────────────────────────────────────────────────── */
+	.steps {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.steps li {
+		padding: 1rem 0;
+		border-bottom: 1px solid rgba(44, 39, 33, 0.1);
+	}
+
+	.steps li:first-child {
+		padding-top: 0;
+	}
+
+	.steps strong {
+		font-weight: 600;
+	}
+
+	.steps__link {
+		display: inline-block;
+		margin-left: 0.4rem;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--teal-ink);
+	}
+
+	.steps__link:hover,
+	.steps__link:focus-visible {
+		text-decoration: underline;
+		text-underline-offset: 0.25em;
+	}
+
+	/* ── Sources ─────────────────────────────────────────────────────────── */
+	.block--sources .block__body {
+		font-size: 0.9375rem;
+	}
+
+	.sources {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 0.7rem;
+	}
+
+	.sources a {
+		color: var(--ink-soft);
+		text-decoration: underline;
+		text-decoration-color: rgba(44, 39, 33, 0.3);
+		text-underline-offset: 0.2em;
+		overflow-wrap: anywhere;
+	}
+
+	.sources a:hover,
+	.sources a:focus-visible {
+		color: var(--teal-ink);
+		text-decoration-color: currentColor;
+	}
+
+	/* ── Narrow ──────────────────────────────────────────────────────────── */
 	@media (max-width: 760px) {
 		.hero {
-			padding: 8rem 1.5rem 3.5rem;
+			grid-template-columns: 1fr;
+			padding: 8rem 1.5rem 3rem;
 		}
 
-		.approach {
+		/* The dragonfly leads, small and to the right, so it never pushes the
+		   heading below the fold. */
+		.hero__mark {
+			order: -1;
+		}
+
+		.hero__mark img {
+			width: min(58%, 12rem);
+		}
+
+		.block {
 			grid-template-columns: 1fr;
-			padding: 2.5rem 1.5rem 0;
+			padding: 2.5rem 1.5rem;
+		}
+
+		.wide {
+			padding: 2.5rem 1.5rem;
+		}
+
+		.cards--two {
+			grid-template-columns: 1fr;
+		}
+
+		.card {
+			padding: 1.75rem 1.5rem;
+		}
+
+		.feature {
+			flex-direction: column;
+			align-items: flex-start;
+			padding: 1.75rem 1.5rem;
+		}
+
+		.closing {
+			margin-top: 2.25rem;
 		}
 	}
 
