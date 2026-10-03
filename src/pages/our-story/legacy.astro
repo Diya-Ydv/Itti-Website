@@ -225,7 +225,7 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 
 <Base
 	title="Dr. Archana “Itti” Bali — Legacy — The Itti Foundation"
-	description="Hardworking, straightforward, warm — the brightest flower in our garden. From a government school in India to conservation research in Alaska, this is the story of Dr. Archana 'Itti' Bali, and the living foundation carrying her vision forward."
+	description="From a government school in India to conservation research in Alaska: the life of Dr. Archana “Itti” Bali, and the foundation carrying her work on."
 	navTheme="veil"
 	band="teal"
 >
@@ -245,8 +245,8 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 				<p class="legacy__span">8 April <span>&mdash;</span> 8 September 2014</p>
 				<p class="legacy__lede">
 					Hardworking, straightforward, warm &mdash; the brightest flower in our garden.
-					From a government school in India to conservation research in Alaska, this is her story,
-					and an invitation to add your own memory to it.
+					From a government school in India to conservation research in Alaska, this is
+					her story, and an invitation to add your own memory to it.
 				</p>
 			</header>
 
@@ -262,12 +262,18 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 				<div class="timeline" aria-label="Her life timeline">
 					{
 						LIFE_MILESTONES.map((item) => (
-							<article class="timeline__entry" data-weight={item.major ? 'major' : undefined} id={item.id}>
-								<span class="timeline__node" aria-hidden="true"></span>
+							<article
+								class="timeline__entry"
+								data-weight={item.major ? 'major' : undefined}
+								id={item.id}
+							>
+								<span class="timeline__node" aria-hidden="true" />
 								<div class="way" data-weight={item.major ? 'major' : undefined}>
 									<div class="way__meta">
 										<span class="way__when">{item.when}</span>
-										<span class="way__bullet" aria-hidden="true">&middot;</span>
+										<span class="way__bullet" aria-hidden="true">
+											&middot;
+										</span>
 										<span class="way__where">{item.where}</span>
 									</div>
 									<h3 class="way__name">{item.title}</h3>
@@ -284,16 +290,20 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 				<div class="section-rule">
 					<h2 class="section-rule__title" id="archive-title">Read, watch, remember</h2>
 					<p class="section-rule__desc">
-						Archival publications, documentary footage, and recollections from friends and mentors.
+						Archival publications, documentary footage, and recollections from friends
+						and mentors.
 					</p>
 				</div>
 
 				<div class="ways ways--three" aria-label="Archival materials">
 					<button type="button" class="way way--clickable" data-open-drawer="articles">
-						<span class="way__meta">Publications &middot; Western Ghats &amp; Alaska</span>
+						<span class="way__meta"
+							>Publications &middot; Western Ghats &amp; Alaska</span
+						>
 						<h3 class="way__name">Her published articles</h3>
 						<p class="way__note">
-							Doctoral research, MSc dissertation at NCBS with Dr. Ulhas Karanth, and international wildlife colloquia.
+							Doctoral research, MSc dissertation at NCBS with Dr. Ulhas Karanth, and
+							international wildlife colloquia.
 						</p>
 						<span class="way__go" aria-hidden="true">View citations &rarr;</span>
 					</button>
@@ -302,7 +312,8 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 						<span class="way__meta">Documentary &middot; Oral History</span>
 						<h3 class="way__name">The Voices Project (film)</h3>
 						<p class="way__note">
-							Award-winning documentary produced in Alaska, chronicling indigenous knowledge and Arctic ecology.
+							Award-winning documentary produced in Alaska, chronicling indigenous
+							knowledge and Arctic ecology.
 						</p>
 						<span class="way__go" aria-hidden="true">Learn about the film &rarr;</span>
 					</button>
@@ -311,7 +322,8 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 						<span class="way__meta">Honours &middot; Distinctions</span>
 						<h3 class="way__name">Awards &amp; recognitions</h3>
 						<p class="way__note">
-							Inaugural George Schaller Scholarship and posthumous Doctorate conferred on Mother's Day at UAF.
+							Inaugural George Schaller Scholarship and posthumous Doctorate conferred
+							on Mother's Day at UAF.
 						</p>
 						<span class="way__go" aria-hidden="true">View honours &rarr;</span>
 					</button>
@@ -323,8 +335,9 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 						<span class="way__meta">Living Memorial &middot; Oral Archive</span>
 						<h3 class="way__name">Did you know Itti?</h3>
 						<p class="way__note">
-							We&rsquo;re gathering memories, photographs and videos from everyone whose life she touched &mdash;
-							family, teachers, classmates, colleagues and friends &mdash; to keep alongside her story here.
+							We&rsquo;re gathering memories, photographs and videos from everyone whose
+							life she touched &mdash; family, teachers, classmates, colleagues and
+							friends &mdash; to keep alongside her story here.
 						</p>
 					</div>
 					<button type="button" class="way__cta-btn" id="open-memory-btn">
@@ -339,10 +352,15 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 					<h2 class="promise-split__title" id="promise-title">The promise</h2>
 					<div class="promise-split__content">
 						<p class="promise-split__quote">
-							Her resilience, adaptability, intelligence, storytelling and warmth set her apart. Those are the things we want the next generation to take from her.
+							Her resilience, adaptability, intelligence, storytelling and warmth set
+							her apart. Those are the things we want the next generation to take from
+							her.
 						</p>
 						<p class="promise-split__text">
-							The Foundation is our humble step to honour our sister &mdash; our guiding light, our dost, our best friend. We have a promise to keep: to hold her lofty goals in place and keep her legacy of environmental awareness, education and entrepreneurship alive and thriving.
+							The Foundation is our humble step to honour our sister &mdash; our guiding
+							light, our dost, our best friend. We have a promise to keep: to hold her
+							lofty goals in place and keep her legacy of environmental awareness,
+							education and entrepreneurship alive and thriving.
 						</p>
 					</div>
 				</div>
@@ -357,21 +375,29 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 					</p>
 				</div>
 
-				<div class="founder-split" aria-label="Founder leadership profile and credentials">
+				<div
+					class="founder-split"
+					aria-label="Founder leadership profile and credentials"
+				>
 					<!-- Left Side: Profile on Teal Canvas (Sticky on Desktop) -->
 					<aside class="founder-profile">
 						<span class="founder-profile__role">Founder &amp; Director</span>
 						<h3 class="founder-profile__name">Anuja Bali</h3>
 						<p class="founder-profile__intro">
-							Anuja Bali founded Itti&rsquo;s Skill School Foundation in her sister&rsquo;s memory,
-							and leads its practical work across environmental stewardship, special education,
-							cancer family support, and community mental health.
+							Anuja Bali founded Itti&rsquo;s Skill School Foundation in her
+							sister&rsquo;s memory, and leads its practical work across environmental
+							stewardship, special education, cancer family support, and community
+							mental health.
 						</p>
 						<div class="founder-badge" aria-label="Foundation seal">
 							<span class="founder-badge__icon" aria-hidden="true">✦</span>
 							<div class="founder-badge__text">
-								<span class="founder-badge__org">Itti&rsquo;s Skill School Foundation</span>
-								<span class="founder-badge__tag">Living Memorial &middot; Est. 2021</span>
+								<span class="founder-badge__org"
+									>Itti&rsquo;s Skill School Foundation</span
+								>
+								<span class="founder-badge__tag"
+									>Living Memorial &middot; Est. 2021</span
+								>
 							</div>
 						</div>
 					</aside>
@@ -381,19 +407,21 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 						{
 							FOUNDER_GROUPS.map((group, groupIdx) => (
 								<div class="founder-group">
-									<p class="founder-group__label" id={`group-${groupIdx}`}>{group.title}</p>
+									<p class="founder-group__label" id={`group-${groupIdx}`}>
+										{group.title}
+									</p>
 									<div class="founder-group__items">
-										{
-											group.items.map((cred) => (
-												<article class="founder-entry">
-													<div class="founder-entry__head">
-														<span class="founder-entry__bullet" aria-hidden="true">✦</span>
-														<h4 class="founder-entry__title">{cred.field}</h4>
-													</div>
-													<p class="founder-entry__detail">{cred.detail}</p>
-												</article>
-											))
-										}
+										{group.items.map((cred) => (
+											<article class="founder-entry">
+												<div class="founder-entry__head">
+													<span class="founder-entry__bullet" aria-hidden="true">
+														✦
+													</span>
+													<h4 class="founder-entry__title">{cred.field}</h4>
+												</div>
+												<p class="founder-entry__detail">{cred.detail}</p>
+											</article>
+										))}
 									</div>
 								</div>
 							))
@@ -405,34 +433,60 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 			<!-- Footer note matching the template's .lost__foot -->
 			<p class="legacy__foot">
 				If you followed a link here from somewhere else, write to{' '}
-				<a class="legacy__link" href="mailto:hello@itti.org.in">hello@itti.org.in</a>{' '}
+				<a class="legacy__link" href="mailto:hello@itti.org.in">hello@itti.org.in</a>{
+					' '
+				}
 				and we will point you the right way.
 			</p>
 		</article>
 
 		<!-- ──────── Interactive Archival Drawers Modal ──────── -->
-		<dialog class="legacy-dialog" id="archive-dialog" aria-labelledby="archive-modal-title">
+		<dialog
+			class="legacy-dialog"
+			id="archive-dialog"
+			aria-labelledby="archive-modal-title"
+		>
 			<div class="legacy-dialog__backdrop" data-close-archive></div>
 			<div class="legacy-dialog__panel" role="document">
-				<button type="button" class="legacy-dialog__close" data-close-archive aria-label="Close dialog">&times;</button>
+				<button
+					type="button"
+					class="legacy-dialog__close"
+					data-close-archive
+					aria-label="Close dialog">&times;</button
+				>
 
 				<div id="drawer-articles" class="legacy-dialog__view" hidden>
 					<p class="legacy-dialog__eyebrow">Research &middot; Publications</p>
-					<h3 class="legacy-dialog__title" id="archive-modal-title">Her Published Articles</h3>
+					<h3 class="legacy-dialog__title" id="archive-modal-title">
+						Her Published Articles
+					</h3>
 					<div class="legacy-dialog__body">
-						<p>Dr. Archana Bali was a pioneer in wildlife ecology and human&ndash;wildlife coexistence, examining how human cultivation and wild habitats meet.</p>
+						<p>
+							Dr. Archana Bali was a pioneer in wildlife ecology and
+							human&ndash;wildlife coexistence, examining how human cultivation and wild
+							habitats meet.
+						</p>
 						<ul class="legacy-dialog__list">
 							<li>
 								<strong>MSc Wildlife Biology Dissertation (NCBS Bangalore):</strong>
-								<span>Ecology and human coexistence in coffee agro-ecosystems of Chikmagalur, under the mentorship of Dr. Ulhas Karanth.</span>
+								<span
+									>Ecology and human coexistence in coffee agro-ecosystems of
+									Chikmagalur, under the mentorship of Dr. Ulhas Karanth.</span
+								>
 							</li>
 							<li>
 								<strong>Doctoral Dissertation (University of Alaska Fairbanks):</strong>
-								<span>Human&ndash;animal interdependence, Arctic ecosystems, and caribou conservation as the inaugural George Schaller Scholar.</span>
+								<span
+									>Human&ndash;animal interdependence, Arctic ecosystems, and caribou
+									conservation as the inaugural George Schaller Scholar.</span
+								>
 							</li>
 							<li>
 								<strong>International Colloquia (2013&ndash;2014):</strong>
-								<span>Papers presented across North America and abroad through active cancer treatments, demonstrating groundbreaking resilience and rigor.</span>
+								<span
+									>Papers presented across North America and abroad through active
+									cancer treatments, demonstrating groundbreaking resilience and rigor.</span
+								>
 							</li>
 						</ul>
 					</div>
@@ -442,8 +496,17 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 					<p class="legacy-dialog__eyebrow">Documentary &middot; Oral History</p>
 					<h3 class="legacy-dialog__title">The Voices Project (film)</h3>
 					<div class="legacy-dialog__body">
-						<p>Alongside her doctoral research at the University of Alaska Fairbanks, Dr. Itti Bali co-created <strong>The Voices Project</strong> &mdash; an award-winning documentary produced in close collaboration with Native Alaskan communities.</p>
-						<p>The film documents traditional ecological knowledge, changing Arctic ecosystems, and indigenous perspectives on subsistence and respect for living beings. Her storytelling celebrated the people whose ancestral wisdom shaped her science.</p>
+						<p>
+							Alongside her doctoral research at the University of Alaska Fairbanks, Dr.
+							Itti Bali co-created <strong>The Voices Project</strong> &mdash; an award-winning
+							documentary produced in close collaboration with Native Alaskan communities.
+						</p>
+						<p>
+							The film documents traditional ecological knowledge, changing Arctic
+							ecosystems, and indigenous perspectives on subsistence and respect for
+							living beings. Her storytelling celebrated the people whose ancestral
+							wisdom shaped her science.
+						</p>
 					</div>
 				</div>
 
@@ -454,15 +517,25 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 						<ul class="legacy-dialog__list">
 							<li>
 								<strong>The George Schaller Scholarship:</strong>
-								<span>The first scholar ever selected for this prestigious award to pursue a doctorate in wildlife ecology and conservation at UAF.</span>
+								<span
+									>The first scholar ever selected for this prestigious award to pursue
+									a doctorate in wildlife ecology and conservation at UAF.</span
+								>
 							</li>
 							<li>
 								<strong>Posthumous Doctorate of Philosophy (2016):</strong>
-								<span>Conferred on Mother&rsquo;s Day at the University of Alaska Fairbanks, received with enduring pride by her mother.</span>
+								<span
+									>Conferred on Mother&rsquo;s Day at the University of Alaska
+									Fairbanks, received with enduring pride by her mother.</span
+								>
 							</li>
 							<li>
 								<strong>Documentary Festival Honours:</strong>
-								<span>Festival recognitions and tribal community honors for <em>The Voices Project</em>.</span>
+								<span
+									>Festival recognitions and tribal community honors for <em
+										>The Voices Project</em
+									>.</span
+								>
 							</li>
 						</ul>
 					</div>
@@ -474,24 +547,46 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 		<dialog class="legacy-dialog" id="memory-dialog" aria-labelledby="dialog-mem-title">
 			<div class="legacy-dialog__backdrop" data-close-dialog></div>
 			<div class="legacy-dialog__panel" role="document">
-				<button type="button" class="legacy-dialog__close" data-close-dialog aria-label="Close dialog">&times;</button>
+				<button
+					type="button"
+					class="legacy-dialog__close"
+					data-close-dialog
+					aria-label="Close dialog">&times;</button
+				>
 				<header class="legacy-dialog__head">
 					<p class="legacy-dialog__eyebrow">The Itti Foundation Archive</p>
-					<h3 class="legacy-dialog__title" id="dialog-mem-title">Share a Memory of Itti</h3>
+					<h3 class="legacy-dialog__title" id="dialog-mem-title">
+						Share a Memory of Itti
+					</h3>
 					<p class="legacy-dialog__subtitle">
-						Your words help keep Dr. Archana &ldquo;Itti&rdquo; Bali&rsquo;s warmth, grit and spirit alive.
-						Every memory, story or reflection will be lovingly preserved with her archive.
+						Your words help keep Dr. Archana &ldquo;Itti&rdquo; Bali&rsquo;s warmth,
+						grit and spirit alive. Every memory, story or reflection will be lovingly
+						preserved with her archive.
 					</p>
 				</header>
 				<form class="memory-form" id="memory-form">
 					<div class="memory-form__field">
 						<label for="mem-name">Your Full Name <span class="req">*</span></label>
-						<input type="text" id="mem-name" name="name" required placeholder="e.g. Dr. Ulhas Karanth / Anjali Sharma" />
+						<input
+							type="text"
+							id="mem-name"
+							name="name"
+							required
+							placeholder="e.g. Anuja Balli"
+						/>
 					</div>
 					<div class="memory-form__row">
 						<div class="memory-form__field">
-							<label for="mem-email">Your Email Address <span class="req">*</span></label>
-							<input type="email" id="mem-email" name="email" required placeholder="you@example.com" />
+							<label for="mem-email"
+								>Your Email Address <span class="req">*</span></label
+							>
+							<input
+								type="email"
+								id="mem-email"
+								name="email"
+								required
+								placeholder="you@example.com"
+							/>
 						</div>
 						<div class="memory-form__field">
 							<label for="mem-rel">Connection to Itti <span class="req">*</span></label>
@@ -499,7 +594,9 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 								<option value="" disabled selected>Select connection...</option>
 								<option value="family">Family / Relative</option>
 								<option value="school">School / College classmate</option>
-								<option value="colleague">Colleague (NIIT / Greenpeace / NCBS / UAF)</option>
+								<option value="colleague"
+									>Colleague (NIIT / Greenpeace / NCBS / UAF)</option
+								>
 								<option value="cancer-community">Cancer support community</option>
 								<option value="friend">Personal friend</option>
 								<option value="other">Other</option>
@@ -507,21 +604,75 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 						</div>
 					</div>
 					<div class="memory-form__field">
-						<label for="mem-place">Time or Place (Optional)</label>
-						<input type="text" id="mem-place" name="place" placeholder="e.g. NCBS Bangalore 2004 / Fairbanks 2011" />
+						<label for="mem-place">Year or Place <span class="req">*</span></label>
+						<input
+							type="text"
+							id="mem-place"
+							name="place"
+							required
+							placeholder="e.g. 2004, NCBS Bangalore / 2011, Fairbanks"
+						/>
 					</div>
 					<div class="memory-form__field">
-						<label for="mem-story">Your Memory or Note <span class="req">*</span></label>
-						<textarea id="mem-story" name="story" rows="4" required placeholder="Share a story, conversation, or moment that captured who Itti was to you..."></textarea>
+						<label for="mem-story">Your Memory or Note <span class="req">*</span></label
+						>
+						<textarea
+							id="mem-story"
+							name="story"
+							rows="4"
+							required
+							placeholder="Share a story, conversation, or moment that captured who Itti was to you..."
+						></textarea>
+					</div>
+					<!-- Photo or Video Upload Section with 25 MB Limit -->
+					<div class="memory-form__field">
+						<label for="mem-media">Photo or Video (Optional)</label>
+						<div class="memory-upload" id="memory-upload-zone">
+							<input
+								type="file"
+								id="mem-media"
+								name="media"
+								accept="image/*,video/*"
+								class="memory-upload__input"
+							/>
+							<div class="memory-upload__prompt" id="mem-upload-prompt">
+								<svg class="memory-upload__icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+									<circle cx="8.5" cy="8.5" r="1.5"/>
+									<polyline points="21 15 16 10 5 21"/>
+								</svg>
+								<div class="memory-upload__text">
+									<span class="memory-upload__cta">Choose a photo or video</span> or drag and drop
+								</div>
+								<span class="memory-upload__hint">JPG, PNG, WebP, MP4, MOV &middot; Up to 25 MB</span>
+							</div>
+							<div class="memory-upload__preview" id="mem-upload-preview" hidden>
+								<div class="memory-upload__file-info">
+									<div class="memory-upload__thumb" id="mem-upload-thumb"></div>
+									<div class="memory-upload__meta">
+										<span class="memory-upload__filename" id="mem-filename"></span>
+										<span class="memory-upload__filesize" id="mem-filesize"></span>
+									</div>
+								</div>
+								<button type="button" class="memory-upload__remove" id="mem-remove-file" aria-label="Remove uploaded file">&times;</button>
+							</div>
+						</div>
+						<p class="memory-upload__error" id="mem-upload-error" hidden></p>
 					</div>
 					<div class="memory-form__actions">
-						<button type="submit" class="memory-form__submit" id="submit-memory">Send Memory</button>
-						<a href="mailto:hello@itti.org.in?subject=Memory%20of%20Dr.%20Itti%20Bali" class="memory-form__alt">Or email us directly &rarr;</a>
+						<button type="submit" class="memory-form__submit" id="submit-memory"
+							>Share</button
+						>
 					</div>
 					<div class="memory-form__success" id="mem-success" hidden>
 						<div class="memory-form__check">&check;</div>
-						<h4>Thank you for remembering Itti.</h4>
-						<p>Your words have been received with gratitude by her family and will be held alongside her archive.</p>
+						<h4>Thank you for sharing your memory of Itti.</h4>
+						<p id="mem-success-note">
+							Your memory is now prepared in an email addressed to her family &mdash; send it and
+							it reaches her archive. If you selected a photo or video, please remember to attach it in your email message. If your mail client did not open automatically, your words are still above: copy them to
+							<a href="mailto:hello@itti.org.in">hello@itti.org.in</a> and they will be held
+							alongside her archive.
+						</p>
 					</div>
 				</form>
 			</div>
@@ -727,7 +878,9 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 	.timeline__node {
 		position: absolute;
 		top: 1.85rem;
-		left: calc(-1 * clamp(2.25rem, 5vw, 3.25rem) + clamp(0.75rem, 1.8vw, 1.15rem) - 6.25px);
+		left: calc(
+			-1 * clamp(2.25rem, 5vw, 3.25rem) + clamp(0.75rem, 1.8vw, 1.15rem) - 6.25px
+		);
 		width: 14px;
 		height: 14px;
 		border-radius: 50%;
@@ -757,11 +910,11 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 	}
 
 	/* Key Landmark node styling */
-	.timeline__entry[data-weight="major"] .timeline__node {
+	.timeline__entry[data-weight='major'] .timeline__node {
 		border-color: rgba(247, 214, 143, 0.7);
 	}
 
-	.timeline__entry[data-weight="major"] .timeline__node::after {
+	.timeline__entry[data-weight='major'] .timeline__node::after {
 		background: #f7d68f;
 	}
 
@@ -777,7 +930,7 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 		opacity: 1;
 	}
 
-	.timeline__entry[data-weight="major"]:hover .timeline__node {
+	.timeline__entry[data-weight='major']:hover .timeline__node {
 		border-color: #fce2a6;
 	}
 
@@ -785,7 +938,11 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 	.timeline .way {
 		width: 100%;
 		padding: 1.5rem 1.75rem 1.65rem;
-		background: linear-gradient(155deg, rgba(253, 250, 244, 0.98) 0%, rgba(246, 240, 229, 0.95) 100%);
+		background: linear-gradient(
+			155deg,
+			rgba(253, 250, 244, 0.98) 0%,
+			rgba(246, 240, 229, 0.95) 100%
+		);
 		border: 1px solid rgba(250, 247, 240, 0.2);
 		border-radius: 6px;
 		box-shadow:
@@ -805,7 +962,7 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 	}
 
 	/* Distinctive Key Landmark Card: Warm illuminated parchment with gold edge & hallmark */
-	.timeline .way[data-weight="major"] {
+	.timeline .way[data-weight='major'] {
 		background: linear-gradient(150deg, #fffefb 0%, #faf3e4 100%);
 		border: 1px solid rgba(212, 175, 102, 0.45);
 		box-shadow:
@@ -813,7 +970,7 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 			0 0 20px -4px rgba(180, 145, 79, 0.22);
 	}
 
-	.timeline .way[data-weight="major"]::before {
+	.timeline .way[data-weight='major']::before {
 		width: 5px;
 		border-radius: 6px 0 0 6px;
 		background: linear-gradient(180deg, #f7d68f 0%, var(--ochre) 65%, #7a5a20 100%);
@@ -821,7 +978,7 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 	}
 
 	/* Elegant archival gold hallmark in the top-right corner of key landmark cards */
-	.timeline .way[data-weight="major"]::after {
+	.timeline .way[data-weight='major']::after {
 		content: '✦';
 		position: absolute;
 		top: 1.35rem;
@@ -831,7 +988,9 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 		color: #c5a35e;
 		opacity: 0.55;
 		pointer-events: none;
-		transition: opacity 280ms var(--ease), transform 280ms var(--ease);
+		transition:
+			opacity 280ms var(--ease),
+			transform 280ms var(--ease);
 	}
 
 	.timeline .way:hover {
@@ -842,11 +1001,11 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 		border-color: rgba(250, 247, 240, 0.35);
 	}
 
-	.timeline .way[data-weight="major"]:hover {
+	.timeline .way[data-weight='major']:hover {
 		border-color: rgba(212, 175, 102, 0.55);
 	}
 
-	.timeline .way[data-weight="major"]:hover::after {
+	.timeline .way[data-weight='major']:hover::after {
 		opacity: 0.75;
 	}
 
@@ -866,14 +1025,18 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 		letter-spacing: 0.12em;
 	}
 
-	.timeline .way[data-weight="major"] .way__when {
-		background: linear-gradient(135deg, rgba(247, 214, 143, 0.32) 0%, rgba(180, 145, 79, 0.18) 100%);
+	.timeline .way[data-weight='major'] .way__when {
+		background: linear-gradient(
+			135deg,
+			rgba(247, 214, 143, 0.32) 0%,
+			rgba(180, 145, 79, 0.18) 100%
+		);
 		border: 1px solid rgba(180, 145, 79, 0.35);
 		color: #72521a;
 		font-weight: 700;
 	}
 
-	.timeline .way[data-weight="major"] .way__when::before {
+	.timeline .way[data-weight='major'] .way__when::before {
 		content: '✦';
 		font-size: 0.75em;
 		margin-right: 0.35rem;
@@ -896,7 +1059,7 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 		letter-spacing: -0.015em;
 	}
 
-	.timeline .way[data-weight="major"] .way__name {
+	.timeline .way[data-weight='major'] .way__name {
 		font-size: clamp(1.35rem, 2.4vw, 1.62rem);
 		color: #16120d;
 	}
@@ -952,7 +1115,7 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 		opacity: 0.6;
 	}
 
-	.way[data-weight="major"]::before {
+	.way[data-weight='major']::before {
 		background: var(--ochre);
 		width: 3.5px;
 		opacity: 0.95;
@@ -987,7 +1150,6 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 	.way__bullet {
 		opacity: 0.45;
 	}
-
 
 	.way__name {
 		font-family: var(--face-bodoni);
@@ -1237,7 +1399,11 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 
 	/* Right Column: One Clean Off-White Panel */
 	.founder-panel {
-		background: linear-gradient(155deg, rgba(253, 250, 244, 0.98) 0%, rgba(246, 240, 229, 0.96) 100%);
+		background: linear-gradient(
+			155deg,
+			rgba(253, 250, 244, 0.98) 0%,
+			rgba(246, 240, 229, 0.96) 100%
+		);
 		border: 1px solid rgba(250, 247, 240, 0.25);
 		border-radius: 6px;
 		padding: clamp(1.75rem, 4vw, 2.75rem);
@@ -1563,17 +1729,165 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 		box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 	}
 
-	.memory-form__alt {
-		font-size: 0.95rem;
-		color: #8fc4ce;
-		text-decoration: none;
-		border-bottom: 1px solid rgba(143, 196, 206, 0.4);
-		padding-bottom: 2px;
+	/* Memory Upload Field (Photo / Video up to 25 MB) */
+	.memory-upload {
+		position: relative;
+		border: 1.5px dashed rgba(255, 255, 255, 0.28);
+		border-radius: 4px;
+		background: rgba(10, 47, 53, 0.45);
+		padding: 1.25rem 1rem;
+		text-align: center;
+		transition: border-color 200ms var(--ease), background 200ms var(--ease);
+		cursor: pointer;
 	}
 
-	.memory-form__alt:hover {
-		color: #f7d68f;
+	.memory-upload:hover,
+	.memory-upload:focus-within,
+	.memory-upload.is-dragover {
 		border-color: #f7d68f;
+		background: rgba(10, 47, 53, 0.75);
+	}
+
+	.memory-upload.has-file {
+		border-style: solid;
+		border-color: rgba(247, 214, 143, 0.4);
+		padding: 0.65rem 0.85rem;
+	}
+
+	.memory-upload__input {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		cursor: pointer;
+		z-index: 2;
+	}
+
+	.memory-upload.has-file .memory-upload__input {
+		display: none;
+	}
+
+	.memory-upload__prompt {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.35rem;
+		pointer-events: none;
+	}
+
+	.memory-upload__icon {
+		stroke: #f7d68f;
+		opacity: 0.9;
+		margin-bottom: 0.15rem;
+	}
+
+	.memory-upload__text {
+		font-size: 0.925rem;
+		color: rgba(250, 247, 240, 0.9);
+	}
+
+	.memory-upload__cta {
+		color: #f7d68f;
+		font-weight: 600;
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+
+	.memory-upload__hint {
+		font-size: 0.78125rem;
+		color: rgba(250, 247, 240, 0.6);
+		letter-spacing: 0.02em;
+	}
+
+	.memory-upload__preview {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		position: relative;
+		z-index: 3;
+	}
+
+	.memory-upload__file-info {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		min-width: 0;
+		text-align: left;
+	}
+
+	.memory-upload__thumb {
+		width: 44px;
+		height: 44px;
+		border-radius: 4px;
+		background: rgba(255, 255, 255, 0.08);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		flex-shrink: 0;
+		border: 1px solid rgba(255, 255, 255, 0.15);
+	}
+
+	.memory-upload__thumb img,
+	.memory-upload__thumb video {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	.memory-upload__meta {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		min-width: 0;
+	}
+
+	.memory-upload__filename {
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: #ffffff;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 240px;
+	}
+
+	.memory-upload__filesize {
+		font-size: 0.75rem;
+		color: rgba(250, 247, 240, 0.65);
+	}
+
+	.memory-upload__remove {
+		background: rgba(255, 255, 255, 0.08);
+		border: 1px solid rgba(255, 255, 255, 0.18);
+		color: rgba(250, 247, 240, 0.85);
+		font-size: 1.25rem;
+		line-height: 1;
+		cursor: pointer;
+		width: 28px;
+		height: 28px;
+		border-radius: 50%;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 150ms ease;
+		flex-shrink: 0;
+	}
+
+	.memory-upload__remove:hover {
+		background: rgba(247, 163, 153, 0.2);
+		border-color: #f7a399;
+		color: #f7a399;
+	}
+
+	.memory-upload__error {
+		font-size: 0.8125rem;
+		color: #f7a399;
+		margin: 0.35rem 0 0;
+		text-align: left;
 	}
 
 	.memory-form__success {
@@ -1614,98 +1928,259 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 </style>
 
 <script is:inline>
-// ──────────────────────────────────────────────────────────────────────────
-// Interactive Dialog Handler for Memory Submission & Archival Drawers
-// ──────────────────────────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-	const memDialog = document.getElementById('memory-dialog');
-	const openMemBtn = document.getElementById('open-memory-btn');
-	const closeMemTriggers = document.querySelectorAll('[data-close-dialog]');
-	const memForm = document.getElementById('memory-form');
-	const memSuccess = document.getElementById('mem-success');
+	// ──────────────────────────────────────────────────────────────────────────
+	// Interactive Dialog Handler for Memory Submission & Archival Drawers
+	// ──────────────────────────────────────────────────────────────────────────
+	document.addEventListener('DOMContentLoaded', () => {
+		const memDialog = document.getElementById('memory-dialog');
+		const openMemBtn = document.getElementById('open-memory-btn');
+		const closeMemTriggers = document.querySelectorAll('[data-close-dialog]');
+		const memForm = document.getElementById('memory-form');
+		const memSuccess = document.getElementById('mem-success');
 
-	// Open Memory Dialog
-	if (openMemBtn && memDialog) {
-		openMemBtn.addEventListener('click', () => {
-			if (typeof memDialog.showModal === 'function') {
-				memDialog.showModal();
-			} else {
-				memDialog.setAttribute('open', '');
-			}
+		// Open Memory Dialog
+		if (openMemBtn && memDialog) {
+			openMemBtn.addEventListener('click', () => {
+				if (typeof memDialog.showModal === 'function') {
+					memDialog.showModal();
+				} else {
+					memDialog.setAttribute('open', '');
+				}
+			});
+		}
+
+		// Close Memory Dialog
+		closeMemTriggers.forEach((btn) => {
+			btn.addEventListener('click', () => {
+				if (typeof memDialog?.close === 'function') {
+					memDialog.close();
+				} else {
+					memDialog?.removeAttribute('open');
+				}
+			});
 		});
-	}
 
-	// Close Memory Dialog
-	closeMemTriggers.forEach((btn) => {
-		btn.addEventListener('click', () => {
-			if (typeof memDialog?.close === 'function') {
-				memDialog.close();
-			} else {
-				memDialog?.removeAttribute('open');
+		// Photo / Video file handling (max 25 MB)
+		const uploadZone = document.getElementById('memory-upload-zone');
+		const mediaInput = document.getElementById('mem-media');
+		const uploadPrompt = document.getElementById('mem-upload-prompt');
+		const uploadPreview = document.getElementById('mem-upload-preview');
+		const uploadThumb = document.getElementById('mem-upload-thumb');
+		const filenameEl = document.getElementById('mem-filename');
+		const filesizeEl = document.getElementById('mem-filesize');
+		const removeFileBtn = document.getElementById('mem-remove-file');
+		const uploadError = document.getElementById('mem-upload-error');
+
+		const MAX_SIZE_MB = 25;
+		const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
+		let currentObjectUrl = null;
+
+		const formatFileSize = (bytes) => {
+			if (bytes < 1024 * 1024) {
+				return (bytes / 1024).toFixed(1) + ' KB';
 			}
-		});
-	});
+			return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+		};
 
-	// Memory Form submission handling
-	if (memForm && memSuccess) {
-		memForm.addEventListener('submit', (e) => {
-			e.preventDefault();
-			const submitBtn = document.getElementById('submit-memory');
-			if (submitBtn) {
-				submitBtn.setAttribute('disabled', 'true');
-				submitBtn.textContent = 'Recording...';
+		const resetMediaInput = () => {
+			if (mediaInput) mediaInput.value = '';
+			if (currentObjectUrl) {
+				URL.revokeObjectURL(currentObjectUrl);
+				currentObjectUrl = null;
+			}
+			if (uploadThumb) uploadThumb.innerHTML = '';
+			if (uploadPreview) uploadPreview.hidden = true;
+			if (uploadPrompt) uploadPrompt.hidden = false;
+			if (uploadError) {
+				uploadError.hidden = true;
+				uploadError.textContent = '';
+			}
+			if (uploadZone) uploadZone.classList.remove('has-file');
+		};
+
+		const handleFile = (file) => {
+			if (!file) return;
+
+			if (uploadError) {
+				uploadError.hidden = true;
+				uploadError.textContent = '';
 			}
 
-			setTimeout(() => {
-				memForm.style.display = 'none';
+			// Validate maximum size (25 MB)
+			if (file.size > MAX_SIZE_BYTES) {
+				if (uploadError) {
+					uploadError.textContent = `File size (${formatFileSize(file.size)}) exceeds the ${MAX_SIZE_MB} MB limit. Please choose a smaller photo or video.`;
+					uploadError.hidden = false;
+				}
+				resetMediaInput();
+				return;
+			}
+
+			if (currentObjectUrl) {
+				URL.revokeObjectURL(currentObjectUrl);
+				currentObjectUrl = null;
+			}
+
+			if (filenameEl) filenameEl.textContent = file.name;
+			if (filesizeEl) filesizeEl.textContent = formatFileSize(file.size);
+
+			if (uploadThumb) {
+				uploadThumb.innerHTML = '';
+				currentObjectUrl = URL.createObjectURL(file);
+				if (file.type.startsWith('image/')) {
+					const img = document.createElement('img');
+					img.src = currentObjectUrl;
+					img.alt = file.name;
+					uploadThumb.appendChild(img);
+				} else if (file.type.startsWith('video/')) {
+					const vid = document.createElement('video');
+					vid.src = currentObjectUrl;
+					vid.muted = true;
+					vid.playsInline = true;
+					uploadThumb.appendChild(vid);
+				} else {
+					uploadThumb.innerHTML = '<span class="memory-upload__thumb-icon">&#128196;</span>';
+				}
+			}
+
+			if (uploadPrompt) uploadPrompt.hidden = true;
+			if (uploadPreview) uploadPreview.hidden = false;
+			if (uploadZone) uploadZone.classList.add('has-file');
+		};
+
+		if (mediaInput) {
+			mediaInput.addEventListener('change', () => {
+				const file = mediaInput.files?.[0];
+				if (file) handleFile(file);
+			});
+		}
+
+		if (removeFileBtn) {
+			removeFileBtn.addEventListener('click', (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				resetMediaInput();
+			});
+		}
+
+		// Drag and drop handling
+		if (uploadZone) {
+			['dragenter', 'dragover'].forEach((eventName) => {
+				uploadZone.addEventListener(eventName, (e) => {
+					e.preventDefault();
+					e.stopPropagation();
+					uploadZone.classList.add('is-dragover');
+				});
+			});
+
+			['dragleave', 'drop'].forEach((eventName) => {
+				uploadZone.addEventListener(eventName, (e) => {
+					e.preventDefault();
+					e.stopPropagation();
+					uploadZone.classList.remove('is-dragover');
+				});
+			});
+
+			uploadZone.addEventListener('drop', (e) => {
+				const dt = e.dataTransfer;
+				const file = dt?.files?.[0];
+				if (file) {
+					if (mediaInput) {
+						mediaInput.files = dt.files;
+					}
+					handleFile(file);
+				}
+			});
+		}
+
+		// Share Memory Submission
+		if (memForm && memSuccess) {
+			memForm.addEventListener('submit', (event) => {
+				event.preventDefault();
+
+				const said = new FormData(memForm);
+				const field = (name) => String(said.get(name) || '').trim();
+				const place = field('place');
+				const mediaFile = mediaInput?.files?.[0];
+				const mediaAttachmentNote = mediaFile
+					? `Attached photo/video: ${mediaFile.name} (${formatFileSize(mediaFile.size)}) [Please attach this file to the email]`
+					: '';
+
+				const letter = [
+					`Name: ${field('name')}`,
+					`Email: ${field('email')}`,
+					`Connection: ${field('relation')}`,
+					`Year or place: ${place}`,
+					mediaAttachmentNote,
+					'',
+					field('story'),
+				]
+					.filter((line, index) => line !== '' || index === 5)
+					.join('\n');
+
+				window.location.href =
+					'mailto:hello@itti.org.in?subject=' +
+					encodeURIComponent('Memory of Dr. Itti Bali') +
+					'&body=' +
+					encodeURIComponent(letter);
+
 				memSuccess.removeAttribute('hidden');
-			}, 600);
+			});
+		}
+
+		// Archival Drawers Dialog
+		const archDialog = document.getElementById('archive-dialog');
+		const archTriggers = document.querySelectorAll('[data-open-drawer]');
+		const closeArchTriggers = document.querySelectorAll('[data-close-archive]');
+		const drawerArticles = document.getElementById('drawer-articles');
+		const drawerFilm = document.getElementById('drawer-film');
+		const drawerAwards = document.getElementById('drawer-awards');
+
+		const hideAllDrawers = () => {
+			drawerArticles?.setAttribute('hidden', '');
+			drawerFilm?.setAttribute('hidden', '');
+			drawerAwards?.setAttribute('hidden', '');
+		};
+
+		const drawers = {
+			articles: drawerArticles,
+			film: drawerFilm,
+			awards: drawerAwards,
+		};
+
+		archTriggers.forEach((btn) => {
+			btn.addEventListener('click', () => {
+				const drawer = drawers[btn.getAttribute('data-open-drawer')];
+				if (!drawer) return;
+
+				hideAllDrawers();
+				drawer.removeAttribute('hidden');
+
+				// One dialog holds three drawers, so its name has to be whichever one
+				// is open. Pointed at a single heading, the film and the honours were
+				// both announced as the published articles.
+				const title = drawer.querySelector('.legacy-dialog__title');
+				if (title && archDialog) {
+					if (!title.id) title.id = `${drawer.id}-title`;
+					archDialog.setAttribute('aria-labelledby', title.id);
+				}
+
+				if (typeof archDialog?.showModal === 'function') {
+					archDialog.showModal();
+				} else {
+					archDialog?.setAttribute('open', '');
+				}
+			});
 		});
-	}
 
-	// Archival Drawers Dialog
-	const archDialog = document.getElementById('archive-dialog');
-	const archTriggers = document.querySelectorAll('[data-open-drawer]');
-	const closeArchTriggers = document.querySelectorAll('[data-close-archive]');
-	const drawerArticles = document.getElementById('drawer-articles');
-	const drawerFilm = document.getElementById('drawer-film');
-	const drawerAwards = document.getElementById('drawer-awards');
-
-	const hideAllDrawers = () => {
-		drawerArticles?.setAttribute('hidden', '');
-		drawerFilm?.setAttribute('hidden', '');
-		drawerAwards?.setAttribute('hidden', '');
-	};
-
-	archTriggers.forEach((btn) => {
-		btn.addEventListener('click', () => {
-			const drawerType = btn.getAttribute('data-open-drawer');
-			hideAllDrawers();
-
-			if (drawerType === 'articles' && drawerArticles) {
-				drawerArticles.removeAttribute('hidden');
-			} else if (drawerType === 'film' && drawerFilm) {
-				drawerFilm.removeAttribute('hidden');
-			} else if (drawerType === 'awards' && drawerAwards) {
-				drawerAwards.removeAttribute('hidden');
-			}
-
-			if (typeof archDialog?.showModal === 'function') {
-				archDialog.showModal();
-			} else {
-				archDialog?.setAttribute('open', '');
-			}
+		closeArchTriggers.forEach((btn) => {
+			btn.addEventListener('click', () => {
+				if (typeof archDialog?.close === 'function') {
+					archDialog.close();
+				} else {
+					archDialog?.removeAttribute('open');
+				}
+			});
 		});
 	});
-
-	closeArchTriggers.forEach((btn) => {
-		btn.addEventListener('click', () => {
-			if (typeof archDialog?.close === 'function') {
-				archDialog.close();
-			} else {
-				archDialog?.removeAttribute('open');
-			}
-		});
-	});
-});
 </script>
