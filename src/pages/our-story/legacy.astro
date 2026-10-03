@@ -629,7 +629,7 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 					</div>
 					<!-- Photo or Video Upload Section with 25 MB Limit -->
 					<div class="memory-form__field">
-						<label for="mem-media">Photo or Video (Optional)</label>
+						<label for="mem-media">Photo or Video <span class="req">*</span></label>
 						<div class="memory-upload" id="memory-upload-zone">
 							<input
 								type="file"
@@ -637,6 +637,7 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 								name="media"
 								accept="image/*,video/*"
 								class="memory-upload__input"
+								required
 							/>
 							<div class="memory-upload__prompt" id="mem-upload-prompt">
 								<svg class="memory-upload__icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1757,6 +1758,11 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 		padding: 0.65rem 0.85rem;
 	}
 
+	.memory-upload.has-error {
+		border-color: #f7a399;
+		background: rgba(247, 163, 153, 0.08);
+	}
+
 	.memory-upload__input {
 		position: absolute;
 		inset: 0;
@@ -1998,7 +2004,7 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 				uploadError.hidden = true;
 				uploadError.textContent = '';
 			}
-			if (uploadZone) uploadZone.classList.remove('has-file');
+			if (uploadZone) uploadZone.classList.remove('has-file', 'has-error');
 		};
 
 		const handleFile = (file) => {
@@ -2008,6 +2014,7 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 				uploadError.hidden = true;
 				uploadError.textContent = '';
 			}
+			if (uploadZone) uploadZone.classList.remove('has-error');
 
 			// Validate maximum size (25 MB)
 			if (file.size > MAX_SIZE_BYTES) {
@@ -2015,6 +2022,7 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 					uploadError.textContent = `File size (${formatFileSize(file.size)}) exceeds the ${MAX_SIZE_MB} MB limit. Please choose a smaller photo or video.`;
 					uploadError.hidden = false;
 				}
+				if (uploadZone) uploadZone.classList.add('has-error');
 				resetMediaInput();
 				return;
 			}
@@ -2048,7 +2056,10 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 
 			if (uploadPrompt) uploadPrompt.hidden = true;
 			if (uploadPreview) uploadPreview.hidden = false;
-			if (uploadZone) uploadZone.classList.add('has-file');
+			if (uploadZone) {
+				uploadZone.classList.remove('has-error');
+				uploadZone.classList.add('has-file');
+			}
 		};
 
 		if (mediaInput) {
@@ -2101,13 +2112,21 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 			memForm.addEventListener('submit', (event) => {
 				event.preventDefault();
 
+				const mediaFile = mediaInput?.files?.[0];
+				if (!mediaFile) {
+					if (uploadError) {
+						uploadError.textContent = 'Please choose a photo or video to share.';
+						uploadError.hidden = false;
+					}
+					if (uploadZone) uploadZone.classList.add('has-error');
+					uploadZone?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+					return;
+				}
+
 				const said = new FormData(memForm);
 				const field = (name) => String(said.get(name) || '').trim();
 				const place = field('place');
-				const mediaFile = mediaInput?.files?.[0];
-				const mediaAttachmentNote = mediaFile
-					? `Attached photo/video: ${mediaFile.name} (${formatFileSize(mediaFile.size)}) [Please attach this file to the email]`
-					: '';
+				const mediaAttachmentNote = `Attached photo/video: ${mediaFile.name} (${formatFileSize(mediaFile.size)}) [Please attach this file to the email]`;
 
 				const letter = [
 					`Name: ${field('name')}`,
