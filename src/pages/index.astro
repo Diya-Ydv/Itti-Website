@@ -3,7 +3,7 @@ import PLATES from '../data/plates.json';
 import Base from '../layouts/Base.astro';
 import PlateCredit from '../components/home/PlateCredit.astro';
 import PillarCard from '../components/home/PillarCard.astro';
-import TriviaGame from '../components/home/TriviaGame.astro';
+import EventCalendar from '../components/home/EventCalendar.astro';
 import OurStory from '../components/home/OurStory.astro';
 import Featured from '../components/home/Featured.astro';
 import Shop from '../components/home/Shop.astro';
@@ -383,7 +383,11 @@ Small actions today can keep our planet alive for tomorrow.`,
 
 			<div class="pillars">
 				{PILLARS.map((pillar) => <PillarCard {...pillar} />)}
-				<div style="grid-column: span 2;"><TriviaGame /></div>
+				<div
+					style="grid-column: span 2; height: 100%; display: flex; flex-direction: column;"
+				>
+					<EventCalendar />
+				</div>
 			</div>
 		</section>
 
