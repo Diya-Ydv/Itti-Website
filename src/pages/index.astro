@@ -3,6 +3,7 @@ import PLATES from '../data/plates.json';
 import Base from '../layouts/Base.astro';
 import PlateCredit from '../components/home/PlateCredit.astro';
 import PillarCard from '../components/home/PillarCard.astro';
+import TriviaGame from '../components/home/TriviaGame.astro';
 import OurStory from '../components/home/OurStory.astro';
 import Featured from '../components/home/Featured.astro';
 import Shop from '../components/home/Shop.astro';
@@ -202,7 +203,7 @@ const SLIDES = MOVEMENTS.flatMap((mv, plate) =>
 
 const PILLARS = [
 	{
-		name: 'Neurodivergence',
+		name: 'NeuroDiversion Ahead',
 		line: 'Every mind deserves to shine.',
 		back: `Different minds do not need to fit in; they deserve to shine.
 We see the strengths, dreams and possibilities within every individual.
@@ -233,6 +234,13 @@ Small actions today can keep our planet alive for tomorrow.`,
 		accent: 'sage' as const,
 		mark: 'claw',
 		whatsappUrl: 'https://chat.whatsapp.com/KXxQHZs6l2QHBaOrVgcL0n?mode=gi_t',
+	},
+	{
+		name: 'Suicide Prevention',
+		line: 'Support and care when it matters most.',
+		back: 'Every life is precious and worth fighting for.\nWe are here to provide a safe space, resources, and emotional support.\nReach out, because you are never truly alone.',
+		href: '#',
+		accent: 'teal' as const,
 	},
 ];
 ---
@@ -375,6 +383,7 @@ Small actions today can keep our planet alive for tomorrow.`,
 
 			<div class="pillars">
 				{PILLARS.map((pillar) => <PillarCard {...pillar} />)}
+				<div style="grid-column: span 2;"><TriviaGame /></div>
 			</div>
 		</section>
 
