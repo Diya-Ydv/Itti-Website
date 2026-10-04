@@ -37,6 +37,13 @@ interface Props {
 	 * near-black default and lands as a black stripe across a teal page.
 	 */
 	band?: 'teal' | 'ochre' | 'rose' | 'sage' | 'ink';
+	/**
+	 * Keep this page out of search. For a page that is only of use to the person
+	 * already signed in: it has nothing to offer somebody arriving from a search
+	 * result, and an indexed sign-in page spends the site's standing on an
+	 * address nobody wanted to find.
+	 */
+	noindex?: boolean;
 }
 
 const {
@@ -46,10 +53,46 @@ const {
 	navTheme = 'auto',
 	band,
 	opensAtTop = false,
+	noindex = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://itti.org.in');
 const imageURL = new URL(image, canonicalURL).href;
+
+/**
+ * Who this is, in the form a search engine reads.
+ *
+ * A search for "Itti Foundation" has to reach the Foundation and not a
+ * transliteration of somebody's surname, and the only way to say so is to
+ * declare the organisation as an entity rather than hope the prose carries it.
+ * Everything here is already stated on the policies page: the registered name,
+ * the number and address that answer, and the three accounts that are ours.
+ * Nothing is asserted here that a reader cannot also find and check.
+ *
+ * The identifier is fixed so that every page points at one organisation rather
+ * than describing a new one each time.
+ */
+const ORGANISATION = {
+	'@context': 'https://schema.org',
+	'@type': 'NGO',
+	'@id': 'https://itti.org.in/#foundation',
+	name: 'The Itti Foundation',
+	legalName: "Itti's Skill School Foundation",
+	url: 'https://itti.org.in/',
+	logo: 'https://itti.org.in/brand/lockup.png',
+	description:
+		'The Itti Foundation embraces different minds, supports people through cancer, and protects the world we share. Registered as Itti\u2019s Skill School Foundation, a Section 8 not-for-profit company incorporated in India.',
+	email: 'hello@itti.org.in',
+	telephone: '+918928263631',
+	foundingLocation: { '@type': 'Country', name: 'India' },
+	areaServed: { '@type': 'Country', name: 'India' },
+	knowsAbout: ['Neurodivergence', 'Cancer care', 'Conservation'],
+	sameAs: [
+		'https://www.instagram.com/ittifoundation/',
+		'https://www.facebook.com/ittifoundation',
+		'https://www.youtube.com/@ittifoundation',
+	],
+};
 
 // Paper grain. Kept as a data URI so there is no extra request and no asset to
 // keep in sync with the palette.
@@ -71,6 +114,7 @@ const GRAIN =
 		<link rel="apple-touch-icon" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="canonical" href={canonicalURL} />
+		{noindex && <meta name="robots" content="noindex, follow" />}
 		<meta name="description" content={description} />
 		<meta name="theme-color" content="#0e3e45" />
 		<title>{title}</title>
@@ -89,6 +133,12 @@ const GRAIN =
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
 		<meta property="twitter:image" content={imageURL} />
+
+		<script
+			type="application/ld+json"
+			is:inline
+			set:html={JSON.stringify(ORGANISATION)}
+		/>
 		<script
 			is:inline
 			set:html={`document.documentElement.classList.add('js');${
