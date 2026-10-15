@@ -15,11 +15,28 @@
  * the markup cannot come to disagree with what is on disk.
  */
 import sharp from 'sharp';
-import { readdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import {
+	existsSync,
+	readFileSync,
+	readdirSync,
+	rmSync,
+	statSync,
+	writeFileSync,
+} from 'node:fs';
 
 const SRC = 'plates-master';
 const OUT = 'public/plates';
-const STEPS = [1280, 1920, 2560];
+// The band shows each plate full-bleed across the whole screen, not inside a
+// column, so the width that matters is the viewport's — doubled, for the
+// screens that draw two device pixels to the CSS one. 3840 covers a 1920-wide
+// window on a retina display, which is about as large as this is worth
+// serving. The old ceiling of 2560 was set when a plate only ever appeared
+// briefly inside a moving frame, where softness had nowhere to show.
+const STEPS = [1280, 1920, 2560, 3200, 3840];
+
+// What a master has to hold to survive being thrown across a whole screen.
+// Under it, the browser is upscaling and the drawing goes soft.
+const TARGET = 3840;
 const FORMATS = [
 	['avif', { quality: 50, effort: 6 }],
 	['webp', { quality: 76 }],
@@ -35,10 +52,30 @@ const CLOSE_ENOUGH = 1.08;
 for (const f of readdirSync(OUT)) rmSync(`${OUT}/${f}`);
 
 const manifest = {};
+const shortfalls = [];
+const unsourced = [];
 
 for (const file of readdirSync(SRC).filter((f) => f.endsWith('.jpg'))) {
 	const name = file.replace(/\.jpg$/, '');
-	const { width: master } = await sharp(`${SRC}/${file}`).metadata();
+	const { width: master, height: tall } = await sharp(`${SRC}/${file}`).metadata();
+
+	// A plate is only ever as good as the file behind it, and no setting here
+	// can add detail that was never scanned. Saying so at build time is the
+	// only way the shortfall is ever noticed.
+	if (master < TARGET) {
+		const short = Math.round((1 - master / TARGET) * 100);
+		shortfalls.push(`${name}: ${master}×${tall}, ${short}% under ${TARGET}`);
+	}
+
+	// Where a plate came from and what licence it carries. Without it there is
+	// no way to check a credit, and a credit that cannot be checked is a claim.
+	const sidecar = `${SRC}/${name}.json`;
+	if (existsSync(sidecar)) {
+		const { source, licence } = JSON.parse(readFileSync(sidecar, 'utf8'));
+		console.log(`\n${name} — ${licence}\n  ${source}`);
+	} else {
+		unsourced.push(name);
+	}
 
 	const steps = STEPS.filter((w) => w * CLOSE_ENOUGH < master);
 	const widths = [...steps, master];
@@ -56,5 +93,21 @@ for (const file of readdirSync(SRC).filter((f) => f.endsWith('.jpg'))) {
 	}
 }
 
-writeFileSync('src/data/plates.json', JSON.stringify(manifest, null, '\t') + '\n');
+// Written the way the formatter would write it, so a generated file never
+// turns up as an unformatted one in CI.
+const body = Object.entries(manifest)
+	.map(([name, widths]) => `\t${JSON.stringify(name)}: [${widths.join(', ')}]`)
+	.join(',\n');
+writeFileSync('src/data/plates.json', `{\n${body}\n}\n`);
 console.log('\nsrc/data/plates.json →', JSON.stringify(manifest));
+
+if (shortfalls.length) {
+	console.log(`\nToo small to throw across a screen (want ${TARGET}px wide):`);
+	for (const line of shortfalls) console.log(`  ${line}`);
+}
+
+if (unsourced.length) {
+	console.log('\nNo source on record — add plates-master/<name>.json with');
+	console.log('{ "source": "<url>", "licence": "<terms>" }:');
+	for (const name of unsourced) console.log(`  ${name}`);
+}
