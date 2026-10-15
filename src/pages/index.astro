@@ -235,13 +235,6 @@ Small actions today can keep our planet alive for tomorrow.`,
 		mark: 'claw',
 		whatsappUrl: 'https://chat.whatsapp.com/KXxQHZs6l2QHBaOrVgcL0n?mode=gi_t',
 	},
-	{
-		name: 'Suicide Prevention',
-		line: 'Support and care when it matters most.',
-		back: 'Every life is precious and worth fighting for.\nWe are here to provide a safe space, resources, and emotional support.\nReach out, because you are never truly alone.',
-		href: '/join',
-		accent: 'teal' as const,
-	},
 ];
 ---
 
@@ -1104,20 +1097,6 @@ Small actions today can keep our planet alive for tomorrow.`,
 		grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr));
 		gap: clamp(1rem, 2.2vw, 1.75rem);
 		margin-top: clamp(2.75rem, 6vh, 4rem);
-	}
-
-	/* Four across needs more room than three. Below that they pair off before
-	   they stack, so a fourth commitment never leaves a hole in the row. */
-	@media (max-width: 80rem) {
-		.pillars {
-			grid-template-columns: repeat(min(var(--cols, 3), 3), minmax(0, 1fr));
-		}
-	}
-
-	@media (max-width: 72rem) {
-		.pillars {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-		}
 	}
 
 	/* The section the calendar sits in, on the same measure as the rest. */
