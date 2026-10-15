@@ -35,6 +35,18 @@ const {
 } = Astro.props;
 
 const id = `label-${plate.toLowerCase().replace(/\W+/g, '-')}`;
+
+/**
+ * A Creative Commons licence has to be named *and* linked, and an adaptation
+ * has to say it is one. The plates are all graded before they are committed,
+ * so every one of them is an adaptation — which for a share-alike work means
+ * the grade carries the same licence as the photograph under it. A public
+ * domain work owes none of this, so it gets the plain words and no link.
+ */
+const cc = /^CC ([A-Z-]+) ([\d.]+)$/.exec(licence);
+const licenceHref = cc
+	? `https://creativecommons.org/licenses/${cc[1].toLowerCase()}/${cc[2]}/`
+	: null;
 ---
 
 <div class:list={['credit', `credit--${align}`]} data-credit>
@@ -60,6 +72,25 @@ const id = `label-${plate.toLowerCase().replace(/\W+/g, '-')}`;
 		<p class="label__note">{note}</p>
 		<dl class="label__facts">
 			<div><dt>Collection</dt><dd>{collection}</dd></div>
+			<div>
+				<dt>Licence</dt>
+				<dd>
+					{
+						licenceHref ? (
+							<>
+								<a href={licenceHref} rel="license noopener noreferrer" target="_blank">
+									{licence}
+								</a>
+								{
+									'. Colour-graded for this page; the adaptation is offered under the same licence.'
+								}
+							</>
+						) : (
+							licence
+						)
+					}
+				</dd>
+			</div>
 		</dl>
 	</div>
 </div>
@@ -258,6 +289,12 @@ const id = `label-${plate.toLowerCase().replace(/\W+/g, '-')}`;
 	.label__facts dd {
 		margin: 0;
 		color: var(--ink);
+	}
+
+	.label__facts a {
+		color: inherit;
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
 	}
 </style>
 
