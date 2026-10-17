@@ -18,6 +18,11 @@ import Base from '../../layouts/Base.astro';
 import SiteFooter from '../../components/layout/SiteFooter.astro';
 import Mark from '../../components/brand/Mark.astro';
 
+interface MilestoneLink {
+	label: string;
+	url: string;
+}
+
 interface Milestone {
 	id: string;
 	when: string;
@@ -25,6 +30,7 @@ interface Milestone {
 	title: string;
 	description: string;
 	major?: boolean;
+	links?: MilestoneLink[];
 }
 
 const LIFE_MILESTONES: Milestone[] = [
@@ -72,6 +78,12 @@ const LIFE_MILESTONES: Milestone[] = [
 		description:
 			'She moved to Bangalore for her Master’s at the National Centre for Biological Sciences, in the very first-ever batch of its MSc in Wildlife Biology, under the mentorship of the conservation scientist Dr. Ulhas Karanth.',
 		major: true,
+		links: [
+			{
+				label: 'Sanctuary Nature Foundation profile',
+				url: 'https://www.sanctuarynaturefoundation.org/article/wildlife-biologist-and-filmmaker-archana-bali',
+			},
+		],
 	},
 	{
 		id: 'chikmagalur',
@@ -117,6 +129,16 @@ const LIFE_MILESTONES: Milestone[] = [
 		description:
 			'Alongside her research, she worked with Native Alaskan communities on the Voices Project, an award-winning documentary — her storytelling turned toward the people whose land and knowledge shaped her own work.',
 		major: true,
+		links: [
+			{
+				label: 'UAF film award feature',
+				url: 'https://afes.open.uaf.edu/2009/04/30/phd-student-wins-film-award/',
+			},
+			{
+				label: 'ResearchGate videography paper',
+				url: 'https://www.researchgate.net/publication/270357423_Voices_of_the_Caribou_People_a_participatory_videography_method_to_document_and_share_local_knowledge_from_the_North_American_human-Rangifer_systems',
+			},
+		],
 	},
 	{
 		id: 'diagnosis',
@@ -144,6 +166,12 @@ const LIFE_MILESTONES: Milestone[] = [
 		description:
 			'When she was told no further treatment was possible, she did what she had always done — she organised. Family, childhood friends and cousins came from across the world, and she took her last breath with them in the room.',
 		major: true,
+		links: [
+			{
+				label: 'Current Conservation retrospective',
+				url: 'https://www.currentconservation.org/archana-bali-conservations-most-winsome-warrior/',
+			},
+		],
 	},
 	{
 		id: 'posthumous',
@@ -153,6 +181,12 @@ const LIFE_MILESTONES: Milestone[] = [
 		description:
 			'Her doctorate was conferred posthumously and received by our mother. The university held its ceremony, as it happened, on Mother’s Day. It was a kind of closure — but there was more still to be done.',
 		major: true,
+		links: [
+			{
+				label: 'UAF In Memoriam announcement',
+				url: 'https://news.uaf.edu/doctoral-candidate-dies/',
+			},
+		],
 	},
 ];
 
@@ -278,6 +312,25 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 									</div>
 									<h3 class="way__name">{item.title}</h3>
 									<p class="way__note">{item.description}</p>
+									{
+										item.links && item.links.length > 0 && (
+											<div class="way__links">
+												{item.links.map((link) => (
+													<a
+														href={link.url}
+														target="_blank"
+														rel="noopener noreferrer"
+														class="way__link-pill"
+													>
+														<span>{link.label}</span>
+														<span class="way__link-arrow" aria-hidden="true">
+															&rarr;
+														</span>
+													</a>
+												))}
+											</div>
+										)
+									}
 								</div>
 							</article>
 						))
@@ -455,8 +508,40 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 					aria-label="Close dialog">&times;</button
 				>
 
-				<div id="drawer-articles" class="legacy-dialog__view" hidden>
-					<p class="legacy-dialog__eyebrow">Research &middot; Publications</p>
+				<!-- Navigation Tabs for quick drawer switching inside modal -->
+				<div class="dialog-tabs" role="tablist" aria-label="Archive Drawers">
+					<button
+						type="button"
+						class="dialog-tabs__btn is-active"
+						role="tab"
+						aria-selected="true"
+						data-tab-target="articles"
+					>
+						Her Published Articles
+					</button>
+					<button
+						type="button"
+						class="dialog-tabs__btn"
+						role="tab"
+						aria-selected="false"
+						data-tab-target="film"
+					>
+						The Voices Project (film)
+					</button>
+					<button
+						type="button"
+						class="dialog-tabs__btn"
+						role="tab"
+						aria-selected="false"
+						data-tab-target="awards"
+					>
+						Awards &amp; Recognitions
+					</button>
+				</div>
+
+				<!-- ──────── 1. Her published articles (Publications · Western Ghats & Alaska) ──────── -->
+				<div id="drawer-articles" class="legacy-dialog__view">
+					<p class="legacy-dialog__eyebrow">Publications &middot; Western Ghats &amp; Alaska</p>
 					<h3 class="legacy-dialog__title" id="archive-modal-title">
 						Her Published Articles
 					</h3>
@@ -464,34 +549,110 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 						<p>
 							Dr. Archana Bali was a pioneer in wildlife ecology and
 							human&ndash;wildlife coexistence, examining how human cultivation and wild
-							habitats meet.
+							habitats meet across the Western Ghats of India and the Arctic ecosystems of
+							Alaska.
 						</p>
-						<ul class="legacy-dialog__list">
-							<li>
-								<strong>MSc Wildlife Biology Dissertation (NCBS Bangalore):</strong>
-								<span
-									>Ecology and human coexistence in coffee agro-ecosystems of
-									Chikmagalur, under the mentorship of Dr. Ulhas Karanth.</span
-								>
-							</li>
-							<li>
-								<strong>Doctoral Dissertation (University of Alaska Fairbanks):</strong>
-								<span
-									>Human&ndash;animal interdependence, Arctic ecosystems, and caribou
-									conservation as the inaugural George Schaller Scholar.</span
-								>
-							</li>
-							<li>
-								<strong>International Colloquia (2013&ndash;2014):</strong>
-								<span
-									>Papers presented across North America and abroad through active
-									cancer treatments, demonstrating groundbreaking resilience and rigor.</span
-								>
-							</li>
-						</ul>
+
+						<div class="archive-section-head">
+							<h4>Citations List &amp; Indexed Research Records</h4>
+							<p>Scholarly publications and indexed citations of her research:</p>
+						</div>
+
+						<div class="archive-links-grid">
+							<!-- Link 1: ResearchGate -->
+							<a
+								href="https://www.researchgate.net/publication/270357423_Voices_of_the_Caribou_People_a_participatory_videography_method_to_document_and_share_local_knowledge_from_the_North_American_human-Rangifer_systems"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="archive-link-card"
+							>
+								<div class="archive-link-card__header">
+									<span class="archive-badge archive-badge--rg">ResearchGate</span>
+									<span class="archive-link-card__arrow" aria-hidden="true">&nearr;</span>
+								</div>
+								<h5 class="archive-link-card__title">Voices of the Caribou People (participatory videography paper)</h5>
+								<p class="archive-link-card__desc">
+									Methodology, citation metrics, and complete abstract for the participatory videography study in <em>Ecology and Society</em>.
+								</p>
+								<span class="archive-link-card__url">researchgate.net/publication/270357423 &rarr;</span>
+							</a>
+
+							<!-- Link 2: JSTOR -->
+							<a
+								href="https://www.jstor.org/stable/26269531?seq=4"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="archive-link-card"
+							>
+								<div class="archive-link-card__header">
+									<span class="archive-badge archive-badge--jstor">JSTOR</span>
+									<span class="archive-link-card__arrow" aria-hidden="true">&nearr;</span>
+								</div>
+								<h5 class="archive-link-card__title">JSTOR (Seq. 4)</h5>
+								<p class="archive-link-card__desc">
+									Permanent digital library archival entry preserving the participatory videography framework in <em>Ecology and Society</em>, Vol. 19, No. 2.
+								</p>
+								<span class="archive-link-card__url">jstor.org/stable/26269531?seq=4 &rarr;</span>
+							</a>
+
+							<!-- Link 3: AGRIS (FAO) -->
+							<a
+								href="https://agris.fao.org/search/en/providers/122436/records/6759a6c30ce2cede71c8fe76"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="archive-link-card"
+							>
+								<div class="archive-link-card__header">
+									<span class="archive-badge archive-badge--fao">AGRIS (FAO)</span>
+									<span class="archive-link-card__arrow" aria-hidden="true">&nearr;</span>
+								</div>
+								<h5 class="archive-link-card__title">AGRIS (FAO) Database Record</h5>
+								<p class="archive-link-card__desc">
+									International System for Agricultural Science and Technology (AGRIS) official bibliographic index record.
+								</p>
+								<span class="archive-link-card__url">agris.fao.org/search/records &rarr;</span>
+							</a>
+
+							<!-- Link 4: Scilit -->
+							<a
+								href="https://www.scilit.com/publications/ecd30f747bd12f26ff11c3148583f7e6"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="archive-link-card"
+							>
+								<div class="archive-link-card__header">
+									<span class="archive-badge archive-badge--scilit">Scilit</span>
+									<span class="archive-link-card__arrow" aria-hidden="true">&nearr;</span>
+								</div>
+								<h5 class="archive-link-card__title">Scilit Index</h5>
+								<p class="archive-link-card__desc">
+									Comprehensive academic literature database entry tracking citations, authors, and cross-disciplinary impact.
+								</p>
+								<span class="archive-link-card__url">scilit.com/publications &rarr;</span>
+							</a>
+
+							<!-- Link 5: Scimatic -->
+							<a
+								href="https://scimatic.org/index.php/biblio/160857"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="archive-link-card"
+							>
+								<div class="archive-link-card__header">
+									<span class="archive-badge archive-badge--sci">Scimatic</span>
+									<span class="archive-link-card__arrow" aria-hidden="true">&nearr;</span>
+								</div>
+								<h5 class="archive-link-card__title">Scimatic Academic Bibliography &amp; DOI</h5>
+								<p class="archive-link-card__desc">
+									Scholarly bibliographic citation, DOI 10.5751/ES-06327-190216 metadata, and indexed keywords for participatory Arctic research.
+								</p>
+								<span class="archive-link-card__url">scimatic.org/biblio/160857 &rarr;</span>
+							</a>
+						</div>
 					</div>
 				</div>
 
+				<!-- ──────── 2. The Voices Project (film) (Documentary · Oral History) ──────── -->
 				<div id="drawer-film" class="legacy-dialog__view" hidden>
 					<p class="legacy-dialog__eyebrow">Documentary &middot; Oral History</p>
 					<h3 class="legacy-dialog__title">The Voices Project (film)</h3>
@@ -507,9 +668,53 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 							living beings. Her storytelling celebrated the people whose ancestral
 							wisdom shaped her science.
 						</p>
+
+						<div class="archive-section-head">
+							<h4>Read More</h4>
+							<p>Articles on her work as a filmmaker and the film's recognition:</p>
+						</div>
+
+						<div class="archive-links-grid">
+							<!-- Link 1: Sanctuary Nature Foundation -->
+							<a
+								href="https://www.sanctuarynaturefoundation.org/article/wildlife-biologist-and-filmmaker-archana-bali"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="archive-link-card"
+							>
+								<div class="archive-link-card__header">
+									<span class="archive-badge archive-badge--sanctuary">Sanctuary Nature Foundation</span>
+									<span class="archive-link-card__arrow" aria-hidden="true">&nearr;</span>
+								</div>
+								<h5 class="archive-link-card__title">Wildlife biologist and filmmaker Archana Bali</h5>
+								<p class="archive-link-card__desc">
+									Sanctuary Nature Foundation profile celebrating her path as a field biologist and documentary filmmaker, from NCBS Bangalore to Alaska.
+								</p>
+								<span class="archive-link-card__url">sanctuarynaturefoundation.org/article/wildlife-biologist-and-filmmaker-archana-bali &rarr;</span>
+							</a>
+
+							<!-- Link 2: UAF AFES film award -->
+							<a
+								href="https://afes.open.uaf.edu/2009/04/30/phd-student-wins-film-award/"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="archive-link-card"
+							>
+								<div class="archive-link-card__header">
+									<span class="archive-badge archive-badge--uaf">UAF AFES (2009)</span>
+									<span class="archive-link-card__arrow" aria-hidden="true">&nearr;</span>
+								</div>
+								<h5 class="archive-link-card__title">PhD student wins film award</h5>
+								<p class="archive-link-card__desc">
+									University of Alaska Fairbanks feature celebrating Archana Bali winning the film award for the documentary <em>Voices of the Caribou People</em>.
+								</p>
+								<span class="archive-link-card__url">afes.open.uaf.edu/2009/04/30/phd-student-wins-film-award &rarr;</span>
+							</a>
+						</div>
 					</div>
 				</div>
 
+				<!-- ──────── 3. Awards & recognitions (Honours · Distinctions) ──────── -->
 				<div id="drawer-awards" class="legacy-dialog__view" hidden>
 					<p class="legacy-dialog__eyebrow">Honours &middot; Distinctions</p>
 					<h3 class="legacy-dialog__title">Awards &amp; Recognitions</h3>
@@ -517,27 +722,67 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 						<ul class="legacy-dialog__list">
 							<li>
 								<strong>The George Schaller Scholarship:</strong>
-								<span
-									>The first scholar ever selected for this prestigious award to pursue
-									a doctorate in wildlife ecology and conservation at UAF.</span
-								>
+								<span>
+									The first scholar ever selected for this prestigious award to pursue
+									a doctorate in wildlife ecology and conservation at UAF Resilience and Adaptation Program.
+								</span>
 							</li>
 							<li>
 								<strong>Posthumous Doctorate of Philosophy (2016):</strong>
-								<span
-									>Conferred on Mother&rsquo;s Day at the University of Alaska
-									Fairbanks, received with enduring pride by her mother.</span
-								>
+								<span>
+									Conferred on Mother’s Day at the University of Alaska Fairbanks, received with enduring pride by her mother.
+								</span>
 							</li>
 							<li>
 								<strong>Documentary Festival Honours:</strong>
-								<span
-									>Festival recognitions and tribal community honors for <em
-										>The Voices Project</em
-									>.</span
-								>
+								<span>
+									Festival recognitions and tribal community honors for <em>The Voices Project</em>.
+								</span>
 							</li>
 						</ul>
+
+						<div class="archive-section-head">
+							<h4>Tributes &amp; University Announcement</h4>
+							<p>Memorials, university announcements, and tributes honouring her legacy:</p>
+						</div>
+
+						<div class="archive-links-grid">
+							<!-- Link 1: UAF News -->
+							<a
+								href="https://news.uaf.edu/doctoral-candidate-dies/"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="archive-link-card"
+							>
+								<div class="archive-link-card__header">
+									<span class="archive-badge archive-badge--uaf">UAF News</span>
+									<span class="archive-link-card__arrow" aria-hidden="true">&nearr;</span>
+								</div>
+								<h5 class="archive-link-card__title">Doctoral candidate dies</h5>
+								<p class="archive-link-card__desc">
+									University of Alaska Fairbanks official news release and memorial tribute commemorating her courage, research legacy, and academic distinction.
+								</p>
+								<span class="archive-link-card__url">news.uaf.edu/doctoral-candidate-dies &rarr;</span>
+							</a>
+
+							<!-- Link 2: Current Conservation -->
+							<a
+								href="https://www.currentconservation.org/archana-bali-conservations-most-winsome-warrior/"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="archive-link-card"
+							>
+								<div class="archive-link-card__header">
+									<span class="archive-badge archive-badge--cc">Current Conservation</span>
+									<span class="archive-link-card__arrow" aria-hidden="true">&nearr;</span>
+								</div>
+								<h5 class="archive-link-card__title">Archana Bali: Conservation’s most winsome warrior</h5>
+								<p class="archive-link-card__desc">
+									An affectionate and evocative memoir by friends and mentors, capturing her sparkling humor, courage against illness, and brilliant field biology.
+								</p>
+								<span class="archive-link-card__url">currentconservation.org/archana-bali-conservations-most-winsome-warrior &rarr;</span>
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -1116,6 +1361,54 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 		grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
 	}
 
+	.ways--four {
+		grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+	}
+
+	/* ── Milestone Direct Link Pills in Timeline ───────────────────────────── */
+	.way__links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem 0.65rem;
+		margin-top: 0.85rem;
+		padding-top: 0.75rem;
+		border-top: 1px dashed rgba(26, 22, 18, 0.16);
+	}
+
+	.way__link-pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		padding: 0.28rem 0.75rem;
+		background: rgba(28, 107, 119, 0.08);
+		border: 1px solid rgba(28, 107, 119, 0.28);
+		border-radius: 100px;
+		color: var(--teal);
+		text-decoration: none;
+		font-family: var(--face-cinzel);
+		font-size: 0.71875rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		transition: all 180ms var(--ease);
+	}
+
+	.way__link-pill:hover {
+		background: var(--teal);
+		color: #ffffff;
+		border-color: var(--teal);
+		transform: translateY(-1px);
+		box-shadow: 0 4px 12px rgba(14, 62, 69, 0.25);
+	}
+
+	.way__link-arrow {
+		font-size: 0.95em;
+		transition: transform 180ms var(--ease);
+	}
+
+	.way__link-pill:hover .way__link-arrow {
+		transform: translateX(2px);
+	}
+
 	/* ── The Signature Card (Exact matching .way from 404 template) ────────── */
 	.way {
 		position: relative;
@@ -1582,7 +1875,7 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 		border: 1px solid rgba(255, 255, 255, 0.22);
 		border-radius: 4px;
 		padding: clamp(1.75rem, 4vw, 2.75rem);
-		max-width: min(92vw, 38rem);
+		max-width: min(94vw, 46rem);
 		max-height: 90vh;
 		overflow-y: auto;
 		box-shadow: 0 24px 64px -12px rgba(0, 0, 0, 0.7);
@@ -1670,6 +1963,208 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 	.legacy-dialog__list span {
 		font-size: 0.95rem;
 		color: rgba(250, 247, 240, 0.88);
+	}
+
+	/* ── Dialog Tabs for switching between archive drawers ─────────────────── */
+	.dialog-tabs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-bottom: 1.5rem;
+		padding-bottom: 1.1rem;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+	}
+
+	.dialog-tabs__btn {
+		background: rgba(255, 255, 255, 0.08);
+		border: 1px solid rgba(255, 255, 255, 0.18);
+		border-radius: 100px;
+		color: rgba(250, 247, 240, 0.85);
+		font-family: var(--face-cinzel);
+		font-size: 0.71875rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		padding: 0.45rem 0.95rem;
+		cursor: pointer;
+		transition: all 200ms var(--ease);
+	}
+
+	.dialog-tabs__btn:hover {
+		background: rgba(255, 255, 255, 0.18);
+		color: #ffffff;
+		border-color: rgba(255, 255, 255, 0.35);
+	}
+
+	.dialog-tabs__btn.is-active {
+		background: #f7d68f;
+		color: #072a30;
+		border-color: #f7d68f;
+		font-weight: 700;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+	}
+
+	/* ── Archive Section Headers inside Drawers ────────────────────────────── */
+	.archive-section-head {
+		margin: 1.75rem 0 0.85rem;
+		padding-top: 1.25rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.16);
+	}
+
+	.archive-section-head h4 {
+		font-family: var(--face-cinzel);
+		font-size: 0.8125rem;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: #f7d68f;
+		margin: 0 0 0.35rem;
+	}
+
+	.archive-section-head p {
+		font-size: 0.925rem;
+		line-height: 1.55;
+		color: rgba(250, 247, 240, 0.82);
+		margin: 0;
+	}
+
+	/* ── Archive External Link Cards Grid ─────────────────────────────────── */
+	.archive-links-grid {
+		display: grid;
+		gap: 0.9rem;
+		margin-top: 1rem;
+	}
+
+	.archive-link-card {
+		display: block;
+		padding: 1.1rem 1.25rem;
+		border-radius: 6px;
+		background: rgba(255, 255, 255, 0.06);
+		border: 1px solid rgba(255, 255, 255, 0.16);
+		text-decoration: none;
+		color: inherit;
+		transition:
+			background 220ms var(--ease),
+			border-color 220ms var(--ease),
+			transform 220ms var(--ease),
+			box-shadow 220ms var(--ease);
+	}
+
+	.archive-link-card:hover {
+		background: rgba(255, 255, 255, 0.12);
+		border-color: #f7d68f;
+		transform: translateY(-2px);
+		box-shadow:
+			0 10px 24px -6px rgba(0, 0, 0, 0.5),
+			0 2px 6px rgba(0, 0, 0, 0.2);
+	}
+
+	.archive-link-card__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		margin-bottom: 0.45rem;
+	}
+
+	.archive-badge {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.2rem 0.55rem;
+		border-radius: 4px;
+		font-family: var(--face-cinzel);
+		font-size: 0.6875rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		background: rgba(247, 214, 143, 0.2);
+		color: #fce2a6;
+		border: 1px solid rgba(247, 214, 143, 0.35);
+	}
+
+	.archive-badge--rg {
+		background: rgba(0, 204, 187, 0.18);
+		color: #8df6e5;
+		border-color: rgba(0, 204, 187, 0.4);
+	}
+
+	.archive-badge--jstor {
+		background: rgba(217, 83, 79, 0.18);
+		color: #ffb3b0;
+		border-color: rgba(217, 83, 79, 0.4);
+	}
+
+	.archive-badge--fao {
+		background: rgba(91, 192, 222, 0.18);
+		color: #b3edfc;
+		border-color: rgba(91, 192, 222, 0.4);
+	}
+
+	.archive-badge--sci {
+		background: rgba(142, 110, 255, 0.18);
+		color: #dacfff;
+		border-color: rgba(142, 110, 255, 0.4);
+	}
+
+	.archive-badge--scilit {
+		background: rgba(76, 175, 80, 0.18);
+		color: #b7f6ba;
+		border-color: rgba(76, 175, 80, 0.4);
+	}
+
+	.archive-badge--uaf {
+		background: rgba(255, 193, 7, 0.18);
+		color: #ffecb0;
+		border-color: rgba(255, 193, 7, 0.4);
+	}
+
+	.archive-badge--cc {
+		background: rgba(40, 167, 69, 0.18);
+		color: #a3f7b8;
+		border-color: rgba(40, 167, 69, 0.4);
+	}
+
+	.archive-badge--sanctuary {
+		background: rgba(230, 126, 34, 0.18);
+		color: #fed2ab;
+		border-color: rgba(230, 126, 34, 0.4);
+	}
+
+	.archive-link-card__arrow {
+		font-size: 1.15rem;
+		line-height: 1;
+		color: #f7d68f;
+		transition: transform 200ms var(--ease);
+	}
+
+	.archive-link-card:hover .archive-link-card__arrow {
+		transform: translate(2px, -2px);
+	}
+
+	.archive-link-card__title {
+		font-family: var(--face-bodoni);
+		font-size: 1.1875rem;
+		font-weight: 700;
+		color: #ffffff;
+		margin: 0 0 0.35rem;
+		line-height: 1.32;
+	}
+
+	.archive-link-card__desc {
+		font-size: 0.90625rem;
+		line-height: 1.58;
+		color: rgba(250, 247, 240, 0.86);
+		margin: 0 0 0.55rem;
+	}
+
+	.archive-link-card__url {
+		display: inline-flex;
+		align-items: center;
+		font-family: var(--face-cinzel);
+		font-size: 0.71875rem;
+		letter-spacing: 0.08em;
+		color: #8fe0ec;
+		font-weight: 600;
 	}
 
 	/* ── Memory Form ──────────────────────────────────────────────────────── */
@@ -2184,6 +2679,7 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 		const archDialog = document.getElementById('archive-dialog');
 		const archTriggers = document.querySelectorAll('[data-open-drawer]');
 		const closeArchTriggers = document.querySelectorAll('[data-close-archive]');
+		const tabButtons = document.querySelectorAll('[data-tab-target]');
 		const drawerArticles = document.getElementById('drawer-articles');
 		const drawerFilm = document.getElementById('drawer-film');
 		const drawerAwards = document.getElementById('drawer-awards');
@@ -2200,22 +2696,46 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 			awards: drawerAwards,
 		};
 
+		const setActiveTab = (targetKey) => {
+			tabButtons.forEach((tab) => {
+				const isTarget = tab.getAttribute('data-tab-target') === targetKey;
+				tab.classList.toggle('is-active', isTarget);
+				tab.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+			});
+		};
+
+		const showDrawer = (drawerKey) => {
+			const drawer = drawers[drawerKey];
+			if (!drawer) return;
+
+			hideAllDrawers();
+			drawer.removeAttribute('hidden');
+			setActiveTab(drawerKey);
+
+			// Scroll drawer to top
+			const panel = archDialog?.querySelector('.legacy-dialog__panel');
+			if (panel) panel.scrollTop = 0;
+
+			const title = drawer.querySelector('.legacy-dialog__title');
+			if (title && archDialog) {
+				if (!title.id) title.id = `${drawer.id}-title`;
+				archDialog.setAttribute('aria-labelledby', title.id);
+			}
+		};
+
+		tabButtons.forEach((tab) => {
+			tab.addEventListener('click', () => {
+				const targetKey = tab.getAttribute('data-tab-target');
+				if (targetKey) showDrawer(targetKey);
+			});
+		});
+
 		archTriggers.forEach((btn) => {
 			btn.addEventListener('click', () => {
-				const drawer = drawers[btn.getAttribute('data-open-drawer')];
-				if (!drawer) return;
+				const drawerKey = btn.getAttribute('data-open-drawer');
+				if (!drawerKey) return;
 
-				hideAllDrawers();
-				drawer.removeAttribute('hidden');
-
-				// One dialog holds three drawers, so its name has to be whichever one
-				// is open. Pointed at a single heading, the film and the honours were
-				// both announced as the published articles.
-				const title = drawer.querySelector('.legacy-dialog__title');
-				if (title && archDialog) {
-					if (!title.id) title.id = `${drawer.id}-title`;
-					archDialog.setAttribute('aria-labelledby', title.id);
-				}
+				showDrawer(drawerKey);
 
 				if (typeof archDialog?.showModal === 'function') {
 					archDialog.showModal();
