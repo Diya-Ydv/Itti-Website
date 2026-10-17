@@ -312,25 +312,23 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 									</div>
 									<h3 class="way__name">{item.title}</h3>
 									<p class="way__note">{item.description}</p>
-									{
-										item.links && item.links.length > 0 && (
-											<div class="way__links">
-												{item.links.map((link) => (
-													<a
-														href={link.url}
-														target="_blank"
-														rel="noopener noreferrer"
-														class="way__link-pill"
-													>
-														<span>{link.label}</span>
-														<span class="way__link-arrow" aria-hidden="true">
-															&rarr;
-														</span>
-													</a>
-												))}
-											</div>
-										)
-									}
+									{item.links && item.links.length > 0 && (
+										<div class="way__links">
+											{item.links.map((link) => (
+												<a
+													href={link.url}
+													target="_blank"
+													rel="noopener noreferrer"
+													class="way__link-pill"
+												>
+													<span>{link.label}</span>
+													<span class="way__link-arrow" aria-hidden="true">
+														&rarr;
+													</span>
+												</a>
+											))}
+										</div>
+									)}
 								</div>
 							</article>
 						))
@@ -541,7 +539,9 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 
 				<!-- ──────── 1. Her published articles (Publications · Western Ghats & Alaska) ──────── -->
 				<div id="drawer-articles" class="legacy-dialog__view">
-					<p class="legacy-dialog__eyebrow">Publications &middot; Western Ghats &amp; Alaska</p>
+					<p class="legacy-dialog__eyebrow">
+						Publications &middot; Western Ghats &amp; Alaska
+					</p>
 					<h3 class="legacy-dialog__title" id="archive-modal-title">
 						Her Published Articles
 					</h3>
@@ -549,8 +549,8 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 						<p>
 							Dr. Archana Bali was a pioneer in wildlife ecology and
 							human&ndash;wildlife coexistence, examining how human cultivation and wild
-							habitats meet across the Western Ghats of India and the Arctic ecosystems of
-							Alaska.
+							habitats meet across the Western Ghats of India and the Arctic ecosystems
+							of Alaska.
 						</p>
 
 						<div class="archive-section-head">
@@ -568,13 +568,20 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 							>
 								<div class="archive-link-card__header">
 									<span class="archive-badge archive-badge--rg">ResearchGate</span>
-									<span class="archive-link-card__arrow" aria-hidden="true">&nearr;</span>
+									<span class="archive-link-card__arrow" aria-hidden="true"
+										>&nearr;</span
+									>
 								</div>
-								<h5 class="archive-link-card__title">Voices of the Caribou People (participatory videography paper)</h5>
+								<h5 class="archive-link-card__title">
+									Voices of the Caribou People (participatory videography paper)
+								</h5>
 								<p class="archive-link-card__desc">
-									Methodology, citation metrics, and complete abstract for the participatory videography study in <em>Ecology and Society</em>.
+									Methodology, citation metrics, and complete abstract for the
+									participatory videography study in <em>Ecology and Society</em>.
 								</p>
-								<span class="archive-link-card__url">researchgate.net/publication/270357423 &rarr;</span>
+								<span class="archive-link-card__url"
+									>researchgate.net/publication/270357423 &rarr;</span
+								>
 							</a>
 
 							<!-- Link 2: JSTOR -->
@@ -586,13 +593,18 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 							>
 								<div class="archive-link-card__header">
 									<span class="archive-badge archive-badge--jstor">JSTOR</span>
-									<span class="archive-link-card__arrow" aria-hidden="true">&nearr;</span>
+									<span class="archive-link-card__arrow" aria-hidden="true"
+										>&nearr;</span
+									>
 								</div>
 								<h5 class="archive-link-card__title">JSTOR (Seq. 4)</h5>
 								<p class="archive-link-card__desc">
-									Permanent digital library archival entry preserving the participatory videography framework in <em>Ecology and Society</em>, Vol. 19, No. 2.
+									Permanent digital library archival entry preserving the participatory
+									videography framework in <em>Ecology and Society</em>, Vol. 19, No. 2.
 								</p>
-								<span class="archive-link-card__url">jstor.org/stable/26269531?seq=4 &rarr;</span>
+								<span class="archive-link-card__url"
+									>jstor.org/stable/26269531?seq=4 &rarr;</span
+								>
 							</a>
 
 							<!-- Link 3: AGRIS (FAO) -->
@@ -604,13 +616,18 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 							>
 								<div class="archive-link-card__header">
 									<span class="archive-badge archive-badge--fao">AGRIS (FAO)</span>
-									<span class="archive-link-card__arrow" aria-hidden="true">&nearr;</span>
+									<span class="archive-link-card__arrow" aria-hidden="true"
+										>&nearr;</span
+									>
 								</div>
 								<h5 class="archive-link-card__title">AGRIS (FAO) Database Record</h5>
 								<p class="archive-link-card__desc">
-									International System for Agricultural Science and Technology (AGRIS) official bibliographic index record.
+									International System for Agricultural Science and Technology (AGRIS)
+									official bibliographic index record.
 								</p>
-								<span class="archive-link-card__url">agris.fao.org/search/records &rarr;</span>
+								<span class="archive-link-card__url"
+									>agris.fao.org/search/records &rarr;</span
+								>
 							</a>
 
 							<!-- Link 4: Scilit -->
@@ -622,13 +639,18 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 							>
 								<div class="archive-link-card__header">
 									<span class="archive-badge archive-badge--scilit">Scilit</span>
-									<span class="archive-link-card__arrow" aria-hidden="true">&nearr;</span>
+									<span class="archive-link-card__arrow" aria-hidden="true"
+										>&nearr;</span
+									>
 								</div>
 								<h5 class="archive-link-card__title">Scilit Index</h5>
 								<p class="archive-link-card__desc">
-									Comprehensive academic literature database entry tracking citations, authors, and cross-disciplinary impact.
+									Comprehensive academic literature database entry tracking citations,
+									authors, and cross-disciplinary impact.
 								</p>
-								<span class="archive-link-card__url">scilit.com/publications &rarr;</span>
+								<span class="archive-link-card__url"
+									>scilit.com/publications &rarr;</span
+								>
 							</a>
 
 							<!-- Link 5: Scimatic -->
@@ -640,13 +662,20 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 							>
 								<div class="archive-link-card__header">
 									<span class="archive-badge archive-badge--sci">Scimatic</span>
-									<span class="archive-link-card__arrow" aria-hidden="true">&nearr;</span>
+									<span class="archive-link-card__arrow" aria-hidden="true"
+										>&nearr;</span
+									>
 								</div>
-								<h5 class="archive-link-card__title">Scimatic Academic Bibliography &amp; DOI</h5>
+								<h5 class="archive-link-card__title">
+									Scimatic Academic Bibliography &amp; DOI
+								</h5>
 								<p class="archive-link-card__desc">
-									Scholarly bibliographic citation, DOI 10.5751/ES-06327-190216 metadata, and indexed keywords for participatory Arctic research.
+									Scholarly bibliographic citation, DOI 10.5751/ES-06327-190216
+									metadata, and indexed keywords for participatory Arctic research.
 								</p>
-								<span class="archive-link-card__url">scimatic.org/biblio/160857 &rarr;</span>
+								<span class="archive-link-card__url"
+									>scimatic.org/biblio/160857 &rarr;</span
+								>
 							</a>
 						</div>
 					</div>
@@ -683,14 +712,24 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 								class="archive-link-card"
 							>
 								<div class="archive-link-card__header">
-									<span class="archive-badge archive-badge--sanctuary">Sanctuary Nature Foundation</span>
-									<span class="archive-link-card__arrow" aria-hidden="true">&nearr;</span>
+									<span class="archive-badge archive-badge--sanctuary"
+										>Sanctuary Nature Foundation</span
+									>
+									<span class="archive-link-card__arrow" aria-hidden="true"
+										>&nearr;</span
+									>
 								</div>
-								<h5 class="archive-link-card__title">Wildlife biologist and filmmaker Archana Bali</h5>
+								<h5 class="archive-link-card__title">
+									Wildlife biologist and filmmaker Archana Bali
+								</h5>
 								<p class="archive-link-card__desc">
-									Sanctuary Nature Foundation profile celebrating her path as a field biologist and documentary filmmaker, from NCBS Bangalore to Alaska.
+									Sanctuary Nature Foundation profile celebrating her path as a field
+									biologist and documentary filmmaker, from NCBS Bangalore to Alaska.
 								</p>
-								<span class="archive-link-card__url">sanctuarynaturefoundation.org/article/wildlife-biologist-and-filmmaker-archana-bali &rarr;</span>
+								<span class="archive-link-card__url"
+									>sanctuarynaturefoundation.org/article/wildlife-biologist-and-filmmaker-archana-bali
+									&rarr;</span
+								>
 							</a>
 
 							<!-- Link 2: UAF AFES film award -->
@@ -702,13 +741,20 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 							>
 								<div class="archive-link-card__header">
 									<span class="archive-badge archive-badge--uaf">UAF AFES (2009)</span>
-									<span class="archive-link-card__arrow" aria-hidden="true">&nearr;</span>
+									<span class="archive-link-card__arrow" aria-hidden="true"
+										>&nearr;</span
+									>
 								</div>
 								<h5 class="archive-link-card__title">PhD student wins film award</h5>
 								<p class="archive-link-card__desc">
-									University of Alaska Fairbanks feature celebrating Archana Bali winning the film award for the documentary <em>Voices of the Caribou People</em>.
+									University of Alaska Fairbanks feature celebrating Archana Bali
+									winning the film award for the documentary <em
+										>Voices of the Caribou People</em
+									>.
 								</p>
-								<span class="archive-link-card__url">afes.open.uaf.edu/2009/04/30/phd-student-wins-film-award &rarr;</span>
+								<span class="archive-link-card__url"
+									>afes.open.uaf.edu/2009/04/30/phd-student-wins-film-award &rarr;</span
+								>
 							</a>
 						</div>
 					</div>
@@ -723,27 +769,33 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 							<li>
 								<strong>The George Schaller Scholarship:</strong>
 								<span>
-									The first scholar ever selected for this prestigious award to pursue
-									a doctorate in wildlife ecology and conservation at UAF Resilience and Adaptation Program.
+									The first scholar ever selected for this prestigious award to pursue a
+									doctorate in wildlife ecology and conservation at UAF Resilience and
+									Adaptation Program.
 								</span>
 							</li>
 							<li>
 								<strong>Posthumous Doctorate of Philosophy (2016):</strong>
 								<span>
-									Conferred on Mother’s Day at the University of Alaska Fairbanks, received with enduring pride by her mother.
+									Conferred on Mother’s Day at the University of Alaska Fairbanks,
+									received with enduring pride by her mother.
 								</span>
 							</li>
 							<li>
 								<strong>Documentary Festival Honours:</strong>
 								<span>
-									Festival recognitions and tribal community honors for <em>The Voices Project</em>.
+									Festival recognitions and tribal community honors for <em
+										>The Voices Project</em
+									>.
 								</span>
 							</li>
 						</ul>
 
 						<div class="archive-section-head">
 							<h4>Tributes &amp; University Announcement</h4>
-							<p>Memorials, university announcements, and tributes honouring her legacy:</p>
+							<p>
+								Memorials, university announcements, and tributes honouring her legacy:
+							</p>
 						</div>
 
 						<div class="archive-links-grid">
@@ -756,13 +808,19 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 							>
 								<div class="archive-link-card__header">
 									<span class="archive-badge archive-badge--uaf">UAF News</span>
-									<span class="archive-link-card__arrow" aria-hidden="true">&nearr;</span>
+									<span class="archive-link-card__arrow" aria-hidden="true"
+										>&nearr;</span
+									>
 								</div>
 								<h5 class="archive-link-card__title">Doctoral candidate dies</h5>
 								<p class="archive-link-card__desc">
-									University of Alaska Fairbanks official news release and memorial tribute commemorating her courage, research legacy, and academic distinction.
+									University of Alaska Fairbanks official news release and memorial
+									tribute commemorating her courage, research legacy, and academic
+									distinction.
 								</p>
-								<span class="archive-link-card__url">news.uaf.edu/doctoral-candidate-dies &rarr;</span>
+								<span class="archive-link-card__url"
+									>news.uaf.edu/doctoral-candidate-dies &rarr;</span
+								>
 							</a>
 
 							<!-- Link 2: Current Conservation -->
@@ -773,14 +831,25 @@ const FOUNDER_GROUPS: CredentialGroup[] = [
 								class="archive-link-card"
 							>
 								<div class="archive-link-card__header">
-									<span class="archive-badge archive-badge--cc">Current Conservation</span>
-									<span class="archive-link-card__arrow" aria-hidden="true">&nearr;</span>
+									<span class="archive-badge archive-badge--cc"
+										>Current Conservation</span
+									>
+									<span class="archive-link-card__arrow" aria-hidden="true"
+										>&nearr;</span
+									>
 								</div>
-								<h5 class="archive-link-card__title">Archana Bali: Conservation’s most winsome warrior</h5>
+								<h5 class="archive-link-card__title">
+									Archana Bali: Conservation’s most winsome warrior
+								</h5>
 								<p class="archive-link-card__desc">
-									An affectionate and evocative memoir by friends and mentors, capturing her sparkling humor, courage against illness, and brilliant field biology.
+									An affectionate and evocative memoir by friends and mentors, capturing
+									her sparkling humor, courage against illness, and brilliant field
+									biology.
 								</p>
-								<span class="archive-link-card__url">currentconservation.org/archana-bali-conservations-most-winsome-warrior &rarr;</span>
+								<span class="archive-link-card__url"
+									>currentconservation.org/archana-bali-conservations-most-winsome-warrior
+									&rarr;</span
+								>
 							</a>
 						</div>
 					</div>
